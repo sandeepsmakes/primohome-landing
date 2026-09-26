@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrimoHome — Professional Home Cleaning in Trivandrum, Kerala</title>
+  <meta name="description" content="Premium home care services in Trivandrum and beyond. Trusted people. Cleaner homes. Happier lives." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1B2A;
+      --navy-soft: #16283d;
+      --teal: #00A6A6;
+      --gold: #D4AF37;
+      --grey: #A7B0B8;
+      --white: #ffffff;
+      --cream: #F7F2E7;
+      --text: #2b3542;
+      --muted: #64748b;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-head: 'Montserrat', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-script: 'Caveat', cursive;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 2px;
+      background: var(--gold);
+      display: inline-block;
+    }
+    h1, h2, h3 { font-family: var(--font-head); color: var(--navy); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 15px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 10px 30px rgba(212,175,55,0.35);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(212,175,55,0.45); }
+    .btn-outline-light {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.5);
+    }
+    .btn-outline-light:hover { background: rgba(255,255,255,0.12); }
+    .btn-outline-navy {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+    .btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+    .icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(0,166,166,0.1);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-circle svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    header.site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--white);
+      box-shadow: 0 1px 12px rgba(13,27,42,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.18s ease, border-color 0.18s ease;
+    }
+    .nav-links a:hover { color: var(--teal); border-color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--navy);
+      padding: 6px;
+    }
+    .nav-toggle svg { width: 26px; height: 26px; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-right .btn-gold { display: none; }
+      header.site-nav.mobile-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 8px 40px 20px;
+        box-shadow: 0 12px 24px rgba(13,27,42,0.1);
+      }
+      header.site-nav.mobile-open .nav-links a { padding: 12px 0; width: 100%; border-bottom: 1px solid #eef1f4; }
+      header.site-nav.mobile-open .nav-right .btn-gold {
+        display: inline-flex;
+        margin: 0 40px 20px;
+      }
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      background: var(--navy);
+      color: var(--white);
+      padding: 96px 0 64px;
+      overflow: hidden;
+    }
+    .hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 620px; max-width: 54%; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 15% center; display: block; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(100deg,
+        var(--navy) 0%, var(--navy) 34%,
+        rgba(13,27,42,0.88) 46%, rgba(13,27,42,0.45) 60%,
+        rgba(13,27,42,0.08) 76%, transparent 90%);
+    }
+    .hero .container { position: relative; z-index: 2; }
+    .hero-copy { max-width: 560px; }
+    .hero-eyebrow {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--grey);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(34px, 4.6vw, 54px);
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--white);
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 .accent { color: var(--gold); }
+    .hero p.lead {
+      font-size: 17px;
+      color: #cbd5e1;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 150px;
+    }
+    .trust-item svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+    .trust-item span { font-size: 12.5px; font-weight: 600; color: #dbe3ec; line-height: 1.3; }
+
+    @media (max-width: 900px) {
+      .hero p.lead { max-width: none; }
+    }
+    @media (max-width: 700px) {
+      .hero { padding: 64px 0 48px; }
+      .hero-bg img { object-position: 75% center; }
+      .hero::before {
+        background: linear-gradient(170deg,
+          var(--navy) 0%, var(--navy) 55%,
+          rgba(13,27,42,0.88) 75%, rgba(13,27,42,0.55) 100%);
+      }
+    }
+
+    /* ── SECTION SCAFFOLDING ─────────────────────────────── */
+    section { padding: 88px 0; }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .section-title { font-size: clamp(26px, 3.6vw, 38px); font-weight: 800; letter-spacing: -0.5px; }
+    .link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 2px;
+    }
+    .link-arrow svg { width: 15px; height: 15px; }
+
+    /* ── SERVICES ────────────────────────────────────────── */
+    .services { background: var(--white); }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid #eef1f4;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(13,27,42,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 14px 32px rgba(13,27,42,0.1); }
+    .service-photo { aspect-ratio: 228/95; overflow: hidden; }
+    .service-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .service-body { padding: 22px 22px 26px; }
+    .service-body .icon-circle { margin-bottom: 14px; width: 44px; height: 44px; }
+    .service-body .icon-circle svg { width: 20px; height: 20px; }
+    .service-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .service-card p { font-size: 14px; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .service-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── OUR STORY ───────────────────────────────────────── */
+    .story {
+      background: linear-gradient(180deg, var(--cream) 0%, #fbf8f1 100%);
+      padding: 0;
+    }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 0.55fr;
+    }
+    .story-copy {
+      padding: 88px 48px 88px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .story-copy .section-title { margin-bottom: 18px; line-height: 1.2; }
+    .story-copy p { color: var(--text); margin-bottom: 28px; max-width: 440px; }
+    .story-photo { min-height: 340px; overflow: hidden; }
+    .story-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .story-panel {
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      padding: 40px 32px;
+      position: relative;
+    }
+    .story-panel::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 20%; bottom: 20%;
+      width: 3px;
+      background: var(--gold);
+    }
+    .story-panel p {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      padding-left: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .story-grid { grid-template-columns: 1fr; }
+      .story-copy { padding: 56px 24px 32px; text-align: left; }
+      .story-photo { min-height: 260px; }
+      .story-panel { padding: 32px 24px 56px; }
+    }
+
+    /* ── VALUES ──────────────────────────────────────────── */
+    .values { background: var(--white); padding: 72px 0; }
+    .values .eyebrow { justify-content: center; margin: 0 auto 40px; width: fit-content; }
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .value-item .icon-circle { margin: 0 auto 16px; background: rgba(212,175,55,0.12); color: var(--gold); }
+    .value-item h3 {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .value-item p { font-size: 13.5px; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .value-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+    }
+
+    /* ── STATS ───────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .stats-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 40px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+      flex-wrap: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+    .stats-facts { display: flex; align-items: center; gap: 32px; flex-shrink: 0; }
+    .stat-item { display: flex; align-items: center; gap: 14px; }
+    .stat-item .icon-circle { background: transparent; border: 1.5px solid rgba(212,175,55,0.55); color: var(--gold); width: 44px; height: 44px; }
+    .stat-item .icon-circle svg { width: 20px; height: 20px; }
+    .stat-num { font-family: var(--font-head); font-size: 24px; font-weight: 800; display: block; white-space: nowrap; }
+    .stat-label { font-size: 13px; color: var(--grey); white-space: nowrap; }
+    .stats-divider { width: 1px; height: 34px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+    .stats-art {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .kerala-skyline { opacity: 0.75; flex-shrink: 1; min-width: 0; }
+    .kerala-skyline svg { width: 300px; max-width: 100%; height: 74px; display: block; }
+    .stats-script {
+      font-family: var(--font-script);
+      color: var(--gold);
+      font-size: 22px;
+      line-height: 1.05;
+      text-align: right;
+      flex-shrink: 0;
+      padding-bottom: 14px;
+    }
+
+    @media (max-width: 1100px) {
+      .kerala-skyline svg { width: 210px; }
+    }
+    @media (max-width: 900px) {
+      .stats-inner { justify-content: center; flex-wrap: wrap; }
+      .stats-divider { display: none; }
+      .stats-art { display: none; }
+    }
+
+    /* ── TESTIMONIALS ────────────────────────────────────── */
+    .testimonials { background: #fafbfc; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: 0 4px 20px rgba(13,27,42,0.06);
+    }
+    .testi-quote { color: var(--gold); width: 30px; height: 24px; margin-bottom: 14px; }
+    .testi-card p.quote { font-size: 15px; color: var(--text); margin-bottom: 18px; }
+    .stars { display: flex; gap: 3px; margin-bottom: 12px; }
+    .stars svg { width: 15px; height: 15px; fill: var(--gold); }
+    .testi-name { font-family: var(--font-head); font-weight: 700; font-size: 14.5px; color: var(--navy); }
+    .testi-loc { font-size: 13px; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .testi-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── BOTTOM CTA ──────────────────────────────────────── */
+    .final-cta {
+      position: relative;
+      background: var(--cream);
+      padding: 0;
+      overflow: hidden;
+    }
+    .final-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 64px 40px;
+      max-width: 1160px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .final-cta-copy { max-width: 560px; }
+    .final-cta h2 { font-size: clamp(24px, 3.4vw, 34px); margin-bottom: 12px; }
+    .final-cta p { color: var(--text); margin-bottom: 26px; }
+    .final-cta-script {
+      font-family: var(--font-script);
+      color: var(--teal);
+      font-size: 24px;
+      line-height: 1.15;
+      text-align: right;
+    }
+    .cta-corner-photo {
+      position: absolute;
+      width: 130px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      left: 0;
+      top: 0;
+      opacity: 0.9;
+    }
+    .cta-corner-photo.right {
+      left: auto;
+      right: 0;
+      width: 174px;
+      height: 50px;
+      bottom: 0;
+      top: auto;
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+
+    @media (max-width: 900px) {
+      .final-cta-inner { flex-direction: column; align-items: flex-start; padding: 56px 24px; }
+      .final-cta-script { text-align: left; }
+      .cta-corner-photo, .cta-corner-photo.right { display: none; }
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: var(--grey);
+      padding: 64px 0 0;
+      font-size: 14px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 32px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand img { height: 40px; margin-bottom: 14px; }
+    .footer-brand p { max-width: 260px; color: var(--grey); margin-top: 14px; }
+    footer h4 {
+      font-family: var(--font-head);
+      color: var(--white);
+      font-size: 14px;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 10px; }
+    footer ul a { text-decoration: none; color: var(--grey); transition: color 0.18s ease; }
+    footer ul a:hover { color: var(--gold); }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .footer-contact-item svg { width: 16px; height: 16px; stroke: var(--teal); fill: none; stroke-width: 1.8; margin-top: 2px; flex-shrink: 0; }
+    .footer-contact-item a, .footer-contact-item span { color: var(--grey); text-decoration: none; }
+    .social-row { display: flex; gap: 10px; margin-top: 18px; }
+    .social-row a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--grey);
+      text-decoration: none;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .social-row a:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+    .social-row svg { width: 15px; height: 15px; fill: currentColor; }
+    .footer-flag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-self: end;
+    }
+    .footer-flag svg { width: 34px; height: 24px; border-radius: 2px; flex-shrink: 0; }
+    .footer-flag span { font-size: 12.5px; line-height: 1.4; color: var(--grey); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0;
+      font-size: 13px;
+      color: var(--grey);
+      flex-wrap: wrap;
+    }
+    .footer-bottom a { color: var(--grey); text-decoration: none; margin-left: 18px; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-flag { justify-self: start; margin-top: 8px; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── ENQUIRY WIDGET (floating, chat-bubble style) ─────── */
+    .enquiry-widget { position: fixed; right: 24px; bottom: 24px; z-index: 300; }
+    .enquiry-bubble {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      box-shadow: 0 10px 28px rgba(0,166,166,0.45);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .enquiry-bubble:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,166,166,0.55); }
+    .enquiry-bubble svg { width: 26px; height: 26px; fill: currentColor; }
+    .enquiry-bubble .icon-close { display: none; }
+    .enquiry-widget.open .enquiry-bubble .icon-chat { display: none; }
+    .enquiry-widget.open .enquiry-bubble .icon-close { display: block; }
+
+    .enquiry-panel {
+      position: absolute;
+      right: 0; bottom: 76px;
+      width: 320px;
+      max-width: calc(100vw - 48px);
+      max-height: calc(100vh - 140px);
+      overflow-y: auto;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 44px rgba(13,27,42,0.22);
+      padding: 24px;
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .enquiry-widget.open .enquiry-panel { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .enquiry-panel-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .enquiry-panel-title { font-family: var(--font-head); font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .enquiry-minimize {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); padding: 2px; margin-top: 1px; flex-shrink: 0;
+      border-radius: 4px; transition: color 0.18s ease, background 0.18s ease;
+    }
+    .enquiry-minimize:hover { color: var(--navy); background: #f1f5f9; }
+    .enquiry-minimize svg { width: 18px; height: 18px; display: block; }
+    .enquiry-panel-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+    .enquiry-form { text-align: left; }
+    .enquiry-field { margin-bottom: 14px; }
+    .enquiry-field label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .enquiry-field input, .enquiry-field textarea {
+      width: 100%; padding: 12px 14px;
+      border: 1px solid #e2e8f0; border-radius: 8px;
+      font-size: 15px; font-family: inherit; color: var(--text);
+    }
+    .enquiry-field input:focus, .enquiry-field textarea:focus { outline: none; border-color: var(--teal); }
+    .enquiry-field textarea { resize: vertical; min-height: 80px; }
+    .enquiry-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .enquiry-submit {
+      width: 100%; background: var(--teal); color: var(--white);
+      border: none; padding: 14px; border-radius: 50px;
+      font-family: var(--font-head); font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .enquiry-submit:hover:not(:disabled) { background: #018f8f; }
+    .enquiry-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .enquiry-status { margin-top: 14px; font-size: 14px; text-align: center; display: none; }
+    .enquiry-status.success { color: #018f8f; display: block; }
+    .enquiry-status.error { color: #dc2626; display: block; }
+
+    /* ── Decorative butterflies: perched on the bubble when minimized,
+       wandering loosely below the panel when open.
+       Geometry note: the panel's box (right:0..320px, bottom:100..~580px
+       relative to the viewport, given widget offset 24px + panel's own
+       bottom:76px) means ANY flight path that keeps bottom-distance under
+       ~95px stays clear of the panel entirely, regardless of horizontal
+       position — that's the invariant every fly-* keyframe below holds to,
+       rather than trying to loop around all four sides. ── */
+    .butterflies { position: absolute; right: -20px; bottom: -10px; width: 1px; height: 1px; pointer-events: none; z-index: 5; }
+    .butterfly { position: absolute; width: 18px; height: 14px; }
+    .butterfly .wing { fill: var(--white); }
+    .butterfly .wing-l, .butterfly .wing-r {
+      transform-box: view-box;
+      animation: wing-flap 1s ease-in-out infinite;
+    }
+    .butterfly .wing-l { transform-origin: 9.4px 8px; }
+    .butterfly .wing-r { transform-origin: 10.6px 8px; }
+    .butterfly .body, .butterfly .head { fill: var(--white); }
+    .butterfly .antenna { stroke: var(--white); stroke-width: 0.5; fill: none; stroke-linecap: round; }
+    @keyframes wing-flap {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(0.35); }
+    }
+    .butterfly-2 .wing { animation-delay: 0.15s; }
+    .butterfly-3 .wing { animation-delay: 0.3s; }
+
+    .butterfly-1 { right: 8px; bottom: 56px; transform: rotate(-10deg) scale(0.9); }
+    .butterfly-2 { right: 26px; bottom: 46px; transform: rotate(12deg) scale(0.7); }
+    .butterfly-3 { right: 14px; bottom: 66px; transform: rotate(-4deg) scale(0.6); }
+
+    .enquiry-widget.open .butterfly .wing { animation-duration: 0.35s; }
+    .enquiry-widget.open .butterfly-1 { animation: fly-1 7s ease-in-out infinite; }
+    .enquiry-widget.open .butterfly-2 { animation: fly-2 8.5s ease-in-out infinite; animation-delay: -2s; }
+    .enquiry-widget.open .butterfly-3 { animation: fly-3 6s ease-in-out infinite; animation-delay: -4s; }
+
+    /* Each stop's implied bottom-distance (rest value minus the Y term
+       below) stays under ~95px, safely under the panel's ~100px offset. */
+    @keyframes fly-1 {
+      0%   { transform: translate(0, 0) rotate(-10deg) scale(0.9); }
+      20%  { transform: translate(-68px, 40px) rotate(8deg) scale(0.9); }
+      40%  { transform: translate(-168px, -15px) rotate(-12deg) scale(0.9); }
+      60%  { transform: translate(-238px, 25px) rotate(14deg) scale(0.9); }
+      80%  { transform: translate(-118px, -20px) rotate(-6deg) scale(0.9); }
+      100% { transform: translate(0, 0) rotate(-10deg) scale(0.9); }
+    }
+    @keyframes fly-2 {
+      0%   { transform: translate(0, 0) rotate(12deg) scale(0.7); }
+      25%  { transform: translate(-60px, 35px) rotate(-10deg) scale(0.7); }
+      50%  { transform: translate(-170px, -20px) rotate(16deg) scale(0.7); }
+      75%  { transform: translate(-230px, 25px) rotate(-14deg) scale(0.7); }
+      100% { transform: translate(0, 0) rotate(12deg) scale(0.7); }
+    }
+    @keyframes fly-3 {
+      0%   { transform: translate(0, 0) rotate(-4deg) scale(0.6); }
+      30%  { transform: translate(-52px, 25px) rotate(14deg) scale(0.6); }
+      55%  { transform: translate(-142px, -12px) rotate(-10deg) scale(0.6); }
+      80%  { transform: translate(-212px, 20px) rotate(10deg) scale(0.6); }
+      100% { transform: translate(0, 0) rotate(-4deg) scale(0.6); }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 20px; }
+      section { padding: 56px 0; }
+      .nav-inner { padding: 12px 20px; }
+      .story-copy { padding: 48px 20px 24px; }
+      .enquiry-widget { right: 16px; bottom: 16px; }
+      .enquiry-panel { right: -8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ──────────────────────────────────────────── -->
+<header class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#home">
+      <img src="assets/primohome/logo-lockup.png" alt="PrimoHome — Your Home. Our Heart." />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a href="#" id="nav-contact-link">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">
+        Book a Cleaning
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="assets/primohome/photos/hero.jpg" alt="PrimoHome cleaning professional at work in a Trivandrum home" />
+  </div>
+  <div class="container">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">PROFESSIONAL &middot; TRUSTED &middot; KERALA ROOTED</p>
+      <h1>A Cleaner Home.<br><span class="accent">A Better Life.</span></h1>
+      <p class="lead">Premium home care services in Trivandrum and beyond. Trusted people. Cleaner homes. Happier lives.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">
+          Book a Cleaning
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-outline-light" href="#services">Explore Our Services</a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.6 5.27 5.82.85-4.21 4.1 1 5.8L12 15.9l-5.21 2.12 1-5.8-4.21-4.1 5.82-.85z"/></svg>
+          <span>Trained &amp; Verified Professionals</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span>Safe &amp; Eco-friendly Products</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg>
+          <span>Homes Across Trivandrum</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.8 8.6 2.2 5 6 5c2 0 3.3 1 4 2 0.7-1 2-2 4-2 3.8 0 5.2 3.6 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg>
+          <span>Your Home. Our Heart.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ─────────────────────────────────────────────── -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Our Services</p>
+        <h2 class="section-title">Professional Home Care Services</h2>
+      </div>
+      <a class="link-arrow" href="#services">
+        View All Services
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-photo"><img src="assets/primohome/photos/service-regular.jpg" alt="Regular home cleaning" /></div>
+        <div class="service-body">
+          <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></div>
+          <h3>Regular Home Cleaning</h3>
+          <p>Keep your home fresh and hygienic with scheduled cleaning plans.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-photo"><img src="assets/primohome/photos/service-deep.jpg" alt="Deep cleaning service" /></div>
+        <div class="service-body">
+          <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M7 3v4M12 3v4M17 3v4"/><path d="M4 9h16l-1.5 10a2 2 0 01-2 2h-9a2 2 0 01-2-2z"/></svg></div>
+          <h3>Deep Cleaning</h3>
+          <p>A thorough clean for a healthier, more comfortable home.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-photo"><img src="assets/primohome/photos/service-sofa.jpg" alt="Sofa and upholstery cleaning" /></div>
+        <div class="service-body">
+          <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M5 11V8a2 2 0 012-2h10a2 2 0 012 2v3"/><path d="M3 11h18v5a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M5 18v2M19 18v2"/></svg></div>
+          <h3>Sofa &amp; Upholstery Cleaning</h3>
+          <p>Refresh your furniture and extend its life.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-photo"><img src="assets/primohome/photos/service-kitchen.jpg" alt="Kitchen cleaning service" /></div>
+        <div class="service-body">
+          <div class="icon-circle"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg></div>
+          <h3>Kitchen Cleaning</h3>
+          <p>A cleaner, safer kitchen for your family.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OUR STORY ────────────────────────────────────────────── -->
+<section class="story" id="about">
+  <div class="story-grid">
+    <div class="story-copy">
+      <p class="eyebrow">Our Story</p>
+      <h2 class="section-title">Homes in Kerala.<br>Cared for with Heart.</h2>
+      <p>PrimoHome was born from a simple belief &ndash; every home deserves care, comfort and respect. We combine professional cleaning standards with a heartfelt, local approach, creating clean, safe and comfortable spaces for families across Trivandrum and beyond.</p>
+      <a class="btn btn-outline-navy" href="#about">
+        Learn More About Us
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="story-photo">
+      <img src="assets/primohome/photos/story-house.jpg" alt="A cared-for Kerala home" />
+    </div>
+    <div class="story-panel">
+      <p>More than cleaning. We care for what matters most.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALUES ───────────────────────────────────────────────── -->
+<section class="values">
+  <div class="container">
+    <p class="eyebrow">Our Values</p>
+    <div class="value-grid">
+      <div class="value-item">
+        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Trusted</h3>
+        <p>We are reliable, honest and accountable.</p>
+      </div>
+      <div class="value-item">
+        <div class="icon-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></div>
+        <h3>Caring</h3>
+        <p>We treat every home with respect &amp; heart.</p>
+      </div>
+      <div class="value-item">
+        <div class="icon-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5L7 21l5-2.5 5 2.5-1.5-8.5"/></svg></div>
+        <h3>Excellence</h3>
+        <p>We deliver the highest standard in everything we do.</p>
+      </div>
+      <div class="value-item">
+        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 5.27 5.82.85-4.21 4.1 1 5.8L12 15.9l-5.21 2.12 1-5.8-4.21-4.1 5.82-.85z"/></svg></div>
+        <h3>Responsible</h3>
+        <p>We care for homes and the environment we live in.</p>
+      </div>
+      <div class="value-item">
+        <div class="icon-circle"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="2.8"/><circle cx="16" cy="9" r="2.2"/><path d="M2.5 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 15.2c2.9.4 5 2.6 5 4.8"/></svg></div>
+        <h3>People First</h3>
+        <p>We value our team and the families we serve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ────────────────────────────────────────────────── -->
+<section class="stats-bar" id="why-us">
+  <div class="stats-inner">
+    <div class="stats-facts">
+      <div class="stat-item">
+        <div class="icon-circle"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="2.8"/><circle cx="16" cy="9" r="2.2"/><path d="M2.5 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 15.2c2.9.4 5 2.6 5 4.8"/></svg></div>
+        <div><span class="stat-num">500+</span><span class="stat-label">Happy Homes</span></div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stat-item">
+        <div class="icon-circle"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+        <div><span class="stat-num">10,000+</span><span class="stat-label">Cleaning Hours</span></div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stat-item">
+        <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.3-7-11a7 7 0 0114 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.3"/></svg></div>
+        <div><span class="stat-num">Trivandrum</span><span class="stat-label">Our Home City</span></div>
+      </div>
+    </div>
+    <div class="stats-art">
+      <div class="kerala-skyline">
+        <svg viewBox="0 0 320 80" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <g id="palm">
+              <path d="M0,72 Q3,50 6,34" />
+              <path d="M6,34 L-9,23" />
+              <path d="M6,34 L-2,15" />
+              <path d="M6,34 L6,12" />
+              <path d="M6,34 L14,16" />
+              <path d="M6,34 L20,24" />
+              <path d="M6,34 L22,33" />
+            </g>
+          </defs>
+          <!-- low buildings, left of temple -->
+          <path d="M45,72 V58 H60 V50 H76 V60 H96 V72" />
+          <path d="M50,72 V64 M56,72 V64 M66,72 V56 M71,72 V56 M83,72 V64 M89,72 V64" />
+          <!-- temple gopuram -->
+          <path d="M118,72 V54 H167 V72" />
+          <path d="M136,72 V60 A6 6 0 0 1 148,60 V72" />
+          <path d="M122,54 H163 L158,44 H127 Z" />
+          <path d="M130,44 H155 L151,35 H134 Z" />
+          <path d="M136,35 H149 L145,26 H140 Z" />
+          <path d="M142.5,26 V18" />
+          <circle cx="142.5" cy="16" r="2" />
+          <!-- lighthouse -->
+          <path d="M200,72 V30 H206 V72" />
+          <path d="M200,60 H206 M200,48 H206" />
+          <path d="M197,30 H209 V22 H197 Z" />
+          <path d="M197,22 L203,11 L209,22 Z" />
+          <!-- low buildings, right of lighthouse -->
+          <path d="M235,72 V62 H250 V52 H265 V64 H279 V72" />
+          <path d="M240,72 V66 M245,72 V66 M255,72 V58 M260,72 V58 M270,72 V66" />
+          <!-- palms -->
+          <use href="#palm" transform="translate(8,0) scale(0.8)" />
+          <use href="#palm" transform="translate(26,0) scale(1.15)" />
+          <use href="#palm" transform="translate(99,0) scale(0.7)" />
+          <use href="#palm" transform="translate(172,0) scale(0.65)" />
+          <use href="#palm" transform="translate(224,0) scale(1)" />
+          <use href="#palm" transform="translate(292,0) scale(0.75)" />
+        </svg>
+      </div>
+      <div>
+        <p class="stats-script">Proudly<br>From Kerala</p>
+        <svg viewBox="0 0 74 14" width="74" height="14" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" style="display:block; margin-left:auto;">
+          <path d="M3,11 Q37,-3 71,7" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ─────────────────────────────────────────── -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">What Our Customers Say</p>
+        <h2 class="section-title">Homes. Happier People.</h2>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <svg class="testi-quote" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0l1.6 4.8C9.6 6.4 7.2 9.6 7.2 14.4H12.8V24H0zM17.6 24V14.4c0-8 4.8-13.2 12.8-14.4l1.6 4.8c-4.8 1.6-7.2 4.8-7.2 9.6h5.6V24H17.6z"/></svg>
+        <p class="quote">Excellent service and very professional team. My home has never looked better!</p>
+        <div class="stars">
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+        </div>
+        <p class="testi-name">Anita Menon</p>
+        <p class="testi-loc">Sreekaryam</p>
+      </div>
+      <div class="testi-card">
+        <svg class="testi-quote" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0l1.6 4.8C9.6 6.4 7.2 9.6 7.2 14.4H12.8V24H0zM17.6 24V14.4c0-8 4.8-13.2 12.8-14.4l1.6 4.8c-4.8 1.6-7.2 4.8-7.2 9.6h5.6V24H17.6z"/></svg>
+        <p class="quote">Reliable, courteous and thorough. I highly recommend PrimoHome to busy families.</p>
+        <div class="stars">
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+        </div>
+        <p class="testi-name">Rahul Nair</p>
+        <p class="testi-loc">Kowdiar</p>
+      </div>
+      <div class="testi-card">
+        <svg class="testi-quote" viewBox="0 0 32 24" fill="currentColor"><path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0l1.6 4.8C9.6 6.4 7.2 9.6 7.2 14.4H12.8V24H0zM17.6 24V14.4c0-8 4.8-13.2 12.8-14.4l1.6 4.8c-4.8 1.6-7.2 4.8-7.2 9.6h5.6V24H17.6z"/></svg>
+        <p class="quote">Great attention to detail and friendly staff. A service you can trust.</p>
+        <div class="stars">
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.5 6 .8-4.4 4.2 1 6-5.2-2.9-5.2 2.9 1-6L1.4 7.3l6-.8z"/></svg>
+        </div>
+        <p class="testi-name">Diyya S.</p>
+        <p class="testi-loc">Vazhuthacaud</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOTTOM CTA ───────────────────────────────────────────── -->
+<section class="final-cta">
+  <img class="cta-corner-photo" src="assets/primohome/photos/cta-plant.jpg" alt="" aria-hidden="true" />
+  <img class="cta-corner-photo right" src="assets/primohome/photos/cta-chair.jpg" alt="" aria-hidden="true" />
+  <div class="final-cta-inner">
+    <div class="final-cta-copy">
+      <p class="eyebrow">Book Your Cleaning Today</p>
+      <h2>A Cleaner, Happier Home Awaits.</h2>
+      <p>Choose your service, pick a time, and let our professional team take care of the rest.</p>
+      <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">
+        Book a Cleaning
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <p class="final-cta-script">Your Home.<br>Our Heart.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/primohome/logo-lockup-reversed.png" alt="PrimoHome — Your Home. Our Heart." />
+        <p>Premium home care services in Trivandrum. Trusted people. Cleaner homes. Better living.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 2 .3 2.5.5.6.3 1.1.6 1.6 1.1.5.5.8 1 1.1 1.6.2.5.4 1.3.5 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 2-.5 2.5-.3.6-.6 1.1-1.1 1.6-.5.5-1 .8-1.6 1.1-.5.2-1.3.4-2.5.5-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-2-.3-2.5-.5-.6-.3-1.1-.6-1.6-1.1-.5-.5-.8-1-1.1-1.6-.2-.5-.4-1.3-.5-2.5C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.3-2 .5-2.5.3-.6.6-1.1 1.1-1.6.5-.5 1-.8 1.6-1.1.5-.2 1.3-.4 2.5-.5C8.4 2.2 8.8 2.2 12 2.2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4zm5.2-8.4a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C3.9 3.5 3 4.4 3 5.5s.9 2 1.98 2H5c1.1 0 2-.9 2-2s-.9-2-2.02-2zM3.2 8.98h3.6V21H3.2zM9.5 8.98h3.4v1.64h.05c.48-.9 1.6-1.84 3.3-1.84 3.5 0 4.15 2.3 4.15 5.3V21h-3.6v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9.5z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.4-.4-5a3 3 0 00-2.1-2.1C18.9 4.5 12 4.5 12 4.5s-6.9 0-8.5.4A3 3 0 001.4 7C1 8.6 1 12 1 12s0 3.4.4 5a3 3 0 002.1 2.1c1.6.4 8.5.4 8.5.4s6.9 0 8.5-.4a3 3 0 002.1-2.1c.4-1.6.4-5 .4-5zM9.8 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#" id="footer-contact-link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="#services">Regular Cleaning</a></li>
+          <li><a href="#services">Deep Cleaning</a></li>
+          <li><a href="#services">Sofa Cleaning</a></li>
+          <li><a href="#services">Kitchen Cleaning</a></li>
+          <li><a href="#services">All Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M4 5c0-1 1-2 2-2h1l2 5-1.5 1.5a11 11 0 005 5L14 13l5 2v1c0 1-1 2-2 2-7 0-13-6-13-13z"/></svg>
+          <a href="tel:+910000000000">+91 00000 00000</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <a href="mailto:hello@primohome.in">hello@primohome.in</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none"><path d="M12 21s-7-5.3-7-11a7 7 0 0114 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
+          <span>Trivandrum, Kerala</span>
+        </div>
+        <div class="footer-flag">
+          <svg viewBox="0 0 30 20"><rect width="30" height="6.66" fill="#FF9933"/><rect y="6.66" width="30" height="6.66" fill="#fff"/><rect y="13.33" width="30" height="6.66" fill="#138808"/><circle cx="15" cy="10" r="2.2" fill="none" stroke="#000080" stroke-width="0.3"/></svg>
+          <span>Proudly Indian<br>Proudly Serving Kerala</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PrimoHome. All rights reserved.</p>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── ENQUIRY WIDGET (floating corner form) ────────────────── -->
+<div class="enquiry-widget open" id="enquiry-widget">
+  <div class="butterflies" aria-hidden="true">
+    <svg class="butterfly butterfly-1" viewBox="0 0 20 16">
+      <path class="antenna" d="M9.3,4 Q8,1.5 6.8,0.8" />
+      <path class="antenna" d="M10.7,4 Q12,1.5 13.2,0.8" />
+      <g class="wing wing-l"><ellipse cx="6" cy="6" rx="4.2" ry="3.2" /><ellipse cx="7" cy="11" rx="3" ry="2.4" /></g>
+      <g class="wing wing-r"><ellipse cx="14" cy="6" rx="4.2" ry="3.2" /><ellipse cx="13" cy="11" rx="3" ry="2.4" /></g>
+      <circle class="head" cx="10" cy="4" r="1.1" />
+      <rect class="body" x="9.4" y="4.5" width="1.2" height="9" rx="0.6" />
+    </svg>
+    <svg class="butterfly butterfly-2" viewBox="0 0 20 16">
+      <path class="antenna" d="M9.3,4 Q8,1.5 6.8,0.8" />
+      <path class="antenna" d="M10.7,4 Q12,1.5 13.2,0.8" />
+      <g class="wing wing-l"><ellipse cx="6" cy="6" rx="4.2" ry="3.2" /><ellipse cx="7" cy="11" rx="3" ry="2.4" /></g>
+      <g class="wing wing-r"><ellipse cx="14" cy="6" rx="4.2" ry="3.2" /><ellipse cx="13" cy="11" rx="3" ry="2.4" /></g>
+      <circle class="head" cx="10" cy="4" r="1.1" />
+      <rect class="body" x="9.4" y="4.5" width="1.2" height="9" rx="0.6" />
+    </svg>
+    <svg class="butterfly butterfly-3" viewBox="0 0 20 16">
+      <path class="antenna" d="M9.3,4 Q8,1.5 6.8,0.8" />
+      <path class="antenna" d="M10.7,4 Q12,1.5 13.2,0.8" />
+      <g class="wing wing-l"><ellipse cx="6" cy="6" rx="4.2" ry="3.2" /><ellipse cx="7" cy="11" rx="3" ry="2.4" /></g>
+      <g class="wing wing-r"><ellipse cx="14" cy="6" rx="4.2" ry="3.2" /><ellipse cx="13" cy="11" rx="3" ry="2.4" /></g>
+      <circle class="head" cx="10" cy="4" r="1.1" />
+      <rect class="body" x="9.4" y="4.5" width="1.2" height="9" rx="0.6" />
+    </svg>
+  </div>
+  <div class="enquiry-panel" id="enquiry-panel">
+    <div class="enquiry-panel-header">
+      <p class="enquiry-panel-title">Request a Callback</p>
+      <button type="button" class="enquiry-minimize" id="enquiry-minimize" aria-label="Minimize">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg>
+      </button>
+    </div>
+    <p class="enquiry-panel-sub">Leave your details and one of our team will call you back shortly.</p>
+
+    <form class="enquiry-form" id="enquiry-form" novalidate>
+      <div class="enquiry-field">
+        <label for="enquiry-name">Name</label>
+        <input type="text" id="enquiry-name" name="name" autocomplete="name" required maxlength="100" />
+      </div>
+      <div class="enquiry-field">
+        <label for="enquiry-phone">Phone Number</label>
+        <input type="tel" id="enquiry-phone" name="phone" autocomplete="tel" required maxlength="20" placeholder="+91 98765 43210" />
+      </div>
+      <div class="enquiry-field">
+        <label for="enquiry-message">What do you need help with? (optional)</label>
+        <textarea id="enquiry-message" name="message" maxlength="500"></textarea>
+      </div>
+      <!-- Honeypot: real visitors never see or fill this field. -->
+      <div class="enquiry-field enquiry-honeypot" aria-hidden="true">
+        <label for="enquiry-website">Website</label>
+        <input type="text" id="enquiry-website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <button type="submit" class="enquiry-submit" id="enquiry-submit">Request Callback</button>
+      <p class="enquiry-status" id="enquiry-status" role="status"></p>
+    </form>
+  </div>
+
+  <button type="button" class="enquiry-bubble" id="enquiry-bubble" aria-haspopup="true" aria-expanded="true" aria-label="Request a callback">
+    <svg class="icon-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+</div>
+
+<script>
+  (function () {
+    // ── Mobile nav toggle ──
+    var siteNav = document.getElementById('site-nav');
+    var navToggle = document.getElementById('nav-toggle');
+    navToggle.addEventListener('click', function () {
+      var isOpen = siteNav.classList.toggle('mobile-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.querySelectorAll('.nav-links a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        siteNav.classList.remove('mobile-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── Enquiry widget ──
+    var widget = document.getElementById('enquiry-widget');
+    var bubble = document.getElementById('enquiry-bubble');
+    var minimizeBtn = document.getElementById('enquiry-minimize');
+    var panel = document.getElementById('enquiry-panel');
+    var form = document.getElementById('enquiry-form');
+    var submitBtn = document.getElementById('enquiry-submit');
+    var status = document.getElementById('enquiry-status');
+    var phonePattern = /^[0-9+\s()-]{7,20}$/;
+
+    function openWidget() {
+      widget.classList.add('open');
+      bubble.setAttribute('aria-expanded', 'true');
+      document.getElementById('enquiry-name').focus();
+    }
+    function closeWidget() {
+      widget.classList.remove('open');
+      bubble.setAttribute('aria-expanded', 'false');
+    }
+    function toggleWidget() {
+      if (widget.classList.contains('open')) closeWidget(); else openWidget();
+    }
+
+    bubble.addEventListener('click', toggleWidget);
+    minimizeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeWidget(); });
+    document.getElementById('nav-contact-link').addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
+    document.getElementById('footer-contact-link').addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
+
+    // Close when clicking outside the widget.
+    document.addEventListener('click', function (event) {
+      if (widget.classList.contains('open') && !widget.contains(event.target)) closeWidget();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeWidget();
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var name = document.getElementById('enquiry-name').value.trim();
+      var phone = document.getElementById('enquiry-phone').value.trim();
+      var message = document.getElementById('enquiry-message').value.trim();
+      var website = document.getElementById('enquiry-website').value;
+
+      status.className = 'enquiry-status';
+      status.textContent = '';
+
+      if (!name) {
+        status.className = 'enquiry-status error';
+        status.textContent = 'Please enter your name.';
+        return;
+      }
+      if (!phonePattern.test(phone)) {
+        status.className = 'enquiry-status error';
+        status.textContent = 'Please enter a valid phone number.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      // UAT: pointed at the backend's ngrok tunnel (see docs/superpowers or
+      // project memory) so this form works whether the page is served from
+      // GitHub Pages or the production EC2 host -- both hit the same backend.
+      fetch('https://handbag-storage-superjet.ngrok-free.dev/channels/web/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
+        body: JSON.stringify({ name: name, phone: phone, message: message, website: website })
+      })
+        .then(function (res) {
+          if (!res.ok) return res.json().then(function (body) { throw new Error(body.error || 'Something went wrong.'); });
+          return res.json();
+        })
+        .then(function () {
+          status.className = 'enquiry-status success';
+          status.textContent = "Thanks! We've received your request and will call you back shortly.";
+          form.reset();
+        })
+        .catch(function (err) {
+          status.className = 'enquiry-status error';
+          status.textContent = err.message || 'Something went wrong. Please try WhatsApp instead.';
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Request Callback';
+        });
+    });
+  })();
+</script>
+
+</body>
+</html>
