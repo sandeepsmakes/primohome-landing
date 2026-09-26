@@ -651,6 +651,15 @@
     }
     .enquiry-field input:focus, .enquiry-field textarea:focus { outline: none; border-color: var(--teal); }
     .enquiry-field textarea { resize: vertical; min-height: 80px; }
+    .enquiry-phone-row { display: flex; gap: 8px; }
+    .enquiry-phone-row select {
+      flex: 0 0 92px; padding: 12px 6px;
+      border: 1px solid #e2e8f0; border-radius: 8px;
+      font-size: 14px; font-family: inherit; color: var(--text);
+      background: var(--white);
+    }
+    .enquiry-phone-row select:focus { outline: none; border-color: var(--teal); }
+    .enquiry-phone-row input { flex: 1; min-width: 0; }
     .enquiry-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .enquiry-submit {
       width: 100%; background: var(--teal); color: var(--white);
@@ -1156,7 +1165,26 @@
       </div>
       <div class="enquiry-field">
         <label for="enquiry-phone">Phone Number</label>
-        <input type="tel" id="enquiry-phone" name="phone" autocomplete="tel" required maxlength="20" placeholder="+91 98765 43210" />
+        <div class="enquiry-phone-row">
+          <select id="enquiry-dial-code" name="dialCode" aria-label="Country code">
+            <option value="+91">+91 IN</option>
+            <option value="+1">+1 US</option>
+            <option value="+1">+1 CA</option>
+            <option value="+44">+44 UK</option>
+            <option value="+971">+971 AE</option>
+            <option value="+966">+966 SA</option>
+            <option value="+974">+974 QA</option>
+            <option value="+965">+965 KW</option>
+            <option value="+968">+968 OM</option>
+            <option value="+973">+973 BH</option>
+            <option value="+65">+65 SG</option>
+            <option value="+61">+61 AU</option>
+            <option value="+64">+64 NZ</option>
+            <option value="+49">+49 DE</option>
+            <option value="+60">+60 MY</option>
+          </select>
+          <input type="tel" id="enquiry-phone" name="phone" autocomplete="tel" required maxlength="15" placeholder="98765 43210" />
+        </div>
       </div>
       <div class="enquiry-field">
         <label for="enquiry-message">What do you need help with? (optional)</label>
@@ -1202,7 +1230,19 @@
     var form = document.getElementById('enquiry-form');
     var submitBtn = document.getElementById('enquiry-submit');
     var status = document.getElementById('enquiry-status');
-    var phonePattern = /^[0-9+\s()-]{7,20}$/;
+
+    // Mirrors ui/saas-ui/src/lib/phoneRules.js's isValidPhoneDigits/toE164 --
+    // India gets a strict 10-digit mobile check, every other code just a
+    // light length check (per-country digit rules aren't worth maintaining).
+    function isValidPhoneDigits(dialCode, digits) {
+      var clean = (digits || '').replace(/\D/g, '');
+      if (dialCode === '+91') return clean.length === 10 && /^[6-9]/.test(clean);
+      return clean.length >= 4 && clean.length <= 15;
+    }
+    function toE164(dialCode, digits) {
+      var clean = (digits || '').replace(/\D/g, '');
+      return clean ? dialCode + clean : '';
+    }
 
     function openWidget() {
       widget.classList.add('open');
@@ -1234,7 +1274,8 @@
       event.preventDefault();
 
       var name = document.getElementById('enquiry-name').value.trim();
-      var phone = document.getElementById('enquiry-phone').value.trim();
+      var dialCode = document.getElementById('enquiry-dial-code').value;
+      var phoneDigits = document.getElementById('enquiry-phone').value.trim();
       var message = document.getElementById('enquiry-message').value.trim();
       var website = document.getElementById('enquiry-website').value;
 
@@ -1246,11 +1287,12 @@
         status.textContent = 'Please enter your name.';
         return;
       }
-      if (!phonePattern.test(phone)) {
+      if (!isValidPhoneDigits(dialCode, phoneDigits)) {
         status.className = 'enquiry-status error';
         status.textContent = 'Please enter a valid phone number.';
         return;
       }
+      var phone = toE164(dialCode, phoneDigits);
 
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
