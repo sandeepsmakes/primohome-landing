@@ -683,15 +683,15 @@
        rather than trying to loop around all four sides. ── */
     .butterflies { position: absolute; right: -20px; bottom: -10px; width: 1px; height: 1px; pointer-events: none; z-index: 5; }
     .butterfly { position: absolute; width: 18px; height: 14px; }
-    .butterfly .wing { fill: var(--white); }
+    .butterfly .wing { fill: var(--gold); }
     .butterfly .wing-l, .butterfly .wing-r {
       transform-box: view-box;
       animation: wing-flap 1s ease-in-out infinite;
     }
     .butterfly .wing-l { transform-origin: 9.4px 8px; }
     .butterfly .wing-r { transform-origin: 10.6px 8px; }
-    .butterfly .body, .butterfly .head { fill: var(--white); }
-    .butterfly .antenna { stroke: var(--white); stroke-width: 0.5; fill: none; stroke-linecap: round; }
+    .butterfly .body, .butterfly .head { fill: var(--gold); }
+    .butterfly .antenna { stroke: var(--gold); stroke-width: 0.5; fill: none; stroke-linecap: round; }
     @keyframes wing-flap {
       0%, 100% { transform: scaleX(1); }
       50% { transform: scaleX(0.35); }
