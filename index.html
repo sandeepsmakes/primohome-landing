@@ -699,37 +699,42 @@
     .butterfly-2 .wing { animation-delay: 0.15s; }
     .butterfly-3 .wing { animation-delay: 0.3s; }
 
-    .butterfly-1 { right: 8px; bottom: 56px; transform: rotate(-10deg) scale(0.9); }
-    .butterfly-2 { right: 26px; bottom: 46px; transform: rotate(12deg) scale(0.7); }
-    .butterfly-3 { right: 14px; bottom: 66px; transform: rotate(-4deg) scale(0.6); }
+    .butterfly-1 { right: 8px; bottom: 630px; transform: rotate(-10deg) scale(0.9); }
+    .butterfly-2 { right: 26px; bottom: 618px; transform: rotate(12deg) scale(0.7); }
+    .butterfly-3 { right: 14px; bottom: 640px; transform: rotate(-4deg) scale(0.6); }
 
     .enquiry-widget.open .butterfly .wing { animation-duration: 0.35s; }
     .enquiry-widget.open .butterfly-1 { animation: fly-1 7s ease-in-out infinite; }
     .enquiry-widget.open .butterfly-2 { animation: fly-2 8.5s ease-in-out infinite; animation-delay: -2s; }
     .enquiry-widget.open .butterfly-3 { animation: fly-3 6s ease-in-out infinite; animation-delay: -4s; }
 
-    /* Each stop's implied bottom-distance (rest value minus the Y term
-       below) stays under ~95px, safely under the panel's ~100px offset. */
+    /* Anchored near the top of the panel now (panel top measured at
+       bottom:~590px -- 490px content height + 100px base offset, a
+       viewport-height-independent constant since everything here is
+       bottom-anchored). Each keyframe's vertical delta is kept small
+       (+-12px) so the flight stays 15-50px clear of that panel-top
+       line at every stop -- verified by computing anchor-minus-delta
+       for each stop before writing it, not just eyeballing it. */
     @keyframes fly-1 {
       0%   { transform: translate(0, 0) rotate(-10deg) scale(0.9); }
-      20%  { transform: translate(-68px, 40px) rotate(8deg) scale(0.9); }
-      40%  { transform: translate(-168px, -15px) rotate(-12deg) scale(0.9); }
-      60%  { transform: translate(-238px, 25px) rotate(14deg) scale(0.9); }
-      80%  { transform: translate(-118px, -20px) rotate(-6deg) scale(0.9); }
+      20%  { transform: translate(-68px, 10px) rotate(8deg) scale(0.9); }
+      40%  { transform: translate(-168px, -10px) rotate(-12deg) scale(0.9); }
+      60%  { transform: translate(-238px, 8px) rotate(14deg) scale(0.9); }
+      80%  { transform: translate(-118px, -12px) rotate(-6deg) scale(0.9); }
       100% { transform: translate(0, 0) rotate(-10deg) scale(0.9); }
     }
     @keyframes fly-2 {
       0%   { transform: translate(0, 0) rotate(12deg) scale(0.7); }
-      25%  { transform: translate(-60px, 35px) rotate(-10deg) scale(0.7); }
-      50%  { transform: translate(-170px, -20px) rotate(16deg) scale(0.7); }
-      75%  { transform: translate(-230px, 25px) rotate(-14deg) scale(0.7); }
+      25%  { transform: translate(-60px, 10px) rotate(-10deg) scale(0.7); }
+      50%  { transform: translate(-170px, -10px) rotate(16deg) scale(0.7); }
+      75%  { transform: translate(-230px, 8px) rotate(-14deg) scale(0.7); }
       100% { transform: translate(0, 0) rotate(12deg) scale(0.7); }
     }
     @keyframes fly-3 {
       0%   { transform: translate(0, 0) rotate(-4deg) scale(0.6); }
-      30%  { transform: translate(-52px, 25px) rotate(14deg) scale(0.6); }
-      55%  { transform: translate(-142px, -12px) rotate(-10deg) scale(0.6); }
-      80%  { transform: translate(-212px, 20px) rotate(10deg) scale(0.6); }
+      30%  { transform: translate(-52px, 8px) rotate(14deg) scale(0.6); }
+      55%  { transform: translate(-142px, -8px) rotate(-10deg) scale(0.6); }
+      80%  { transform: translate(-212px, 6px) rotate(10deg) scale(0.6); }
       100% { transform: translate(0, 0) rotate(-4deg) scale(0.6); }
     }
 
