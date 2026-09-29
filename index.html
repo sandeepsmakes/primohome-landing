@@ -190,18 +190,23 @@
       padding: 96px 0 64px;
       overflow: hidden;
     }
+    /* The blend gradient lives ON the photo box itself (not on .hero as a
+       whole) so it always starts exactly at the photo's own left edge,
+       whatever that pixel position happens to be at the current viewport
+       width -- a container-wide gradient can't track a fixed-width child
+       that shifts position, which is what caused a hard seam before. */
     .hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 620px; max-width: 54%; z-index: 0; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 15% center; display: block; }
-    .hero::before {
+    .hero-bg::before {
       content: '';
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(100deg,
-        var(--navy) 0%, var(--navy) 34%,
-        rgba(13,27,42,0.88) 46%, rgba(13,27,42,0.45) 60%,
-        rgba(13,27,42,0.08) 76%, transparent 90%);
+      background: linear-gradient(90deg,
+        var(--navy) 0%, var(--navy) 10%,
+        rgba(13,27,42,0.85) 28%, rgba(13,27,42,0.4) 48%,
+        transparent 72%);
     }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 15% center; display: block; }
     .hero .container { position: relative; z-index: 2; }
     .hero-copy { max-width: 560px; }
     .hero-eyebrow {
@@ -253,10 +258,11 @@
     @media (max-width: 700px) {
       .hero { padding: 64px 0 48px; }
       .hero-bg img { object-position: 75% center; }
-      .hero::before {
-        background: linear-gradient(170deg,
-          var(--navy) 0%, var(--navy) 55%,
-          rgba(13,27,42,0.88) 75%, rgba(13,27,42,0.55) 100%);
+      .hero-bg::before {
+        background: linear-gradient(90deg,
+          var(--navy) 0%, var(--navy) 20%,
+          rgba(13,27,42,0.9) 45%, rgba(13,27,42,0.6) 70%,
+          rgba(13,27,42,0.35) 100%);
       }
     }
 
@@ -314,6 +320,17 @@
     }
     @media (max-width: 560px) {
       .service-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── PRICING ─────────────────────────────────────────── */
+    .pricing { background: var(--cream); }
+    .pricing-note { color: var(--muted); font-size: 15px; max-width: 640px; margin: -24px 0 32px; }
+    .pricing-list { display: flex; flex-direction: column; gap: 2px; background: #eef1f4; border-radius: var(--radius); overflow: hidden; margin-bottom: 32px; }
+    .pricing-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--white); padding: 18px 24px; }
+    .pricing-service { font-weight: 700; font-size: 15px; }
+    .pricing-price { font-family: var(--font-head); font-weight: 700; color: var(--navy); letter-spacing: 0.5px; white-space: nowrap; }
+    @media (max-width: 560px) {
+      .pricing-row { padding: 14px 16px; }
     }
 
     /* ── OUR STORY ───────────────────────────────────────── */
@@ -586,6 +603,23 @@
     }
     .footer-bottom a { color: var(--grey); text-decoration: none; margin-left: 18px; }
     .footer-bottom a:hover { color: var(--gold); }
+    .footer-legal {
+      padding: 22px 0 28px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .footer-legal-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .footer-legal-links a { color: var(--grey); text-decoration: none; }
+    .footer-legal-links a:hover { color: var(--gold); }
+    .footer-company-details { font-size: 12px; color: rgba(167,176,184,0.7); line-height: 1.6; }
+    .footer-company-details p { margin: 0; }
 
     @media (max-width: 900px) {
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -759,14 +793,13 @@
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#why-us">Why PrimoHome</a></li>
       <li><a href="#about">About Us</a></li>
-      <li><a href="#why-us">Why Us</a></li>
-      <li><a href="#">Careers</a></li>
-      <li><a href="#" id="nav-contact-link">Contact</a></li>
     </ul>
     <div class="nav-right">
       <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">
-        Book a Cleaning
+        BOOK NOW
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -862,6 +895,29 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── PRICING ──────────────────────────────────────────────── -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Pricing</p>
+        <h2 class="section-title">Clear, Upfront Pricing</h2>
+      </div>
+    </div>
+    <p class="pricing-note">Our full price list is being finalised. Final prices are always confirmed before booking &mdash; no hidden charges.</p>
+    <div class="pricing-list">
+      <div class="pricing-row"><span class="pricing-service">Regular Home Cleaning</span><span class="pricing-price">Coming Soon</span></div>
+      <div class="pricing-row"><span class="pricing-service">Deep Cleaning</span><span class="pricing-price">Coming Soon</span></div>
+      <div class="pricing-row"><span class="pricing-service">Sofa &amp; Upholstery Cleaning</span><span class="pricing-price">Coming Soon</span></div>
+      <div class="pricing-row"><span class="pricing-service">Kitchen Cleaning</span><span class="pricing-price">Coming Soon</span></div>
+    </div>
+    <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20a%20price%20quote" target="_blank" rel="noopener">
+      Get a Quote
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
   </div>
 </section>
 
@@ -1123,6 +1179,21 @@
         <a href="terms.html">Terms &amp; Conditions</a>
       </div>
     </div>
+    <div class="footer-legal">
+      <div class="footer-legal-links">
+        <a href="#" id="footer-legal-contact-link">Contact</a>
+        <a href="#">FAQ</a>
+        <a href="#">Careers</a>
+        <a href="terms.html">Customer Terms</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cancellation Policy</a>
+      </div>
+      <div class="footer-company-details">
+        <p>PrimoHome Solutions Pvt Ltd</p>
+        <p>www.primohomesolutions.com</p>
+        <p>&copy; 2026 PrimoHome Solutions Pvt Ltd. All rights reserved.</p>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -1264,8 +1335,10 @@
 
     bubble.addEventListener('click', toggleWidget);
     minimizeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeWidget(); });
-    document.getElementById('nav-contact-link').addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
+    var navContactLink = document.getElementById('nav-contact-link');
+    if (navContactLink) navContactLink.addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
     document.getElementById('footer-contact-link').addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
+    document.getElementById('footer-legal-contact-link').addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
 
     // Close when clicking outside the widget.
     document.addEventListener('click', function (event) {
