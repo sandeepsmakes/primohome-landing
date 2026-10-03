@@ -31,6 +31,7 @@
     }
 
     html { scroll-behavior: smooth; }
+    section[id] { scroll-margin-top: 110px; }
 
     body {
       font-family: var(--font-body);
@@ -126,7 +127,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 14px 40px;
-      max-width: 1280px;
+      max-width: 1160px;
       margin: 0 auto;
     }
     .nav-logo img { height: 44px; width: auto; }
@@ -147,7 +148,9 @@
       transition: color 0.18s ease, border-color 0.18s ease;
     }
     .nav-links a:hover { color: var(--teal); border-color: var(--gold); }
+    .nav-links li.nav-mobile-cta { display: none; }
     .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-right .btn-gold { padding: 11px 22px; font-size: 14px; box-shadow: 0 6px 18px rgba(212,175,55,0.3); }
     .nav-toggle {
       display: none;
       background: none;
@@ -159,27 +162,30 @@
     .nav-toggle svg { width: 26px; height: 26px; }
 
     @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: flex; }
-      .nav-right .btn-gold { display: none; }
-      header.site-nav.mobile-open .nav-links {
+      .nav-links {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 0;
-        position: absolute;
-        top: 100%;
-        left: 0;
+        position: fixed;
+        top: 0;
         right: 0;
+        bottom: 0;
+        width: min(320px, 82vw);
+        z-index: 150;
         background: var(--white);
-        padding: 8px 40px 20px;
-        box-shadow: 0 12px 24px rgba(13,27,42,0.1);
+        padding: 96px 28px 32px;
+        box-shadow: -12px 0 32px rgba(13,27,42,0.15);
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+        overflow-y: auto;
       }
-      header.site-nav.mobile-open .nav-links a { padding: 12px 0; width: 100%; border-bottom: 1px solid #eef1f4; }
-      header.site-nav.mobile-open .nav-right .btn-gold {
-        display: inline-flex;
-        margin: 0 40px 20px;
-      }
+      header.site-nav.mobile-open .nav-links { transform: translateX(0); }
+      .nav-links a { padding: 14px 0; border-bottom: 1px solid #eef1f4; font-size: 16px; }
+      .nav-links li.nav-mobile-cta { display: block; margin-top: 24px; border: 0; }
+      .nav-links .nav-mobile-cta a { border: 0; padding: 14px 22px; justify-content: center; }
+      .nav-right .btn-gold { display: none; }
+      .nav-toggle { display: flex; position: relative; z-index: 160; }
     }
 
     /* ── HERO ────────────────────────────────────────────── */
@@ -649,8 +655,7 @@
     .enquiry-panel {
       position: absolute;
       right: 0; bottom: 76px;
-      width: 320px;
-      max-width: calc(100vw - 48px);
+      width: min(400px, calc(100vw - 32px));
       max-height: calc(100vh - 140px);
       overflow-y: auto;
       background: var(--white);
@@ -663,9 +668,7 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .enquiry-widget.open .enquiry-panel { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
-    @media (min-width: 901px) {
-      .enquiry-panel { right: 0; width: 400px; }
-    }
+
     .enquiry-panel-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
     .enquiry-panel-title { font-family: var(--font-head); font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
     .enquiry-minimize {
@@ -779,7 +782,8 @@
       .nav-inner { padding: 12px 20px; }
       .story-copy { padding: 48px 20px 24px; }
       .enquiry-widget { right: 16px; bottom: 16px; }
-      .enquiry-panel { right: -8px; }
+      .enquiry-panel { position: fixed; left: 16px; right: 16px; width: auto; bottom: 92px; padding: 20px; }
+      .enquiry-panel input, .enquiry-panel select, .enquiry-panel textarea { font-size: 16px; }
     }
   </style>
 </head>
@@ -797,6 +801,7 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#why-us">Why PrimoHome</a></li>
       <li><a href="about.html">About Us</a></li>
+      <li class="nav-mobile-cta"><a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">Book Now</a></li>
     </ul>
     <div class="nav-right">
       <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">
