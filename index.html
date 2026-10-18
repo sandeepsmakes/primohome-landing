@@ -1368,7 +1368,7 @@
       var STEP_MS = 2000;
       var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
       var wideMq = window.matchMedia('(min-width: 701px)');
-      var active = 0, timer = null, enabled = false, inView = false, hovering = false;
+      var active = 0, timer = null, enabled = false, inView = false;
 
       function render(first) {
         cards.forEach(function (card, i) {
@@ -1396,7 +1396,7 @@
       }
       function tick() { active = (active + 1) % n; render(false); }
       function sync() {
-        var shouldRun = enabled && inView && !hovering && !document.hidden;
+        var shouldRun = enabled && inView && !document.hidden;
         if (shouldRun && !timer) timer = setInterval(tick, STEP_MS);
         if (!shouldRun && timer) { clearInterval(timer); timer = null; }
       }
@@ -1427,8 +1427,6 @@
           sync();
         }, { threshold: 0.35 }).observe(root);
       }
-      root.addEventListener('mouseenter', function () { hovering = true; sync(); });
-      root.addEventListener('mouseleave', function () { hovering = false; sync(); });
       document.addEventListener('visibilitychange', sync);
       var resizeRaf = null;
       window.addEventListener('resize', function () {
