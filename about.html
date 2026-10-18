@@ -933,7 +933,7 @@
     <ul class="nav-links">
       <li><a href="index.html#home">Home</a></li>
       <li><a href="index.html#services">Services</a></li>
-      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
       <li><a href="index.html#why-us">Why PrimoHome</a></li>
       <li><a href="about.html" aria-current="page">About Us</a></li>
     </ul>
@@ -1082,6 +1082,7 @@
         <ul>
           <li><a href="index.html#home">Home</a></li>
           <li><a href="index.html#services">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="#">Careers</a></li>
           <li><a href="#" id="footer-contact-link">Contact</a></li>
@@ -1277,6 +1278,17 @@
     function toggleWidget() {
       if (widget.classList.contains('open')) closeWidget(); else openWidget();
     }
+
+    // Open the widget with an optional prefilled message (used by the Request buttons on pricing.html).
+    window.PrimoEnquiry = {
+      open: function (text) {
+        openWidget();
+        if (text) {
+          var ta = document.getElementById('enquiry-message');
+          ta.value = String(text).slice(0, ta.maxLength > 0 ? ta.maxLength : 500);
+        }
+      }
+    };
 
     bubble.addEventListener('click', toggleWidget);
     minimizeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeWidget(); });
