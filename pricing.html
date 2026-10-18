@@ -605,22 +605,52 @@
     .pp-featured { border-color: var(--gold); }
     .pp-total { margin-bottom: 8px; }
 
-    /* BHK selector */
-    .pp-size { background: var(--white); border: 1px solid #eef1f4; border-radius: 16px; box-shadow: 0 6px 22px rgba(13,27,42,0.08); padding: 24px 26px; margin-bottom: 36px; }
-    .pp-size-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
-    .pp-size-head strong { font-family: var(--font-head); font-size: 16px; color: var(--navy); }
-    .pp-tag { font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #134e4e; background: #dcecee; border-radius: 999px; padding: 5px 12px; }
-    .pp-size-sel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .pp-size-btn { font: inherit; text-align: left; cursor: pointer; background: var(--white); color: var(--navy); border: 2px solid #e3e9eb; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease; }
-    .pp-size-btn b { font-family: var(--font-head); font-size: 20px; font-weight: 800; }
-    .pp-size-btn span { font-size: 13px; color: var(--muted); }
+    /* BHK selector: one sticky bar pinned under the (sticky, in-flow) nav; --nav-h/--bar-h are measured by script */
+    :root { --nav-h: 72px; --bar-h: 96px; }
+    .pp-plans { --price-anim: 1.8s; }
+    .pp-intro { padding-bottom: 36px; }
+    .pp-sticky { position: sticky; top: var(--nav-h); z-index: 150; background: var(--white); box-shadow: 0 6px 16px rgba(13,27,42,0.10); padding: 12px 0; }
+    .pp-size-bar { display: flex; align-items: center; gap: 18px; }
+    .pp-size-label { font-family: var(--font-head); font-weight: 700; font-size: 15px; color: var(--navy); flex: 0 0 auto; }
+    .pp-tag { font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #134e4e; background: #dcecee; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+    .pp-size-sel { flex: 1 1 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .pp-size-btn { font: inherit; text-align: left; cursor: pointer; background: var(--white); color: var(--navy); border: 2px solid #e3e9eb; border-radius: 12px; padding: 8px 14px; display: flex; flex-direction: column; gap: 0; transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease; }
+    .pp-size-btn b { font-family: var(--font-head); font-size: 17px; font-weight: 800; line-height: 1.25; }
+    .pp-size-btn span { font-size: 12px; color: var(--muted); line-height: 1.3; }
     .pp-size-btn:hover { border-color: var(--gold); }
     .pp-size-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
     .pp-size-btn[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--white); }
     .pp-size-btn[aria-pressed="true"] span { color: #d9e1e8; }
-    .pp-selected { margin-top: 14px; font-size: 14px; color: var(--muted); }
+    .pp-selected { flex: 0 0 auto; margin: 0; font-size: 13px; color: var(--muted); }
     .pp-selected strong { color: var(--navy); }
-    .pp-size-compact { padding: 18px 22px; margin-bottom: 32px; }
+    .pp-plans section[id] { scroll-margin-top: calc(var(--nav-h) + var(--bar-h) + 16px); }
+    .pp-plans #pp-choose { scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+    /* Collapsible sections: open without JS; collapsed state only under html.js */
+    .pp-collapse-h { margin: 0; }
+    .pp-collapse-btn { width: 100%; display: flex; align-items: center; gap: 14px; background: var(--white); color: inherit; font: inherit; text-align: left; border: 1px solid #eef1f4; border-radius: 14px; box-shadow: 0 6px 22px rgba(13,27,42,0.06); padding: 16px 22px; cursor: default; }
+    .js .pp-collapse-btn { cursor: pointer; }
+    .pp-collapse-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    .pp-collapse-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--navy); flex: 1; line-height: 1.2; }
+    .pp-collapse-chev { display: none; width: 11px; height: 11px; border-right: 2px solid var(--navy); border-bottom: 2px solid var(--navy); transform: rotate(45deg); transition: transform 0.3s ease; margin: 0 4px 3px 2px; flex: 0 0 auto; }
+    .js .pp-collapse-chev { display: block; }
+    .pp-collapse.is-open .pp-collapse-chev { transform: rotate(-135deg); margin-bottom: 0; margin-top: 4px; }
+    .pp-collapse-panel { display: grid; grid-template-rows: 1fr; margin-top: 24px; transition: grid-template-rows 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease; }
+    .pp-collapse-inner { overflow: hidden; min-height: 0; padding: 14px 14px 34px; margin: -14px -14px -34px; }
+    .js .pp-collapse:not(.is-open) .pp-collapse-panel { grid-template-rows: 0fr; opacity: 0; margin-top: 0; visibility: hidden; transition: grid-template-rows 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0.45s; }
+    .pp-care-intro { margin-bottom: 28px; }
+
+    /* Directional price slide: rises into place when the price goes up, drops in when it goes down */
+    @keyframes pp-up { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pp-down { from { opacity: 0; transform: translateY(-26px); } to { opacity: 1; transform: translateY(0); } }
+    .pp-up { animation: pp-up var(--price-anim) ease-out both; }
+    .pp-down { animation: pp-down var(--price-anim) ease-out both; }
+    @media (prefers-reduced-motion: reduce) {
+      .pp-collapse-panel, .js .pp-collapse:not(.is-open) .pp-collapse-panel, .pp-collapse-chev { transition: none; }
+      .pp-up, .pp-down { animation: none; }
+      /* before the script runs, reduced-motion users already see both sections open */
+      .js:not(.pp-ready) .pp-collapse .pp-collapse-panel { grid-template-rows: 1fr; opacity: 1; margin-top: 24px; visibility: visible; }
+    }
     .pp-note { margin-top: 22px; font-size: 14px; color: var(--muted); text-align: center; max-width: 820px; margin-left: auto; margin-right: auto; }
 
     /* PrimoCare banner */
@@ -681,7 +711,17 @@
     }
     @media (max-width: 700px) {
       .pp-section { padding: 52px 0; }
-      .pp-size-sel { grid-template-columns: repeat(2, 1fr); }
+      .pp-sticky { padding: 8px 0; }
+      .pp-size-bar { flex-wrap: wrap; gap: 6px; }
+      .pp-size-label { display: none; }
+      .pp-size-sel { flex: 1 1 100%; gap: 6px; }
+      .pp-size-btn { padding: 5px 4px; border-width: 1.5px; border-radius: 9px; align-items: center; text-align: center; }
+      .pp-size-btn b { font-size: 14px; }
+      .pp-size-btn span { font-size: 10px; line-height: 1.2; }
+      .pp-selected { flex: 1 1 100%; font-size: 12px; text-align: center; }
+      .pp-collapse-title { font-size: 20px; }
+      .pp-collapse-btn { padding: 14px 16px; flex-wrap: wrap; gap: 6px 10px; }
+      .pp-collapse-btn .pp-tag { order: 3; }
       /* matrix: each row becomes a stacked card (no horizontal scroll, no JS) */
       .pp-mx, .pp-mx tbody { display: block; }
       .pp-mx thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -694,7 +734,6 @@
     @media (max-width: 560px) {
       .pp-grid-4 { grid-template-columns: 1fr; }
       .pp-extras-list { grid-template-columns: 1fr; }
-      .pp-size { padding: 18px; }
     }
   </style>
 </head>
@@ -767,16 +806,28 @@
   </div>
 </section>
 
-<section class="pp-section pp-alt" id="pp-choose">
+<div class="pp-plans">
+<section class="pp-section pp-alt pp-intro" id="pp-choose">
   <div class="container">
     <div class="pp-head"><p class="eyebrow">Transparent pricing</p><h2>Find the right price for your home</h2><p>Choose your home configuration to see the applicable price for every service.</p></div>
-    <div class="pp-size">
-        <div class="pp-size-head"><strong>Choose your home size</strong><span class="pp-tag">Pricing by BHK &amp; area</span></div>
-        <div class="pp-size-sel" role="group" aria-label="Choose home size"><button class="pp-size-btn" type="button" data-home="0" aria-pressed="false"><b>1 BHK</b><span>Up to 700 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="1" aria-pressed="true"><b>2 BHK</b><span>701–1,200 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="2" aria-pressed="false"><b>3 BHK</b><span>1,201–1,800 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="3" aria-pressed="false"><b>4 BHK</b><span>1,801–2,500 sq. ft.</span></button></div>
-        <p class="pp-selected" aria-live="polite">Selected: <strong data-selected-home>2 BHK · 701–1,200 sq. ft.</strong></p>
-      </div>
-    <div id="pp-one-time">
-      <div class="pp-size-head" style="margin-bottom:20px"><h3 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--navy)">One-time cleaning</h3><span class="pp-tag">No recurring commitment</span></div>
+  </div>
+</section>
+
+<div class="pp-sticky" id="pp-size">
+  <div class="container">
+    <div class="pp-size-bar">
+      <strong class="pp-size-label">Home size</strong>
+      <div class="pp-size-sel" role="group" aria-label="Choose home size"><button class="pp-size-btn" type="button" data-home="0" aria-pressed="false"><b>1 BHK</b><span>Up to 700 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="1" aria-pressed="true"><b>2 BHK</b><span>701–1,200 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="2" aria-pressed="false"><b>3 BHK</b><span>1,201–1,800 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="3" aria-pressed="false"><b>4 BHK</b><span>1,801–2,500 sq. ft.</span></button></div>
+      <p class="pp-selected" aria-live="polite">Selected: <strong data-selected-home>2 BHK · 701–1,200 sq. ft.</strong></p>
+    </div>
+  </div>
+</div>
+
+<section class="pp-section pp-alt" id="pp-one-time">
+  <div class="container">
+    <div class="pp-collapse is-open" id="pp-onetime-c" data-default="open">
+      <h3 class="pp-collapse-h"><button type="button" class="pp-collapse-btn" aria-expanded="true" aria-controls="pp-onetime-c-panel" disabled><span class="pp-collapse-title">One-time cleaning</span><span class="pp-tag">No recurring commitment</span><span class="pp-collapse-chev" aria-hidden="true"></span></button></h3>
+      <div class="pp-collapse-panel" id="pp-onetime-c-panel"><div class="pp-collapse-inner">
       <div class="pp-grid pp-grid-3">
       <article class="fp-card pp-card"><div class="pp-card-pad"><h3>PrimoQuick</h3><p class="pp-meta">Express cleaning · selected areas</p>
         <span class="pp-price" data-price="quick">₹899</span><span class="pp-per">Price per session</span>
@@ -789,22 +840,21 @@
         <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" data-request="max">Request booking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
       </div>
       <p class="pp-note">PrimoQuick covers priority areas within the allocated time, rather than a full standard or deep-clean scope. The final service inclusions are confirmed before booking.</p>
+      </div></div>
     </div>
   </div>
 </section>
 
 <section class="pp-section" id="pp-care">
   <div class="container">
-    <div class="pp-head"><p class="eyebrow">PrimoCare · recurring plans</p><h2>Consistent care. Better value.</h2><p>Enjoy regular home cleaning on a schedule that suits you, with one deeper clean included in your commitment.</p></div>
+    <div class="pp-head pp-care-intro"><p class="eyebrow">PrimoCare · recurring plans</p><h2>Consistent care. Better value.</h2><p>Enjoy regular home cleaning on a schedule that suits you, with one deeper clean included in your commitment.</p></div>
+    <div class="pp-collapse" id="pp-care-c" data-default="closed">
+      <h3 class="pp-collapse-h"><button type="button" class="pp-collapse-btn" aria-expanded="true" aria-controls="pp-care-c-panel" disabled><span class="pp-collapse-title">Recurring care — PrimoCare</span><span class="pp-tag">Minimum 8 sessions</span><span class="pp-collapse-chev" aria-hidden="true"></span></button></h3>
+      <div class="pp-collapse-panel" id="pp-care-c-panel"><div class="pp-collapse-inner">
     <div class="pp-care-banner">
       <div class="pp-care-benefit"><strong>✓ Minimum commitment: 8 sessions</strong><p>Choose weekly, fortnightly or monthly visits. Each plan requires a commitment to eight sessions.</p></div>
       <div class="pp-care-benefit"><strong>✦ 1 deep cleaning session included</strong><p>Your eight sessions consist of <b>7 regular cleanings + 1 deep cleaning</b>, within the agreed scope.</p></div>
     </div>
-    <div class="pp-size pp-size-compact">
-        <div class="pp-size-head"><strong>Choose your home size</strong><span class="pp-tag">Pricing by BHK &amp; area</span></div>
-        <div class="pp-size-sel" role="group" aria-label="Choose home size"><button class="pp-size-btn" type="button" data-home="0" aria-pressed="false"><b>1 BHK</b><span>Up to 700 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="1" aria-pressed="true"><b>2 BHK</b><span>701–1,200 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="2" aria-pressed="false"><b>3 BHK</b><span>1,201–1,800 sq. ft.</span></button><button class="pp-size-btn" type="button" data-home="3" aria-pressed="false"><b>4 BHK</b><span>1,801–2,500 sq. ft.</span></button></div>
-        <p class="pp-selected" aria-live="polite">Selected: <strong data-selected-home>2 BHK · 701–1,200 sq. ft.</strong></p>
-      </div>
     <div class="pp-grid pp-grid-3">
       <article class="fp-card pp-card pp-plan">
         <div class="fp-photo"><img src="assets/primohome/photos/freq-weekly.jpg" alt="Weekly cleaning" loading="lazy" width="720" height="540" /></div>
@@ -832,8 +882,11 @@
       </article>
     </div>
     <p class="pp-note"><strong>* Effective savings:</strong> calculated against seven separate PrimoFresh cleanings and one separate PrimoMax deep cleaning for the same home size. Rates shown are per visit; the package total is for eight sessions. The deep clean is one of those eight visits, not an additional ninth visit.</p>
+      </div></div>
+    </div>
   </div>
 </section>
+</div>
 
 <section class="pp-section pp-alt" id="pp-matrix">
   <div class="container">
@@ -1083,6 +1136,19 @@
     var PLAN_NAMES = { weekly: 'Weekly', fortnightly: 'Fortnightly', monthly: 'Monthly' };
     var selectedHome = 1;
     var money = function (n) { return '\u20b9' + n.toLocaleString('en-IN'); };
+    var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Prices slide up into place when they rise and drop in when they fall (skipped for reduced motion)
+    function setPrice(el, n) {
+      var next = money(n);
+      if (el.textContent === next) return;
+      var prev = parseInt(el.textContent.replace(/\D/g, ''), 10);
+      el.textContent = next;
+      if (isNaN(prev) || reduceMq.matches) return;
+      el.classList.remove('pp-up', 'pp-down');
+      void el.offsetWidth;   // restart the animation
+      el.classList.add(n > prev ? 'pp-up' : 'pp-down');
+    }
 
     function renderPrices() {
       var h = HOMES[selectedHome];
@@ -1090,12 +1156,12 @@
         b.setAttribute('aria-pressed', String(Number(b.getAttribute('data-home')) === selectedHome));
       });
       document.querySelectorAll('[data-selected-home]').forEach(function (el) { el.textContent = h.label + ' \u00b7 ' + h.area; });
-      document.querySelectorAll('[data-price]').forEach(function (el) { el.textContent = money(h[el.getAttribute('data-price')]); });
+      document.querySelectorAll('[data-price]').forEach(function (el) { setPrice(el, h[el.getAttribute('data-price')]); });
       var individual = 7 * h.fresh + h.max;
       ['weekly', 'fortnightly', 'monthly'].forEach(function (k) {
         var total = 8 * h[k];
-        document.querySelector('[data-plan-price="' + k + '"]').textContent = money(h[k]);
-        document.querySelector('[data-plan-total="' + k + '"]').textContent = money(total);
+        setPrice(document.querySelector('[data-plan-price="' + k + '"]'), h[k]);
+        setPrice(document.querySelector('[data-plan-total="' + k + '"]'), total);
         document.querySelector('[data-plan-saving="' + k + '"]').textContent = ((individual - total) / individual * 100).toFixed(1) + '% effective savings*';
       });
     }
@@ -1128,6 +1194,51 @@
         window.PrimoEnquiry.open(buildRequest(a.getAttribute('data-request')));
       });
     });
+
+    // Keep the sticky bar flush under the (in-flow, sticky) nav: measure both heights
+    var navEl = document.getElementById('site-nav');
+    var barEl = document.getElementById('pp-size');
+    function syncOffsets() {
+      var root = document.documentElement.style;
+      if (navEl) root.setProperty('--nav-h', navEl.getBoundingClientRect().height + 'px');
+      if (barEl) root.setProperty('--bar-h', barEl.getBoundingClientRect().height + 'px');
+    }
+    syncOffsets();
+    window.addEventListener('resize', syncOffsets);
+    if (window.ResizeObserver) { var ro = new ResizeObserver(syncOffsets); if (navEl) ro.observe(navEl); if (barEl) ro.observe(barEl); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncOffsets);
+
+    // Collapsible sections: one-time open, recurring collapsed until it scrolls into view (reduced motion: both open)
+    function setOpen(c, open) {
+      c.classList.toggle('is-open', open);
+      c.querySelector('.pp-collapse-btn').setAttribute('aria-expanded', String(open));
+    }
+    var collapses = Array.prototype.slice.call(document.querySelectorAll('.pp-collapse'));
+    collapses.forEach(function (c) {
+      var btn = c.querySelector('.pp-collapse-btn');
+      btn.disabled = false;
+      setOpen(c, reduceMq.matches || c.getAttribute('data-default') === 'open');
+      btn.addEventListener('click', function () {
+        c.setAttribute('data-touched', '1');
+        setOpen(c, !c.classList.contains('is-open'));
+      });
+    });
+    document.documentElement.classList.add('pp-ready');
+    var careBox = document.getElementById('pp-care-c');
+    function openCare() { careBox.setAttribute('data-touched', '1'); setOpen(careBox, true); }
+    if ('IntersectionObserver' in window && careBox) {
+      var careIo = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !careBox.getAttribute('data-touched')) {
+          setOpen(careBox, true);   // auto-open once; a later manual collapse is respected
+          careIo.disconnect();
+        }
+      }, { rootMargin: '-30% 0px -25% 0px' });
+      careIo.observe(careBox);
+    }
+    document.querySelectorAll('a[href="#pp-care"]').forEach(function (a) { a.addEventListener('click', openCare); });
+    if (location.hash === '#pp-care' && careBox) openCare();
+    var onReduceChange = function () { if (reduceMq.matches) collapses.forEach(function (c) { setOpen(c, true); }); };
+    if (reduceMq.addEventListener) reduceMq.addEventListener('change', onReduceChange); else reduceMq.addListener(onReduceChange);
 
     // Matrix: on phones keep only the first area open (all open on desktop and with JS off)
     if (window.matchMedia('(max-width: 700px)').matches) {
