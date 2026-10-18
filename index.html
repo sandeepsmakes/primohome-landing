@@ -805,6 +805,8 @@
     .enquiry-status { margin-top: 14px; font-size: 14px; text-align: center; display: none; }
     .enquiry-status.success { color: #018f8f; display: block; }
     .enquiry-status.error { color: #dc2626; display: block; }
+    .enquiry-terms { margin-top: 10px; font-size: 12px; line-height: 1.5; color: var(--muted); text-align: center; }
+    .enquiry-terms a { color: var(--navy); text-decoration: underline; text-underline-offset: 2px; }
 
     /* ── Decorative butterflies: perched on the bubble when minimized,
        wandering loosely below the panel when open.
@@ -1224,7 +1226,7 @@
       <p>&copy; 2026 PrimoHome. All rights reserved.</p>
       <div>
         <a href="#">Privacy Policy</a>
-        <a href="assets/docs/PrimoHome-Terms-and-Conditions.pdf" target="_blank" rel="noopener" download>Terms &amp; Conditions</a>
+        <a href="assets/docs/PrimoHome-Terms-and-Conditions.pdf" target="_blank" rel="noopener">Terms &amp; Conditions</a>
       </div>
     </div>
     <div class="footer-legal">
@@ -1232,7 +1234,7 @@
         <a href="#" id="footer-legal-contact-link">Contact</a>
         <a href="#">FAQ</a>
         <a href="#">Careers</a>
-        <a href="assets/docs/PrimoHome-Terms-and-Conditions.pdf" target="_blank" rel="noopener" download>Customer Terms</a>
+        <a href="assets/docs/PrimoHome-Terms-and-Conditions.pdf" target="_blank" rel="noopener">Customer Terms</a>
         <a href="#">Privacy Policy</a>
         <a href="#">Cancellation Policy</a>
       </div>
@@ -1320,6 +1322,7 @@
         <input type="text" id="enquiry-website" name="website" tabindex="-1" autocomplete="off" />
       </div>
       <button type="submit" class="enquiry-submit" id="enquiry-submit">Request Callback</button>
+      <p class="enquiry-terms">By submitting, you agree to our <a href="assets/docs/PrimoHome-Terms-and-Conditions.pdf" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</p>
       <p class="enquiry-status" id="enquiry-status" role="status"></p>
     </form>
   </div>
