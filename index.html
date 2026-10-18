@@ -380,17 +380,19 @@
     .pricing-rule { flex: 0 1 360px; height: 1px; background: var(--gold); }
     .pricing-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 14px; }
     .pricing-head p { color: var(--muted); font-size: 16px; line-height: 1.6; }
-    .fp-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    /* Pricing runs wider than the default 1160px container so four cards can actually be large */
+    .pricing .container { max-width: 1360px; }
+    .fp-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
     .fp-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.08); border: 1px solid #eef1f4; display: flex; flex-direction: column; }
-    .fp-photo { aspect-ratio: 16 / 10; overflow: hidden; }
+    .fp-photo { aspect-ratio: 4 / 3; overflow: hidden; }
     .fp-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .fp-body { position: relative; flex: 1; display: flex; flex-direction: column; padding: 0 22px 22px; }
-    .fp-icon { position: absolute; top: -34px; left: 22px; width: 68px; height: 68px; border-radius: 50%; background: #fbf3e2; border: 4px solid var(--white); display: flex; align-items: center; justify-content: center; color: var(--navy); }
-    .fp-icon svg { width: 30px; height: 30px; stroke: currentColor; fill: none; stroke-width: 1.7; }
-    .fp-body h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--navy); padding-top: 44px; margin-bottom: 8px; }
-    .fp-body p { font-size: 14px; color: #4b5b68; line-height: 1.5; margin-bottom: 14px; }
+    .fp-body { position: relative; flex: 1; display: flex; flex-direction: column; padding: 0 26px 28px; }
+    .fp-icon { position: absolute; top: -38px; left: 26px; width: 76px; height: 76px; border-radius: 50%; background: #fbf3e2; border: 4px solid var(--white); display: flex; align-items: center; justify-content: center; color: var(--navy); }
+    .fp-icon svg { width: 34px; height: 34px; stroke: currentColor; fill: none; stroke-width: 1.7; }
+    .fp-body h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy); padding-top: 50px; margin-bottom: 10px; }
+    .fp-body p { font-size: 15px; color: #4b5b68; line-height: 1.55; margin-bottom: 16px; }
     .fp-badge { margin-top: auto; }
-    .fp-badge { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--navy); }
+    .fp-badge { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 10px; font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--navy); }
     .fp-badge svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; flex-shrink: 0; }
     .fp-badge-beige { background: #f8efdc; }
     .fp-badge-teal { background: #dcecee; color: #134e4e; }
@@ -498,7 +500,14 @@
     .why-kicker span { font-family: var(--font-head); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
     .why-kicker::after { content: ''; flex: 0 1 220px; height: 1px; background: var(--gold); }
     .why-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; color: var(--navy); line-height: 1.2; }
-    .why-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    /* Static layout (default: no JS, reduced motion, or narrow screens): 3 + 2 centred.
+       Six tracks, each card spans two; cards 4 and 5 are nudged to sit centred. */
+    .why-carousel { position: relative; z-index: 1; --why-butterfly: var(--navy); }
+    .why-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; }
+    .why-card { grid-column: span 2; }
+    .why-card:nth-child(4) { grid-column: 2 / span 2; }
+    .why-card:nth-child(5) { grid-column: 4 / span 2; }
+    .why-dots { display: none; }
     .why-card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.08); border: 1px solid #eef1f4; display: flex; flex-direction: column; }
     .why-photo { aspect-ratio: 2 / 1; overflow: hidden; background: #ece6d6; }
     .why-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -508,15 +517,71 @@
     .why-body h3 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--navy); line-height: 1.25; padding-top: 38px; margin-bottom: 8px; }
     .why-body p { font-size: 13.5px; color: #4b5b68; line-height: 1.55; }
 
-    @media (max-width: 1100px) {
-      .why-grid { grid-template-columns: repeat(3, 1fr); }
-    }
     @media (max-width: 700px) {
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .why-card, .why-card:nth-child(4), .why-card:nth-child(5) { grid-column: auto; }
+      .why-card:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc(50% - 9px); justify-self: center; }
       .why-deco { display: none; }
     }
     @media (max-width: 460px) {
       .why-grid { grid-template-columns: 1fr; }
+      .why-card:last-child:nth-child(odd) { width: auto; }
+    }
+
+    /* ── Why: auto-playing spotlight coverflow ─────────────
+       Only when html.js AND the script has added .is-coverflow (it does so only when
+       prefers-reduced-motion is NOT set and the viewport is >700px). Everything else
+       keeps the static grid above. Positions use transform/opacity/filter only. */
+    .js .why-carousel.is-coverflow .why-grid { display: block; position: relative; }
+    .js .why-carousel.is-coverflow .why-card {
+      position: absolute; left: 50%; top: 0; width: min(420px, 46%);
+      transform: translateX(-50%) scale(1); opacity: 1; filter: none; z-index: 3;
+      transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.3, 1), opacity 0.7s ease, filter 0.7s ease;
+      will-change: transform, opacity, filter;
+    }
+    .js .why-carousel.is-coverflow .why-card.jump { transition: opacity 0.7s ease, filter 0.7s ease; }
+    .js .why-carousel.is-coverflow .why-card[data-pos="0"]  { box-shadow: 0 16px 40px rgba(13,27,42,0.18); }
+    .js .why-carousel.is-coverflow .why-card[data-pos="1"]  { transform: translateX(calc(-50% + 62%)) scale(0.8);  opacity: 0.5;  filter: blur(3px); z-index: 2; }
+    .js .why-carousel.is-coverflow .why-card[data-pos="-1"] { transform: translateX(calc(-50% - 62%)) scale(0.8);  opacity: 0.5;  filter: blur(3px); z-index: 2; }
+    .js .why-carousel.is-coverflow .why-card[data-pos="2"]  { transform: translateX(calc(-50% + 100%)) scale(0.62); opacity: 0.25; filter: blur(6px); z-index: 1; }
+    .js .why-carousel.is-coverflow .why-card[data-pos="-2"] { transform: translateX(calc(-50% - 100%)) scale(0.62); opacity: 0.25; filter: blur(6px); z-index: 1; }
+    .js .why-carousel.is-coverflow .why-dots { display: flex; justify-content: center; gap: 8px; margin-top: 28px; }
+    .why-dots span { width: 8px; height: 8px; border-radius: 999px; background: rgba(13,27,42,0.18); transition: width 0.3s ease, background 0.3s ease; }
+    .why-dots span.on { width: 24px; background: var(--gold); }
+
+    /* Decorative butterflies around the Why section. One variable recolours them all. */
+    .why-bflies { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+    .why .why-bf { position: absolute; width: var(--w, 34px); height: calc(var(--w, 34px) * 0.8); transform: rotate(var(--r, 0deg)); }
+    .why .why-bf .wing, .why .why-bf .body, .why .why-bf .head { fill: var(--why-butterfly); }
+    .why .why-bf .antenna { stroke: var(--why-butterfly); }
+    .why .why-bf .wing-l, .why .why-bf .wing-r { animation: none; }   /* calm by default (no JS / reduced motion) */
+    .why-bf-1 { --w: 48px; --r: 14deg;  right: 3%;  top: -54px; }
+    .why-bf-2 { --w: 38px; --r: -18deg; left: 3%;   bottom: -42px; }
+    .why-bf-3 { --w: 32px; --r: 8deg;   right: 13%; bottom: -46px; }
+    .js .why-carousel.is-coverflow .why-bf { animation: why-fly-1 9s ease-in-out infinite; animation-delay: var(--d, 0s); animation-play-state: paused; }
+    .js .why-carousel.is-coverflow .why-bf-2 { animation-name: why-fly-2; animation-duration: 11s; }
+    .js .why-carousel.is-coverflow .why-bf-3 { animation-name: why-fly-3; animation-duration: 8s; }
+    .js .why-carousel.is-coverflow .why-bf .wing-l,
+    .js .why-carousel.is-coverflow .why-bf .wing-r { animation: wing-flap 0.8s ease-in-out infinite; animation-delay: var(--d, 0s); animation-play-state: paused; }
+    .js .why-carousel.is-coverflow.in-view .why-bf,
+    .js .why-carousel.is-coverflow.in-view .why-bf .wing-l,
+    .js .why-carousel.is-coverflow.in-view .why-bf .wing-r { animation-play-state: running; }
+    @keyframes why-fly-1 {
+      0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
+      25% { transform: translate(-34px, 16px) rotate(calc(var(--r) + 16deg)); }
+      55% { transform: translate(-12px, 38px) rotate(calc(var(--r) - 10deg)); }
+      80% { transform: translate(22px, 12px) rotate(calc(var(--r) + 8deg)); }
+    }
+    @keyframes why-fly-2 {
+      0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
+      30% { transform: translate(40px, -14px) rotate(calc(var(--r) + 14deg)); }
+      60% { transform: translate(64px, 8px) rotate(calc(var(--r) - 12deg)); }
+      85% { transform: translate(20px, 10px) rotate(calc(var(--r) + 6deg)); }
+    }
+    @keyframes why-fly-3 {
+      0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
+      35% { transform: translate(-28px, -16px) rotate(calc(var(--r) - 14deg)); }
+      70% { transform: translate(-52px, 6px) rotate(calc(var(--r) + 12deg)); }
     }
 
     /* ── BOTTOM CTA ──────────────────────────────────────── */
@@ -1024,46 +1089,79 @@
       <div class="why-kicker"><span>Why PrimoHome</span></div>
       <h2>Home cleaning should feel simple, dependable and reassuring.</h2>
     </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-photo"><img src="assets/primohome/photos/why-1.jpg" alt="" aria-hidden="true" /></div>
-        <div class="why-body">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
-          <h3>Trusted &amp; Trained Professionals</h3>
-          <p>Uniformed, ID-carrying and background-verified cleaning specialists trained to PrimoHome standards.</p>
+    <!-- Coverflow carousel (activated by script; static 3+2 grid otherwise).
+         Accessibility beyond reduced-motion/no-JS is deferred to issue #2: visible Pause/Play
+         button, keyboard/arrow navigation, carousel ARIA (role=region, aria-roledescription),
+         aria-hidden/inert on off-screen cards, and turning the dots into controls. -->
+    <div class="why-carousel" id="why-carousel">
+      <div class="why-grid">
+        <div class="why-card" data-i="0">
+          <div class="why-photo"><img src="assets/primohome/photos/why-1.jpg" alt="" aria-hidden="true" /></div>
+          <div class="why-body">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+            <h3>Trusted &amp; Trained Professionals</h3>
+            <p>Uniformed, ID-carrying and background-verified cleaning specialists trained to PrimoHome standards.</p>
+          </div>
+        </div>
+        <div class="why-card" data-i="1">
+          <div class="why-photo"><img src="assets/primohome/photos/why-2.jpg" alt="" aria-hidden="true" /></div>
+          <div class="why-body">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h3>Standardised Cleaning, Every Time</h3>
+            <p>Defined room-by-room cleaning checklists and methods help us deliver a consistent experience on every visit.</p>
+          </div>
+        </div>
+        <div class="why-card" data-i="2">
+          <div class="why-photo"><img src="assets/primohome/photos/why-3.jpg" alt="" aria-hidden="true" /></div>
+          <div class="why-body">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="2.8"/><circle cx="16" cy="9" r="2.2"/><path d="M2.5 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 15.2c2.9.4 5 2.6 5 4.8"/></svg></div>
+            <h3>Supervisor-Checked Quality</h3>
+            <p>Completed work is reviewed before our team leaves, helping ensure that nothing within the agreed scope is missed.</p>
+          </div>
+        </div>
+        <div class="why-card" data-i="3">
+          <div class="why-photo"><img src="assets/primohome/photos/why-4.jpg" alt="" aria-hidden="true" /></div>
+          <div class="why-body">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <h3>Inspect Before You Pay</h3>
+            <p>Take a look at the completed work first. If something within the agreed scope has been missed, tell us and we will address it before payment.</p>
+          </div>
+        </div>
+        <div class="why-card" data-i="4">
+          <div class="why-photo"><img src="assets/primohome/photos/why-5.jpg" alt="" aria-hidden="true" /></div>
+          <div class="why-body">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg></div>
+            <h3>Transparent Pricing &amp; Scope</h3>
+            <p>Clear pricing, inclusions and exclusions upfront, so you know exactly what you are booking.</p>
+          </div>
         </div>
       </div>
-      <div class="why-card">
-        <div class="why-photo"><img src="assets/primohome/photos/why-2.jpg" alt="" aria-hidden="true" /></div>
-        <div class="why-body">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3>Standardised Cleaning, Every Time</h3>
-          <p>Defined room-by-room cleaning checklists and methods help us deliver a consistent experience on every visit.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-photo"><img src="assets/primohome/photos/why-3.jpg" alt="" aria-hidden="true" /></div>
-        <div class="why-body">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="2.8"/><circle cx="16" cy="9" r="2.2"/><path d="M2.5 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 15.2c2.9.4 5 2.6 5 4.8"/></svg></div>
-          <h3>Supervisor-Checked Quality</h3>
-          <p>Completed work is reviewed before our team leaves, helping ensure that nothing within the agreed scope is missed.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-photo"><img src="assets/primohome/photos/why-4.jpg" alt="" aria-hidden="true" /></div>
-        <div class="why-body">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
-          <h3>Inspect Before You Pay</h3>
-          <p>Take a look at the completed work first. If something within the agreed scope has been missed, tell us and we will address it before payment.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-photo"><img src="assets/primohome/photos/why-5.jpg" alt="" aria-hidden="true" /></div>
-        <div class="why-body">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg></div>
-          <h3>Transparent Pricing &amp; Scope</h3>
-          <p>Clear pricing, inclusions and exclusions upfront, so you know exactly what you are booking.</p>
-        </div>
+      <div class="why-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="why-bflies" aria-hidden="true">
+      <svg class="butterfly why-bf why-bf-1" viewBox="0 0 20 16" style="--d:0s">
+        <path class="antenna" d="M9.3,4 Q8,1.5 6.8,0.8" />
+        <path class="antenna" d="M10.7,4 Q12,1.5 13.2,0.8" />
+        <g class="wing wing-l"><ellipse cx="6" cy="6" rx="4.2" ry="3.2" /><ellipse cx="7" cy="11" rx="3" ry="2.4" /></g>
+        <g class="wing wing-r"><ellipse cx="14" cy="6" rx="4.2" ry="3.2" /><ellipse cx="13" cy="11" rx="3" ry="2.4" /></g>
+        <circle class="head" cx="10" cy="4" r="1.1" />
+        <rect class="body" x="9.4" y="4.5" width="1.2" height="9" rx="0.6" />
+      </svg>
+      <svg class="butterfly why-bf why-bf-2" viewBox="0 0 20 16" style="--d:-2.5s">
+        <path class="antenna" d="M9.3,4 Q8,1.5 6.8,0.8" />
+        <path class="antenna" d="M10.7,4 Q12,1.5 13.2,0.8" />
+        <g class="wing wing-l"><ellipse cx="6" cy="6" rx="4.2" ry="3.2" /><ellipse cx="7" cy="11" rx="3" ry="2.4" /></g>
+        <g class="wing wing-r"><ellipse cx="14" cy="6" rx="4.2" ry="3.2" /><ellipse cx="13" cy="11" rx="3" ry="2.4" /></g>
+        <circle class="head" cx="10" cy="4" r="1.1" />
+        <rect class="body" x="9.4" y="4.5" width="1.2" height="9" rx="0.6" />
+      </svg>
+      <svg class="butterfly why-bf why-bf-3" viewBox="0 0 20 16" style="--d:-5s">
+        <path class="antenna" d="M9.3,4 Q8,1.5 6.8,0.8" />
+        <path class="antenna" d="M10.7,4 Q12,1.5 13.2,0.8" />
+        <g class="wing wing-l"><ellipse cx="6" cy="6" rx="4.2" ry="3.2" /><ellipse cx="7" cy="11" rx="3" ry="2.4" /></g>
+        <g class="wing wing-r"><ellipse cx="14" cy="6" rx="4.2" ry="3.2" /><ellipse cx="13" cy="11" rx="3" ry="2.4" /></g>
+        <circle class="head" cx="10" cy="4" r="1.1" />
+        <rect class="body" x="9.4" y="4.5" width="1.2" height="9" rx="0.6" />
+      </svg>
       </div>
     </div>
   </div>
@@ -1272,6 +1370,93 @@
         }
       });
     }
+
+    // ── Why PrimoHome: spotlight coverflow (progressive enhancement) ──
+    // Active only with JS, no reduced-motion preference, and a viewport wider than 700px.
+    // Otherwise the static 3+2 grid is left untouched.
+    (function () {
+      var root = document.getElementById('why-carousel');
+      if (!root) return;
+      var grid = root.querySelector('.why-grid');
+      var cards = Array.prototype.slice.call(root.querySelectorAll('.why-card'));
+      var dots = Array.prototype.slice.call(root.querySelectorAll('.why-dots span'));
+      var n = cards.length;
+      var STEP_MS = 2000;
+      var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var wideMq = window.matchMedia('(min-width: 701px)');
+      var active = 0, timer = null, enabled = false, inView = false, hovering = false;
+
+      function render(first) {
+        cards.forEach(function (card, i) {
+          var pos = ((i - active + 2 + n * 2) % n) - 2;
+          var prev = card.getAttribute('data-pos');
+          if (!first && prev !== null && Math.abs(pos - Number(prev)) > 2) {
+            // wrapping from one edge to the other: jump the transform instead of sweeping across the stage
+            card.classList.add('jump');
+            card.setAttribute('data-pos', pos);
+            void card.offsetWidth;
+            requestAnimationFrame(function () { card.classList.remove('jump'); });
+          } else {
+            card.setAttribute('data-pos', pos);
+          }
+        });
+        dots.forEach(function (d, i) { d.classList.toggle('on', i === active); });
+      }
+      function measure() {
+        if (!enabled) return;
+        cards.forEach(function (c) { c.style.height = ''; });
+        var h = 0;
+        cards.forEach(function (c) { h = Math.max(h, c.offsetHeight); });
+        cards.forEach(function (c) { c.style.height = h + 'px'; });
+        grid.style.height = h + 'px';
+      }
+      function tick() { active = (active + 1) % n; render(false); }
+      function sync() {
+        var shouldRun = enabled && inView && !hovering && !document.hidden;
+        if (shouldRun && !timer) timer = setInterval(tick, STEP_MS);
+        if (!shouldRun && timer) { clearInterval(timer); timer = null; }
+      }
+      function enable() {
+        enabled = true;
+        root.classList.add('is-coverflow');
+        render(true);
+        measure();
+        sync();
+      }
+      function disable() {
+        enabled = false;
+        sync();
+        root.classList.remove('is-coverflow');
+        cards.forEach(function (c) { c.style.height = ''; c.removeAttribute('data-pos'); c.classList.remove('jump'); });
+        grid.style.height = '';
+      }
+      function evaluate() {
+        var want = !reduceMq.matches && wideMq.matches;
+        if (want && !enabled) enable();
+        else if (!want && enabled) disable();
+      }
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          inView = entries[0].isIntersecting;
+          root.classList.toggle('in-view', inView);
+          sync();
+        }, { threshold: 0.35 }).observe(root);
+      }
+      root.addEventListener('mouseenter', function () { hovering = true; sync(); });
+      root.addEventListener('mouseleave', function () { hovering = false; sync(); });
+      document.addEventListener('visibilitychange', sync);
+      var resizeRaf = null;
+      window.addEventListener('resize', function () {
+        if (resizeRaf) return;
+        resizeRaf = requestAnimationFrame(function () { resizeRaf = null; evaluate(); measure(); });
+      });
+      (reduceMq.addEventListener ? reduceMq.addEventListener('change', evaluate) : reduceMq.addListener(evaluate));
+      (wideMq.addEventListener ? wideMq.addEventListener('change', evaluate) : wideMq.addListener(evaluate));
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+      window.addEventListener('load', measure);
+      evaluate();
+    })();
 
     // ── Mobile nav toggle ──
     var siteNav = document.getElementById('site-nav');
