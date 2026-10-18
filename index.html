@@ -383,7 +383,13 @@
     /* Pricing runs wider than the default 1160px container so four cards can actually be large */
     .pricing .container { max-width: 1360px; }
     .fp-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
-    .fp-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.08); border: 1px solid #eef1f4; display: flex; flex-direction: column; }
+    .fp-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.08); border: 1px solid #eef1f4; display: flex; flex-direction: column; position: relative; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    /* hover "pop": a stronger lift than the service cards (-4px) */
+    .fp-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 44px rgba(13,27,42,0.18); z-index: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .fp-card { transition: box-shadow 0.25s ease; }
+      .fp-card:hover { transform: none; }
+    }
     .fp-photo { aspect-ratio: 4 / 3; overflow: hidden; }
     .fp-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .fp-body { position: relative; flex: 1; display: flex; flex-direction: column; padding: 0 26px 28px; }
@@ -502,7 +508,7 @@
     .why-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; color: var(--navy); line-height: 1.2; }
     /* Static layout (default: no JS, reduced motion, or narrow screens): 3 + 2 centred.
        Six tracks, each card spans two; cards 4 and 5 are nudged to sit centred. */
-    .why-carousel { position: relative; z-index: 1; --why-butterfly: var(--navy); }
+    .why-carousel { position: relative; z-index: 1; --why-butterfly: var(--gold); }
     .why-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; }
     .why-card { grid-column: span 2; }
     .why-card:nth-child(4) { grid-column: 2 / span 2; }
@@ -549,39 +555,40 @@
     .why-dots span { width: 8px; height: 8px; border-radius: 999px; background: rgba(13,27,42,0.18); transition: width 0.3s ease, background 0.3s ease; }
     .why-dots span.on { width: 24px; background: var(--gold); }
 
-    /* Decorative butterflies around the Why section. One variable recolours them all. */
-    .why-bflies { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
-    .why .why-bf { position: absolute; width: var(--w, 34px); height: calc(var(--w, 34px) * 0.8); transform: rotate(var(--r, 0deg)); }
+    /* Decorative butterflies hovering over the focused (centre) card. They are the same gold
+       butterflies as the enquiry widget. The cluster box is aligned with the centre card's top
+       edge (the card is always centre-top of the stage); in the static grid it simply sits above
+       the middle card of the first row. One variable recolours them all. */
+    .why-bflies { position: absolute; left: 50%; top: 0; width: min(420px, 46%); height: 0; transform: translateX(-50%); pointer-events: none; z-index: 4; }
+    .why .why-bf { position: absolute; width: var(--w, 30px); height: calc(var(--w, 30px) * 0.8); transform: rotate(var(--r, 0deg)); }
     .why .why-bf .wing, .why .why-bf .body, .why .why-bf .head { fill: var(--why-butterfly); }
     .why .why-bf .antenna { stroke: var(--why-butterfly); }
     .why .why-bf .wing-l, .why .why-bf .wing-r { animation: none; }   /* calm by default (no JS / reduced motion) */
-    .why-bf-1 { --w: 48px; --r: 14deg;  right: 3%;  top: -54px; }
-    .why-bf-2 { --w: 38px; --r: -18deg; left: 3%;   bottom: -42px; }
-    .why-bf-3 { --w: 32px; --r: 8deg;   right: 13%; bottom: -46px; }
-    .js .why-carousel.is-coverflow .why-bf { animation: why-fly-1 9s ease-in-out infinite; animation-delay: var(--d, 0s); animation-play-state: paused; }
-    .js .why-carousel.is-coverflow .why-bf-2 { animation-name: why-fly-2; animation-duration: 11s; }
-    .js .why-carousel.is-coverflow .why-bf-3 { animation-name: why-fly-3; animation-duration: 8s; }
+    .why-bf-1 { --w: 34px; --r: -12deg; left: calc(50% - 112px); top: -30px; }
+    .why-bf-2 { --w: 28px; --r: 10deg;  left: calc(50% + 22px);  top: -40px; }
+    .why-bf-3 { --w: 24px; --r: 18deg;  left: calc(50% + 120px); top: -26px; }
+    .js .why-carousel.is-coverflow .why-bf { animation: why-hover-1 4.6s ease-in-out infinite; animation-delay: var(--d, 0s); animation-play-state: paused; }
+    .js .why-carousel.is-coverflow .why-bf-2 { animation-name: why-hover-2; animation-duration: 5.4s; }
+    .js .why-carousel.is-coverflow .why-bf-3 { animation-name: why-hover-3; animation-duration: 4s; }
     .js .why-carousel.is-coverflow .why-bf .wing-l,
-    .js .why-carousel.is-coverflow .why-bf .wing-r { animation: wing-flap 0.8s ease-in-out infinite; animation-delay: var(--d, 0s); animation-play-state: paused; }
+    .js .why-carousel.is-coverflow .why-bf .wing-r { animation: wing-flap 0.9s ease-in-out infinite; animation-delay: var(--d, 0s); animation-play-state: paused; }
     .js .why-carousel.is-coverflow.in-view .why-bf,
     .js .why-carousel.is-coverflow.in-view .why-bf .wing-l,
     .js .why-carousel.is-coverflow.in-view .why-bf .wing-r { animation-play-state: running; }
-    @keyframes why-fly-1 {
+    /* small ambient drift + bob, a few px only */
+    @keyframes why-hover-1 {
       0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
-      25% { transform: translate(-34px, 16px) rotate(calc(var(--r) + 16deg)); }
-      55% { transform: translate(-12px, 38px) rotate(calc(var(--r) - 10deg)); }
-      80% { transform: translate(22px, 12px) rotate(calc(var(--r) + 8deg)); }
+      33% { transform: translate(6px, -5px) rotate(calc(var(--r) + 7deg)); }
+      66% { transform: translate(-4px, -9px) rotate(calc(var(--r) - 6deg)); }
     }
-    @keyframes why-fly-2 {
+    @keyframes why-hover-2 {
       0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
-      30% { transform: translate(40px, -14px) rotate(calc(var(--r) + 14deg)); }
-      60% { transform: translate(64px, 8px) rotate(calc(var(--r) - 12deg)); }
-      85% { transform: translate(20px, 10px) rotate(calc(var(--r) + 6deg)); }
+      40% { transform: translate(-6px, -7px) rotate(calc(var(--r) - 8deg)); }
+      75% { transform: translate(5px, -3px) rotate(calc(var(--r) + 6deg)); }
     }
-    @keyframes why-fly-3 {
+    @keyframes why-hover-3 {
       0%, 100% { transform: translate(0, 0) rotate(var(--r)); }
-      35% { transform: translate(-28px, -16px) rotate(calc(var(--r) - 14deg)); }
-      70% { transform: translate(-52px, 6px) rotate(calc(var(--r) + 12deg)); }
+      50% { transform: translate(-5px, -8px) rotate(calc(var(--r) - 9deg)); }
     }
 
     /* ── BOTTOM CTA ──────────────────────────────────────── */
