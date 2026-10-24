@@ -760,9 +760,10 @@
       opacity: 0;
       transform: translateY(12px) scale(0.98);
       pointer-events: none;
-      transition: opacity 0.18s ease, transform 0.18s ease;
+      visibility: hidden;   /* keeps the minimized form out of the tab order and the accessibility tree */
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
     }
-    .enquiry-widget.open .enquiry-panel { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .enquiry-widget.open .enquiry-panel { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; visibility: visible; transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s; }
 
     .enquiry-panel-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
     .enquiry-panel-title { font-family: var(--font-head); font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
@@ -1248,7 +1249,7 @@
 </footer>
 
 <!-- ── ENQUIRY WIDGET (floating corner form) ────────────────── -->
-<div class="enquiry-widget open" id="enquiry-widget">
+<div class="enquiry-widget" id="enquiry-widget">
   <div class="butterflies" aria-hidden="true">
     <svg class="butterfly butterfly-1" viewBox="0 0 20 16">
       <path class="antenna" d="M9.3,4 Q8,1.5 6.8,0.8" />
@@ -1327,7 +1328,7 @@
     </form>
   </div>
 
-  <button type="button" class="enquiry-bubble" id="enquiry-bubble" aria-haspopup="true" aria-expanded="true" aria-label="Request a callback">
+  <button type="button" class="enquiry-bubble" id="enquiry-bubble" aria-haspopup="true" aria-expanded="false" aria-label="Request a callback">
     <svg class="icon-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
     <svg class="icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
   </button>
@@ -1503,9 +1504,9 @@
     bubble.addEventListener('click', toggleWidget);
     minimizeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeWidget(); });
     var navContactLink = document.getElementById('nav-contact-link');
-    if (navContactLink) navContactLink.addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
-    document.getElementById('footer-contact-link').addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
-    document.getElementById('footer-legal-contact-link').addEventListener('click', function (e) { e.preventDefault(); openWidget(); });
+    if (navContactLink) navContactLink.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openWidget(); });
+    document.getElementById('footer-contact-link').addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openWidget(); });
+    document.getElementById('footer-legal-contact-link').addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); openWidget(); });
 
     // Close when clicking outside the widget.
     document.addEventListener('click', function (event) {
