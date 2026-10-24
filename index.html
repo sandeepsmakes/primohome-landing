@@ -384,6 +384,16 @@
     /* Landing teaser: two cards (one-time / recurring) linking to pricing.html */
     .fp-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; max-width: 920px; margin: 0 auto; }
     .fp-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.08); border: 1px solid #eef1f4; display: flex; flex-direction: column; position: relative; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    /* ── PRODUCT WORDMARKS: "Primo" + one accent word per product ── */
+    .pn { font-family: var(--font-head); font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; }
+    .pn-p { color: inherit; }
+    .pn-w { color: var(--pn-accent); }
+    .pn-quick { --pn-accent: #CC8200; }
+    .pn-fresh { --pn-accent: #00919C; }
+    .pn-max   { --pn-accent: #CC8200; }
+    .pn-care  { --pn-accent: #6F66D6; }
+    .pn-extra { --pn-accent: #6A6AE8; }
+    .pn-quick .pn-w, .pn-fresh .pn-w, .pn-care .pn-w { font-style: italic; }
     /* hover "pop": a stronger lift than the service cards (-4px) */
     .fp-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 44px rgba(13,27,42,0.18); z-index: 1; }
     @media (prefers-reduced-motion: reduce) {
@@ -1010,7 +1020,7 @@
     <div class="pricing-head">
       <div class="pricing-kicker"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><span class="pricing-rule"></span></div>
       <h2>Choose How Often We Care for Your Home</h2>
-      <p>One-time cleaning or regular PrimoCare, with transparent prices by home size.</p>
+      <p>One-time cleaning or regular <span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care</span></span>, with transparent prices by home size.</p>
     </div>
     <div class="fp-grid">
       <div class="fp-card">
@@ -1018,7 +1028,7 @@
         <div class="fp-body">
           <div class="fp-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8" cy="14" r="0.9" fill="currentColor"/><circle cx="12" cy="14" r="0.9" fill="currentColor"/><circle cx="16" cy="14" r="0.9" fill="currentColor"/><circle cx="8" cy="17.5" r="0.9" fill="currentColor"/><circle cx="12" cy="17.5" r="0.9" fill="currentColor"/><circle cx="16" cy="17.5" r="0.9" fill="currentColor"/></svg></div>
           <h3>One-time cleaning</h3>
-          <p>PrimoQuick, PrimoFresh and PrimoMax. No recurring commitment.</p>
+          <p><span class="pn pn-quick"><span class="pn-p">Primo</span><span class="pn-w">Quick</span></span>, <span class="pn pn-fresh"><span class="pn-p">Primo</span><span class="pn-w">Fresh</span></span> and <span class="pn pn-max"><span class="pn-p">Primo</span><span class="pn-w">Max</span></span>. No recurring commitment.</p>
           <div class="fp-badge fp-badge-beige"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8" cy="14" r="0.9" fill="currentColor"/><circle cx="12" cy="14" r="0.9" fill="currentColor"/><circle cx="16" cy="14" r="0.9" fill="currentColor"/><circle cx="8" cy="17.5" r="0.9" fill="currentColor"/><circle cx="12" cy="17.5" r="0.9" fill="currentColor"/><circle cx="16" cy="17.5" r="0.9" fill="currentColor"/></svg><span>From &#8377;699 per session</span></div>
         </div>
       </div>
@@ -1026,7 +1036,7 @@
         <div class="fp-photo"><img src="assets/primohome/photos/freq-weekly.jpg" alt="Recurring PrimoCare cleaning" /></div>
         <div class="fp-body">
           <div class="fp-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9-9.2C1.8 8.4 4 5 7.2 5c1.9 0 3.3 1 4.8 3 1.5-2 2.9-3 4.8-3C20 5 22.2 8.4 21 11.8 19 16.6 12 21 12 21z"/></svg></div>
-          <h3>Recurring care &mdash; PrimoCare</h3>
+          <h3>Recurring care &mdash; <span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care</span></span></h3>
           <p>Scheduled weekly, fortnightly or monthly cleaning. Minimum 8 sessions, including 1 deep cleaning session.</p>
           <div class="fp-badge fp-badge-gold"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg><span>From &#8377;1,199 per visit</span></div>
         </div>
