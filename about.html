@@ -812,6 +812,9 @@
     .vm-vision h2 { color: var(--white); }
     .vm-mission { background: #fbf8f1; color: var(--text); }
     .vm-mission h2 { color: var(--navy); }
+    .vm-body .hl { font-weight: 600; }
+    .vm-vision .hl { color: var(--teal); }
+    .vm-mission .hl { color: #007f7f; }
 
     /* Values */
     .values-block { background: #fbf8f1; padding: 88px 0; }
@@ -819,6 +822,10 @@
     .values-block .section-title { font-family: 'Playfair Display', serif; font-weight: 700; text-align: center; margin: 0 auto 12px; }
     .values-block .intro { text-align: center; color: var(--muted); margin: 0 auto 48px; max-width: 560px; }
     .values-block .value-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+    .values-closing { display: flex; align-items: center; justify-content: center; gap: 14px; max-width: 620px; margin: 56px auto 0; padding-top: 28px; border-top: 1px solid rgba(212,175,55,0.35); font-family: var(--font-head); font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); text-align: center; }
+    .values-closing em { font-style: normal; color: #007f7f; }
+    .values-closing svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+    @media (max-width: 640px) { .values-closing { font-size: 12px; letter-spacing: 1px; gap: 10px; } }
     .values-block .value-item { position: relative; text-align: center; padding: 8px 18px; }
     .values-block .value-item + .value-item::before {
       content: ''; position: absolute; left: 0; top: 12%; bottom: 12%; width: 1px; background: rgba(212,175,55,0.45);
@@ -974,15 +981,13 @@
     <div class="vm-card vm-vision">
       <svg class="vm-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M3 21l6-10 4 6 3-3 5 7z"/></svg>
       <h2>Our Vision</h2>
-      <p class="vm-sub">Building a home-care institution<br>for generations</p>
-      <p class="vm-body">To become the most trusted and reliable home-care institution, creating lasting value for customers, employees and communities for generations.</p>
+      <p class="vm-body">To become the most <span class="hl">trusted</span> and <span class="hl">reliable</span> home care institution, creating better lives for our people and building lasting value for generations.</p>
       <hr class="rule-gold" />
     </div>
     <div class="vm-card vm-mission">
       <svg class="vm-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6.5-6.5M14.5 5.5h4v4"/></svg>
       <h2>Our Mission</h2>
-      <p class="vm-sub">Making professional<br>home cleaning dependable</p>
-      <p class="vm-body">To make professional home cleaning dependable, consistent and accessible through trained people, clear standards and responsible service.</p>
+      <p class="vm-body">To deliver <span class="hl">premium</span> home care services with <span class="hl">consistency</span>, <span class="hl">respect</span> and <span class="hl">responsibility</span> &ndash; creating clean, safe and comfortable spaces for every home.</p>
       <hr class="rule-gold" />
       <div class="vm-art img-placeholder" aria-hidden="true"></div>
     </div>
@@ -1002,6 +1007,7 @@
       <div class="value-item"><div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 5.27 5.82.85-4.21 4.1 1 5.8L12 15.9l-5.21 2.12 1-5.8-4.21-4.1 5.82-.85z"/></svg></div><h3>Responsible</h3><p>We care for homes and the environment we live in.</p></div>
       <div class="value-item"><div class="icon-circle"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="2.8"/><circle cx="16" cy="9" r="2.2"/><path d="M2.5 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 15.2c2.9.4 5 2.6 5 4.8"/></svg></div><h3>People First</h3><p>We value our team and the families we serve.</p></div>
     </div>
+    <p class="values-closing"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><span>Together, we build <em>better homes.</em></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9-9.2C1.8 8.4 4 5 7.2 5c1.9 0 3.3 1 4.8 3 1.5-2 2.9-3 4.8-3C20 5 22.2 8.4 21 11.8 19 16.6 12 21 12 21z"/></svg></p>
   </div>
 </section>
 
@@ -1043,10 +1049,10 @@
     <p class="eyebrow">The PrimoHome Promise</p>
     <h2>Your Home. Our Heart.</h2>
     <div class="promise-grid">
-      <div class="promise-item"><svg class="" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><h3>Trusted<br>Professionals</h3><p>Reliable people, trained with care. You can count on us.</p></div>
-      <div class="promise-item"><svg class="" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.8 8.6 2.2 5 6 5c2 0 3.3 1 4 2 0.7-1 2-2 4-2 3.8 0 5.2 3.6 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg><h3>Premium<br>Care</h3><p>Thoughtful service. Quality in every detail.</p></div>
-      <div class="promise-item"><svg class="" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/></svg><h3>Clean Spaces,<br>Better Living</h3><p>We create clean, healthy and comfortable homes.</p></div>
-      <div class="promise-item"><svg class="" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="2.8"/><circle cx="16" cy="9" r="2.2"/><path d="M2.5 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 15.2c2.9.4 5 2.6 5 4.8"/></svg><h3>People First</h3><p>Respect. Dignity. Growth. Together we succeed.</p></div>
+      <div class="promise-item"><svg class="" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="2.8"/><circle cx="16" cy="9" r="2.2"/><path d="M2.5 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 15.2c2.9.4 5 2.6 5 4.8"/></svg><h3>Trained<br>Professionals</h3></div>
+      <div class="promise-item"><svg class="" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><h3>Premium<br>Care</h3></div>
+      <div class="promise-item"><svg class="" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C.8 8.6 2.2 5 6 5c2 0 3.3 1 4 2 0.7-1 2-2 4-2 3.8 0 5.2 3.6 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg><h3>Respectful<br>Service</h3></div>
+      <div class="promise-item"><svg class="" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg><h3>Consistent<br>Quality</h3></div>
     </div>
   </div>
   <div class="promise-photo" aria-hidden="true"></div>
