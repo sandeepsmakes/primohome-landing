@@ -618,6 +618,21 @@
     .pp-per { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
     .pp-card .link-arrow { margin-top: auto; align-self: flex-start; }
     .pp-card .btn { margin-top: auto; align-self: stretch; justify-content: center; text-align: center; }
+
+    /* Offering cards: space between the price and its link */
+    #pp-offerings .pp-price { display: block; margin-bottom: 14px; }
+    /* Offering cards share one set of rows (icon, title, headline, 3 points, label, price, link),
+       so every row starts and ends at the same height across the four cards. Browsers without
+       subgrid keep the stacked layout above. */
+    @supports (grid-template-rows: subgrid) {
+      #pp-offerings .pp-grid-4 { row-gap: 0; }
+      #pp-offerings .pp-grid-4 > .pp-card { display: grid; grid-row: span 9; grid-template-rows: subgrid; margin-bottom: 26px; }
+      #pp-offerings .pp-card-pad { display: grid; grid-row: span 9; grid-template-rows: subgrid; grid-template-columns: minmax(0, 1fr); align-content: start; }
+      #pp-offerings .pp-desc { display: contents; }
+      #pp-offerings .pp-points { grid-row: span 3; grid-template-rows: subgrid; gap: 0; margin-bottom: 20px; }
+      #pp-offerings .pp-points li { padding-bottom: 11px; }
+      #pp-offerings .pp-card .link-arrow { margin-top: 0; align-self: start; justify-self: start; }
+    }
     .pp-featured { border-color: var(--gold); }
     .pp-total { margin-bottom: 8px; }
 
