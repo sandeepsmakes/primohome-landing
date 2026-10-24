@@ -537,6 +537,22 @@
     }
 
     /* ── FOOTER ──────────────────────────────────────────── */
+    /* ── PROMISE STRIP (below the nav, scrolls with the page) ─── */
+    .site-promise { background: var(--navy-soft); color: #e7edf3; font-size: 13px; }
+    .site-promise-inner {
+      max-width: 1240px; margin: 0 auto; padding: 9px 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 6px 26px;
+    }
+    .site-promise-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .site-promise-item svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2.4; flex-shrink: 0; }
+    .site-promise-tag { color: var(--grey); font-style: italic; }
+    @media (max-width: 760px) {
+      .site-promise-tag { display: none; }
+      .site-promise { font-size: 12px; }
+      .site-promise-inner { gap: 4px 16px; padding: 8px 16px; }
+    }
+
     footer {
       background: var(--navy);
       color: var(--grey);
@@ -927,6 +943,16 @@
     </div>
   </div>
 </header>
+
+<!-- ── PROMISE STRIP ───────────────────────────────────────── -->
+<div class="site-promise" role="note" aria-label="The PrimoHome promise">
+  <div class="site-promise-inner">
+    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>We bring the materials</span>
+    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>We check the quality</span>
+    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>You inspect before you pay</span>
+    <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+  </div>
+</div>
 
 <!-- ── ABOUT HERO ───────────────────────────────────────────── -->
 <section class="about-hero">
