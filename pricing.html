@@ -693,7 +693,8 @@
     .pp-plan .pp-total { justify-content: space-between; font-size: 13px; padding: 12px 14px; gap: 8px; }
     .pp-plan .pp-total strong { font-size: 15px; white-space: nowrap; }
     .pp-plan .btn { margin-top: auto; }
-    .pp-save { color: #134e4e; font-weight: 600; font-size: 14px; margin-bottom: 18px; }
+    .pp-save { display: flex; align-items: baseline; justify-content: center; gap: 8px; flex-wrap: wrap; background: linear-gradient(135deg, #fff6d6, #f6e3a0); border: 1.5px solid var(--gold); border-radius: 12px; padding: 10px 14px; margin-bottom: 18px; color: #134e4e; font-weight: 700; font-size: 14px; text-align: center; }
+    .pp-save b { font-family: var(--font-head); font-size: 30px; line-height: 1; font-weight: 800; color: #0b5d5d; letter-spacing: -.5px; }
 
     /* Service Task Matrix */
     .pp-legend { text-align: center; font-size: 15px; color: var(--navy); font-weight: 600; margin-bottom: 28px; }
@@ -903,7 +904,7 @@
         <div class="fp-body"><h3>Weekly</h3><p class="pp-meta">A reliably fresh home, every week.</p>
           <span class="pp-price" data-plan-price="weekly">₹1,599</span><span class="pp-per">per session</span>
           <div class="fp-badge fp-badge-beige pp-total"><span>8-session commitment</span><strong data-plan-total="weekly">₹12,792</strong></div>
-          <p class="pp-save" data-plan-saving="weekly">32.6% effective savings*</p>
+          <p class="pp-save" data-plan-saving="weekly"><b>32.6%</b> <span>effective savings*</span></p>
           <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" data-request="weekly">Request weekly plan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </article>
       <article class="fp-card pp-card pp-plan">
@@ -911,7 +912,7 @@
         <div class="fp-body"><h3>Fortnightly</h3><p class="pp-meta">Dependable care every two weeks.</p>
           <span class="pp-price" data-plan-price="fortnightly">₹1,699</span><span class="pp-per">per session</span>
           <div class="fp-badge fp-badge-beige pp-total"><span>8-session commitment</span><strong data-plan-total="fortnightly">₹13,592</strong></div>
-          <p class="pp-save" data-plan-saving="fortnightly">28.4% effective savings*</p>
+          <p class="pp-save" data-plan-saving="fortnightly"><b>28.4%</b> <span>effective savings*</span></p>
           <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" data-request="fortnightly">Request fortnightly plan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </article>
       <article class="fp-card pp-card pp-plan">
@@ -919,7 +920,7 @@
         <div class="fp-body"><h3>Monthly</h3><p class="pp-meta">A regular refresh, month after month.</p>
           <span class="pp-price" data-plan-price="monthly">₹1,799</span><span class="pp-per">per session</span>
           <div class="fp-badge fp-badge-beige pp-total"><span>8-session commitment</span><strong data-plan-total="monthly">₹14,392</strong></div>
-          <p class="pp-save" data-plan-saving="monthly">24.2% effective savings*</p>
+          <p class="pp-save" data-plan-saving="monthly"><b>24.2%</b> <span>effective savings*</span></p>
           <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" data-request="monthly">Request monthly plan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </article>
     </div>
@@ -1184,7 +1185,7 @@
         var total = 8 * h[k];
         setPrice(document.querySelector('[data-plan-price="' + k + '"]'), h[k]);
         setPrice(document.querySelector('[data-plan-total="' + k + '"]'), total);
-        document.querySelector('[data-plan-saving="' + k + '"]').textContent = ((individual - total) / individual * 100).toFixed(1) + '% effective savings*';
+        document.querySelector('[data-plan-saving="' + k + '"]').innerHTML = '<b>' + ((individual - total) / individual * 100).toFixed(1) + '%</b> <span>effective savings*</span>';
       });
     }
     document.querySelectorAll('[data-home]').forEach(function (b) {
