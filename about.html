@@ -538,19 +538,17 @@
 
     /* ── FOOTER ──────────────────────────────────────────── */
     /* ── PROMISE STRIP (below the nav, scrolls with the page) ─── */
-    .site-promise { background: var(--navy-soft); color: #e7edf3; font-size: 13px; }
-    .site-promise-inner {
-      max-width: 1240px; margin: 0 auto; padding: 9px 24px;
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-      gap: 6px 26px;
-    }
-    .site-promise-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
-    .site-promise-item svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2.4; flex-shrink: 0; }
-    .site-promise-tag { color: var(--grey); font-style: italic; }
-    @media (max-width: 760px) {
-      .site-promise-tag { display: none; }
-      .site-promise { font-size: 12px; }
-      .site-promise-inner { gap: 4px 16px; padding: 8px 16px; }
+    .site-promise { background: var(--navy-soft); color: #e7edf3; font-size: 13px; font-weight: 600; overflow: hidden; }
+    .site-promise-track { display: flex; width: max-content; padding: 9px 0; animation: site-promise-scroll 60s linear infinite; }
+    .site-promise-set { display: flex; align-items: center; flex-shrink: 0; }
+    .site-promise-item { display: inline-flex; align-items: center; white-space: nowrap; }
+    .site-promise-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin: 0 8px 0 36px; flex-shrink: 0; }
+    .site-promise-tag { color: var(--grey); font-style: italic; font-weight: 500; white-space: nowrap; margin-left: 36px; }
+    @keyframes site-promise-scroll { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .site-promise-track { animation: none; width: auto; justify-content: center; flex-wrap: wrap; }
+      .site-promise-set:not(:first-child) { display: none; }
+      .site-promise-set .site-promise-cycle ~ .site-promise-cycle { display: none; }
     }
 
     footer {
@@ -953,11 +951,47 @@
 
 <!-- ── PROMISE STRIP ───────────────────────────────────────── -->
 <div class="site-promise" role="note" aria-label="The PrimoHome promise">
-  <div class="site-promise-inner">
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>We bring the materials</span>
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>We check the quality</span>
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>You inspect before you pay</span>
-    <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+  <div class="site-promise-track">
+    <div class="site-promise-set">
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+    </div>
+    <div class="site-promise-set" aria-hidden="true">
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+    </div>
   </div>
 </div>
 
