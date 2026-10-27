@@ -639,7 +639,7 @@
 
     /* BHK selector: one sticky bar pinned under the (sticky, in-flow) nav; --nav-h/--bar-h are measured by script */
     :root { --nav-h: 72px; --bar-h: 96px; }
-    .pp-plans { --price-anim: 1.8s; }
+    .pp-plans { --price-anim: 1.1s; }
     .pp-intro { padding-bottom: 36px; }
     .pp-sticky { position: sticky; top: var(--nav-h); z-index: 150; background: var(--white); box-shadow: 0 6px 16px rgba(13,27,42,0.10); padding: 12px 0; }
     .pp-size-bar { display: flex; align-items: center; gap: 18px; }
@@ -672,14 +672,15 @@
     .js .pp-collapse:not(.is-open) .pp-collapse-panel { grid-template-rows: 0fr; opacity: 0; margin-top: 0; visibility: hidden; transition: grid-template-rows 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0.45s; }
     .pp-care-intro { margin-bottom: 28px; }
 
-    /* Directional price slide: rises into place when the price goes up, drops in when it goes down */
-    @keyframes pp-up { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes pp-down { from { opacity: 0; transform: translateY(-26px); } to { opacity: 1; transform: translateY(0); } }
-    .pp-up { animation: pp-up var(--price-anim) ease-out both; }
-    .pp-down { animation: pp-down var(--price-anim) ease-out both; }
+    /* Odometer price: each digit is a 0-9 strip that rolls to its value, like a clock/odometer (no fade) */
+    .pp-roll { display: inline-flex; height: 1.15em; line-height: 1.15; overflow: hidden; vertical-align: top; font-variant-numeric: tabular-nums; }
+    .pp-ch { display: block; height: 1.15em; }
+    .pp-d { display: block; overflow: hidden; height: 1.15em; }
+    .pp-strip { display: block; transition: transform var(--price-anim) cubic-bezier(0.22, 0.85, 0.25, 1); will-change: transform; }
+    .pp-strip i { display: block; height: 1.15em; font-style: normal; text-align: center; }
     @media (prefers-reduced-motion: reduce) {
       .pp-collapse-panel, .js .pp-collapse:not(.is-open) .pp-collapse-panel, .pp-collapse-chev { transition: none; }
-      .pp-up, .pp-down { animation: none; }
+      .pp-strip { transition: none; }
       /* before the script runs, reduced-motion users already see both sections open */
       .js:not(.pp-ready) .pp-collapse .pp-collapse-panel { grid-template-rows: 1fr; opacity: 1; margin-top: 24px; visibility: visible; }
     }
@@ -1198,16 +1199,46 @@
     var money = function (n) { return '\u20b9' + n.toLocaleString('en-IN'); };
     var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Prices slide up into place when they rise and drop in when they fall (skipped for reduced motion)
+    // Prices roll like an odometer: each digit strip slides to its value (no fade; instant for reduced motion)
     function setPrice(el, n) {
       var next = money(n);
-      if (el.textContent === next) return;
-      var prev = parseInt(el.textContent.replace(/\D/g, ''), 10);
-      el.textContent = next;
-      if (isNaN(prev) || reduceMq.matches) return;
-      el.classList.remove('pp-up', 'pp-down');
-      void el.offsetWidth;   // restart the animation
-      el.classList.add(n > prev ? 'pp-up' : 'pp-down');
+      var prevText = el.getAttribute('data-v') || el.textContent;
+      if (prevText === next && el.querySelector('.pp-roll')) return;
+      var prev = prevText.replace(/\D/g, '');
+      var digits = next.replace(/\D/g, '');
+      var roll = document.createElement('span');
+      roll.className = 'pp-roll';
+      roll.setAttribute('aria-hidden', 'true');
+      var strips = [], di = digits.length;
+      for (var i = 0; i < next.length; i++) {
+        var c = next.charAt(i), box = document.createElement('span');
+        if (/\d/.test(c)) {
+          di--;
+          box.className = 'pp-d';
+          var strip = document.createElement('span');
+          strip.className = 'pp-strip';
+          for (var d = 0; d < 10; d++) { var t = document.createElement('i'); t.textContent = d; strip.appendChild(t); }
+          // start from the digit that sat in this column before (aligned from the right), else 0
+          var fr = digits.length - 1 - di;
+          var from = reduceMq.matches ? Number(c) : (fr < prev.length ? Number(prev.charAt(prev.length - 1 - fr)) : 0);
+          strip.style.transform = 'translateY(' + (-1.15 * from) + 'em)';
+          box.appendChild(strip);
+          strips.push([strip, Number(c), digits.length - 1 - di]);
+        } else {
+          box.className = 'pp-ch';
+          box.textContent = c;
+        }
+        roll.appendChild(box);
+      }
+      el.setAttribute('data-v', next);
+      el.setAttribute('aria-label', next);
+      el.textContent = '';
+      el.appendChild(roll);
+      void roll.offsetWidth;   // commit the start positions before rolling
+      strips.forEach(function (x) {
+        x[0].style.transitionDelay = reduceMq.matches ? '0s' : (x[2] * 0.06) + 's';
+        x[0].style.transform = 'translateY(' + (-1.15 * x[1]) + 'em)';
+      });
     }
 
     function renderPrices() {
