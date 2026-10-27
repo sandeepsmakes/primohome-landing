@@ -183,6 +183,7 @@
       }
       header.site-nav.mobile-open .nav-links { transform: translateX(0); }
       .nav-links a { padding: 14px 0; border-bottom: 1px solid #eef1f4; font-size: 16px; }
+      .nav-links li:not(.nav-mobile-cta) a { display: block; width: 100%; }
       .nav-links li.nav-mobile-cta { display: block; margin-top: 24px; border: 0; }
       .nav-links .nav-mobile-cta a { border: 0; padding: 14px 22px; justify-content: center; }
       .nav-right .btn-gold { display: none; }
@@ -569,30 +570,24 @@
       line-height: 1.15;
       text-align: right;
     }
-    .cta-corner-photo {
+    .cta-plant {
       position: absolute;
-      width: 130px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 0 var(--radius) var(--radius) 0;
-      left: 0;
-      top: 0;
-      opacity: 0.9;
-    }
-    .cta-corner-photo.right {
-      left: auto;
-      right: 0;
-      width: 174px;
-      height: 50px;
+      right: 21%;
       bottom: 0;
-      top: auto;
-      border-radius: var(--radius) 0 0 var(--radius);
+      height: 86%;
+      width: auto;
+      pointer-events: none;
+      z-index: 0;
+      -webkit-mask-image: linear-gradient(to right, #000 82%, transparent);
+      mask-image: linear-gradient(to right, #000 82%, transparent);
     }
+    .final-cta-inner { position: relative; z-index: 1; }
 
+    @media (max-width: 1100px) { .cta-plant { display: none; } }
     @media (max-width: 900px) {
       .final-cta-inner { flex-direction: column; align-items: flex-start; padding: 56px 24px; }
       .final-cta-script { text-align: left; }
-      .cta-corner-photo, .cta-corner-photo.right { display: none; }
+      .cta-plant { display: none; }
     }
 
     /* ── FOOTER ──────────────────────────────────────────── */
@@ -1110,6 +1105,7 @@
 
 <!-- ── BOTTOM CTA ───────────────────────────────────────────── -->
 <section class="final-cta">
+  <img class="cta-plant" src="assets/primohome/photos/cta-plant.png" alt="" aria-hidden="true" />
   <div class="final-cta-inner">
     <div class="final-cta-copy">
       <p class="eyebrow">Book Your Cleaning Today</p>
