@@ -792,11 +792,10 @@
     .about-hero .about-body { font-size: 16px; color: var(--text); margin-bottom: 24px; line-height: 1.7; }
     .about-script { font-family: var(--font-script); font-size: 34px; color: var(--gold); line-height: 1.2; }
     .about-hero-photo {
-      position: absolute; top: 0; right: 0; bottom: 0; width: 56%;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
-              mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+      position: absolute; top: 0; right: 0; bottom: 0; width: 48%;
+      display: flex; justify-content: flex-end; align-items: center;
     }
-    .about-hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 30% center; }
+    .about-hero-photo img { height: 100%; max-width: 100%; width: auto; object-fit: contain; display: block; }
 
     /* Vision & mission */
     .vm { background: var(--cream); padding: 80px 0; }
@@ -899,7 +898,7 @@
     .btn-gold-gradient:hover { transform: translateY(-2px); }
 
     @media (max-width: 900px) {
-      .about-hero-photo { position: relative; width: 100%; height: 300px; margin-top: 40px; -webkit-mask-image: none; mask-image: none; }
+      .about-hero-photo { position: relative; width: 100%; height: auto; margin-top: 40px; } .about-hero-photo img { width: 100%; height: auto; }
       .about-hero { padding-bottom: 64px; }
       .vm-grid { grid-template-columns: 1fr; }
       .values-block .value-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 0; }
@@ -1007,7 +1006,7 @@
       <p class="about-script">Your Home. Our Heart.</p>
     </div>
   </div>
-  <div class="about-hero-photo img-placeholder" aria-hidden="true"></div>
+  <div class="about-hero-photo"><img src="assets/primohome/photos/about-hero.jpg" width="1104" height="960" alt="PrimoHome: professional home care built on trust" /></div>
 </section>
 
 <!-- ── VISION & MISSION ─────────────────────────────────────── -->
