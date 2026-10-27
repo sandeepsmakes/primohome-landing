@@ -329,19 +329,17 @@
 
     /* ── FOOTER ──────────────────────────────────────────── */
     /* ── PROMISE STRIP (below the nav, scrolls with the page) ─── */
-    .site-promise { background: var(--navy-soft); color: #e7edf3; font-size: 13px; }
-    .site-promise-inner {
-      max-width: 1240px; margin: 0 auto; padding: 9px 24px;
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-      gap: 6px 26px;
-    }
-    .site-promise-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
-    .site-promise-item svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2.4; flex-shrink: 0; }
-    .site-promise-tag { color: var(--grey); font-style: italic; }
-    @media (max-width: 760px) {
-      .site-promise-tag { display: none; }
-      .site-promise { font-size: 12px; }
-      .site-promise-inner { gap: 4px 16px; padding: 8px 16px; }
+    .site-promise { background: var(--navy-soft); color: #e7edf3; font-size: 13px; font-weight: 600; overflow: hidden; }
+    .site-promise-track { display: flex; width: max-content; padding: 9px 0; animation: site-promise-scroll 60s linear infinite; }
+    .site-promise-set { display: flex; align-items: center; flex-shrink: 0; }
+    .site-promise-item { display: inline-flex; align-items: center; white-space: nowrap; }
+    .site-promise-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin: 0 8px 0 36px; flex-shrink: 0; }
+    .site-promise-tag { color: var(--grey); font-style: italic; font-weight: 500; white-space: nowrap; margin-left: 36px; }
+    @keyframes site-promise-scroll { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .site-promise-track { animation: none; width: auto; justify-content: center; flex-wrap: wrap; }
+      .site-promise-set:not(:first-child) { display: none; }
+      .site-promise-set .site-promise-cycle ~ .site-promise-cycle { display: none; }
     }
 
     footer {
@@ -571,6 +569,9 @@
     /* ── PRICING PAGE (page-specific layout; tokens/fonts/components come from the shared rules above) ── */
     .pp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .pp-section { position: relative; padding: 72px 0; }
+    /* a section holding only a collapsed bar shouldn't carry full section padding */
+    .pp-section { transition: padding 0.45s ease; }
+    .js .pp-section:has(.pp-collapse:not(.is-open)) { padding: 22px 0; }
     .pp-alt { background: var(--cream); }
     .pp-head { max-width: 720px; margin: 0 auto 40px; text-align: center; }
     .pp-head .eyebrow { justify-content: center; color: var(--gold); margin-bottom: 10px; }
@@ -693,8 +694,8 @@
     .pp-plan .pp-total { justify-content: space-between; font-size: 13px; padding: 12px 14px; gap: 8px; }
     .pp-plan .pp-total strong { font-size: 15px; white-space: nowrap; }
     .pp-plan .btn { margin-top: auto; }
-    .pp-save { display: flex; align-items: baseline; justify-content: center; gap: 8px; flex-wrap: wrap; background: linear-gradient(135deg, #fff6d6, #f6e3a0); border: 1.5px solid var(--gold); border-radius: 12px; padding: 10px 14px; margin-bottom: 18px; color: #134e4e; font-weight: 700; font-size: 14px; text-align: center; }
-    .pp-save b { font-family: var(--font-head); font-size: 30px; line-height: 1; font-weight: 800; color: #0b5d5d; letter-spacing: -.5px; }
+    .pp-save { display: flex; align-items: baseline; justify-content: center; gap: 8px; flex-wrap: wrap; background: linear-gradient(135deg, #fff6d6, #f6e3a0); border: 1.5px solid var(--gold); border-radius: 12px; padding: 10px 14px; margin-bottom: 18px; color: #134e4e; font-weight: 700; font-size: 9px; text-align: center; }
+    .pp-save b { font-family: var(--font-head); font-size: 18.5px; line-height: 1; font-weight: 800; color: #0b5d5d; letter-spacing: -.5px; }
 
     /* Service Task Matrix */
     .pp-legend { text-align: center; font-size: 15px; color: var(--navy); font-weight: 600; margin-bottom: 28px; }
@@ -800,11 +801,47 @@
 
 <!-- ── PROMISE STRIP ───────────────────────────────────────── -->
 <div class="site-promise" role="note" aria-label="The PrimoHome promise">
-  <div class="site-promise-inner">
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>We bring the materials</span>
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>We check the quality</span>
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>You inspect before you pay</span>
-    <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+  <div class="site-promise-track">
+    <div class="site-promise-set">
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+    </div>
+    <div class="site-promise-set" aria-hidden="true">
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+    </div>
   </div>
 </div>
 
@@ -890,10 +927,10 @@
 
 <section class="pp-section" id="pp-care">
   <div class="container">
-    <div class="pp-head pp-care-intro"><p class="eyebrow"><span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care</span></span> · recurring plans</p><h2>Consistent care. Better value.</h2><p>Enjoy regular home cleaning on a schedule that suits you, with one deeper clean included in your commitment.</p></div>
     <div class="pp-collapse" id="pp-care-c" data-default="closed">
       <h3 class="pp-collapse-h"><button type="button" class="pp-collapse-btn" aria-expanded="true" aria-controls="pp-care-c-panel" disabled><span class="pp-collapse-title">Recurring care — <span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care</span></span></span><span class="pp-tag">Minimum 8 sessions</span><span class="pp-collapse-chev" aria-hidden="true"></span></button></h3>
       <div class="pp-collapse-panel" id="pp-care-c-panel"><div class="pp-collapse-inner">
+    <div class="pp-head pp-care-intro"><p class="eyebrow"><span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care</span></span> · recurring plans</p><h2>Consistent care. Better value.</h2><p>Enjoy regular home cleaning on a schedule that suits you, with one deeper clean included in your commitment.</p></div>
     <div class="pp-care-banner">
       <div class="pp-care-benefit"><strong>✓ Minimum commitment: 8 sessions</strong><p>Choose weekly, fortnightly or monthly visits. Each plan requires a commitment to eight sessions.</p></div>
       <div class="pp-care-benefit"><strong>✦ 1 deep cleaning session included</strong><p>Your eight sessions consist of <b>7 regular cleanings + 1 deep cleaning</b>, within the agreed scope.</p></div>
@@ -1231,7 +1268,7 @@
     if (window.ResizeObserver) { var ro = new ResizeObserver(syncOffsets); if (navEl) ro.observe(navEl); if (barEl) ro.observe(barEl); }
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncOffsets);
 
-    // Collapsible sections: one-time open, recurring collapsed until it scrolls into view (reduced motion: both open)
+    // Collapsible sections: one-time open, recurring collapsed until clicked (reduced motion: both open)
     function setOpen(c, open) {
       c.classList.toggle('is-open', open);
       c.querySelector('.pp-collapse-btn').setAttribute('aria-expanded', String(open));
@@ -1249,15 +1286,6 @@
     document.documentElement.classList.add('pp-ready');
     var careBox = document.getElementById('pp-care-c');
     function openCare() { careBox.setAttribute('data-touched', '1'); setOpen(careBox, true); }
-    if ('IntersectionObserver' in window && careBox) {
-      var careIo = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting && !careBox.getAttribute('data-touched')) {
-          setOpen(careBox, true);   // auto-open once; a later manual collapse is respected
-          careIo.disconnect();
-        }
-      }, { rootMargin: '-30% 0px -25% 0px' });
-      careIo.observe(careBox);
-    }
     document.querySelectorAll('a[href="#pp-care"]').forEach(function (a) { a.addEventListener('click', openCare); });
     if (location.hash === '#pp-care' && careBox) openCare();
     var onReduceChange = function () { if (reduceMq.matches) collapses.forEach(function (c) { setOpen(c, true); }); };

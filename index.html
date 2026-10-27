@@ -334,20 +334,6 @@
     .service-card h3 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: #134e4e; line-height: 1.25; padding-top: 36px; margin-bottom: 10px; }
     .service-card p { font-size: 15px; color: #4b5b68; line-height: 1.6; }
 
-    /* Reveal region: fully visible without JS; collapsed only when html.js is set */
-    .svc-more { position: relative; z-index: 1; display: grid; grid-template-rows: 1fr; margin-top: 28px; transition: grid-template-rows 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0s; }
-    .svc-more-inner { overflow: hidden; min-height: 0; padding: 8px 8px 32px; margin: -8px -8px -32px; }
-    .js .svc-more:not(.open) { grid-template-rows: 0fr; opacity: 0; margin-top: 0; visibility: hidden; transition: grid-template-rows 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0.45s; }
-    .svc-toggle-wrap { display: none; position: relative; z-index: 1; text-align: center; margin-top: 32px; }
-    .js .svc-toggle-wrap { display: block; }
-    .svc-toggle { display: inline-flex; align-items: center; gap: 10px; background: var(--navy); color: #fff; border: 0; border-radius: 999px; padding: 14px 28px; font: 600 15px 'Inter', sans-serif; cursor: pointer; transition: background 0.2s ease; }
-    .svc-toggle:hover { background: var(--navy-soft); }
-    .svc-toggle:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-    .svc-chev { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.35s ease; }
-    .svc-toggle[aria-expanded="true"] .svc-chev { transform: rotate(180deg); }
-    @media (prefers-reduced-motion: reduce) {
-      .svc-more, .js .svc-more:not(.open), .svc-chev { transition: none; }
-    }
 
     @media (max-width: 1200px) {
       .svc-deco { display: none; }
@@ -363,8 +349,6 @@
     @media (max-width: 560px) {
       .service-grid { grid-template-columns: 1fr; gap: 20px; }
       .service-grid > .service-card:last-child:nth-child(odd) { width: auto; }
-      .svc-more { margin-top: 20px; }
-      .svc-toggle-wrap { margin-top: 24px; }
       .services { padding: 40px 0; }
     }
 
@@ -613,19 +597,17 @@
 
     /* ── FOOTER ──────────────────────────────────────────── */
     /* ── PROMISE STRIP (below the nav, scrolls with the page) ─── */
-    .site-promise { background: var(--navy-soft); color: #e7edf3; font-size: 13px; }
-    .site-promise-inner {
-      max-width: 1240px; margin: 0 auto; padding: 9px 24px;
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-      gap: 6px 26px;
-    }
-    .site-promise-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
-    .site-promise-item svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2.4; flex-shrink: 0; }
-    .site-promise-tag { color: var(--grey); font-style: italic; }
-    @media (max-width: 760px) {
-      .site-promise-tag { display: none; }
-      .site-promise { font-size: 12px; }
-      .site-promise-inner { gap: 4px 16px; padding: 8px 16px; }
+    .site-promise { background: var(--navy-soft); color: #e7edf3; font-size: 13px; font-weight: 600; overflow: hidden; }
+    .site-promise-track { display: flex; width: max-content; padding: 9px 0; animation: site-promise-scroll 60s linear infinite; }
+    .site-promise-set { display: flex; align-items: center; flex-shrink: 0; }
+    .site-promise-item { display: inline-flex; align-items: center; white-space: nowrap; }
+    .site-promise-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin: 0 8px 0 36px; flex-shrink: 0; }
+    .site-promise-tag { color: var(--grey); font-style: italic; font-weight: 500; white-space: nowrap; margin-left: 36px; }
+    @keyframes site-promise-scroll { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .site-promise-track { animation: none; width: auto; justify-content: center; flex-wrap: wrap; }
+      .site-promise-set:not(:first-child) { display: none; }
+      .site-promise-set .site-promise-cycle ~ .site-promise-cycle { display: none; }
     }
 
     footer {
@@ -864,7 +846,7 @@
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
       <li><a href="#why-us">Why PrimoHome</a></li>
       <li><a href="about.html">About Us</a></li>
       <li class="nav-mobile-cta"><a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">Book Now</a></li>
@@ -883,11 +865,47 @@
 
 <!-- ── PROMISE STRIP ───────────────────────────────────────── -->
 <div class="site-promise" role="note" aria-label="The PrimoHome promise">
-  <div class="site-promise-inner">
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>We bring the materials</span>
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>We check the quality</span>
-    <span class="site-promise-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>You inspect before you pay</span>
-    <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+  <div class="site-promise-track">
+    <div class="site-promise-set">
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+    </div>
+    <div class="site-promise-set" aria-hidden="true">
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+     <span class="site-promise-cycle" style="display:contents">
+      <span class="site-promise-item">We bring the materials</span>
+      <span class="site-promise-item">We check the quality</span>
+      <span class="site-promise-item">You inspect before you pay</span>
+      <span class="site-promise-tag">Thoughtful cleaning, delivered with care.</span>
+     </span>
+    </div>
   </div>
 </div>
 
@@ -966,10 +984,6 @@
           <p>Counters, sink, appliance exteriors, accessible surfaces and floor cleaning.</p>
         </div>
       </div>
-    </div>
-    <div class="svc-more" id="svc-more">
-      <div class="svc-more-inner">
-        <div class="service-grid">
             <div class="service-card">
               <div class="service-photo"><img width="760" height="570" loading="lazy" src="assets/primohome/photos/svc-bathroom.jpg" alt="Bathroom cleaning" /></div>
               <div class="service-body">
@@ -994,11 +1008,6 @@
                 <p>Selected add-on services can be included depending on your cleaning requirements.</p>
               </div>
             </div>
-        </div>
-      </div>
-    </div>
-    <div class="svc-toggle-wrap">
-      <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-more"><span class="svc-toggle-label">Show all services</span><svg class="svc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
     </div>
   </div>
 </section>
@@ -1139,7 +1148,7 @@
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
           <li><a href="#why-us">Why PrimoHome</a></li>
           <li><a href="about.html">About Us</a></li>
         </ul>
@@ -1265,26 +1274,6 @@
 
 <script>
   (function () {
-    // ── Services: show 3, reveal the rest ──
-    var svcMore = document.getElementById('svc-more');
-    var svcToggle = document.querySelector('.svc-toggle');
-    if (svcMore && svcToggle) {
-      var svcLabel = svcToggle.querySelector('.svc-toggle-label');
-      svcToggle.addEventListener('click', function () {
-        var open = svcMore.classList.toggle('open');
-        svcToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        svcLabel.textContent = open ? 'Show fewer' : 'Show all services';
-        if (!open) {
-          // Only nudge if the heading has scrolled above the viewport
-          var head = document.querySelector('#services .svc-head');
-          if (head && head.getBoundingClientRect().top < 0) {
-            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            head.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-          }
-        }
-      });
-    }
-
     // ── Why PrimoHome: spotlight coverflow (progressive enhancement) ──
     // Active only with JS, no reduced-motion preference, and a viewport wider than 700px.
     // Otherwise the static 3+2 grid is left untouched.
