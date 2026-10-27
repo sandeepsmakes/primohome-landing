@@ -867,11 +867,11 @@
     .life-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
     /* Promise */
-    .promise { background: var(--navy); color: #dbe3ec; display: grid; grid-template-columns: 1.15fr 1fr; }
-    .promise-main { padding: 88px 40px 88px 56px; }
+    .promise { padding: 0; background: var(--navy); color: #dbe3ec; display: grid; grid-template-columns: 1.3fr 1fr; align-items: stretch; }
+    .promise-main { padding: 44px 40px 44px 56px; align-self: center; }
     .promise-main .eyebrow { color: var(--gold); }
     .promise-main .eyebrow::before { background: var(--gold); }
-    .promise-main h2 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 3.8vw, 44px); font-weight: 700; color: var(--white); margin-bottom: 40px; }
+    .promise-main h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.2vw, 38px); font-weight: 700; color: var(--white); margin-bottom: 26px; }
     .promise-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
     .promise-item { text-align: center; padding: 0 22px; position: relative; }
     .promise-item + .promise-item::before {
@@ -880,8 +880,8 @@
     .promise-item svg { width: 42px; height: 42px; stroke: var(--gold); fill: none; stroke-width: 1.6; margin: 0 auto 16px; display: block; }
     .promise-item h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.35; }
     .promise-item p { font-size: 14px; color: #cbd5e1; line-height: 1.6; }
-    .promise-photo { background: #16283d; }
-    .promise-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+    .promise-photo { background: #16283d; height: 300px; }
+    .promise-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; display: block; }
     .vm-art { width: 42%; height: 110px; margin: 28px 0 0 auto; border-radius: 0; }
     .journey-art { aspect-ratio: 4 / 3; border-radius: var(--radius); }
 
