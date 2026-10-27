@@ -1266,6 +1266,18 @@
         navToggle.setAttribute('aria-expanded', 'false');
       });
     });
+    document.addEventListener('click', function (e) {
+      if (!siteNav.classList.contains('mobile-open')) return;
+      if (e.target.closest('.nav-links') || e.target.closest('#nav-toggle')) return;
+      siteNav.classList.remove('mobile-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && siteNav.classList.contains('mobile-open')) {
+        siteNav.classList.remove('mobile-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
 
     // ── Enquiry widget ──
     var widget = document.getElementById('enquiry-widget');
