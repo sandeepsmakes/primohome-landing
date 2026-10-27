@@ -867,7 +867,7 @@
     .life-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
     /* Promise */
-    .promise { padding: 0; background: var(--navy); color: #dbe3ec; display: grid; grid-template-columns: 1.3fr 1fr; align-items: stretch; }
+    .promise { padding: 0; background: var(--navy); color: #dbe3ec; display: grid; grid-template-columns: 1fr minmax(300px, 400px); align-items: stretch; }
     .promise-main { padding: 44px 40px 44px 56px; align-self: center; }
     .promise-main .eyebrow { color: var(--gold); }
     .promise-main .eyebrow::before { background: var(--gold); }
@@ -880,8 +880,8 @@
     .promise-item svg { width: 42px; height: 42px; stroke: var(--gold); fill: none; stroke-width: 1.6; margin: 0 auto 16px; display: block; }
     .promise-item h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.35; }
     .promise-item p { font-size: 14px; color: #cbd5e1; line-height: 1.6; }
-    .promise-photo { background: #16283d; height: 300px; }
-    .promise-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; display: block; }
+    .promise-photo { background: #16283d; aspect-ratio: 660 / 616; }
+    .promise-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
     .vm-art { width: 42%; height: 110px; margin: 28px 0 0 auto; border-radius: 0; }
     .journey-art { aspect-ratio: 4 / 3; border-radius: var(--radius); }
 
