@@ -206,23 +206,34 @@
       color: var(--white);
       padding: 96px 0 64px;
       overflow: hidden;
+      /* Keep the photo box no wider than the photo's own 3:2 so wide screens
+         never crop the head or the gloved hand off the top/bottom. Capped by
+         viewport height so very large monitors don't get an absurdly tall hero. */
+      min-height: min(calc(min(66vw, 100vw - 620px) / 1.5), 90vh);
     }
     /* The blend gradient lives ON the photo box itself (not on .hero as a
        whole) so it always starts exactly at the photo's own left edge,
        whatever that pixel position happens to be at the current viewport
        width -- a container-wide gradient can't track a fixed-width child
        that shifts position, which is what caused a hard seam before. */
-    .hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 66vw; max-width: 66%; z-index: 0; }
+    /* The photo box must start to the right of the text column (40px gutter +
+       560px copy + breathing room) or the headline lands on the subject's
+       face at laptop widths -- e.g. a 1920px screen at 150% Windows scaling
+       is only 1280 CSS px wide. */
+    .hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: min(66vw, calc(100% - 620px)); z-index: 0; }
     .hero-bg::before {
       content: '';
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(90deg, var(--navy) 0%, var(--navy) 3%, rgba(13,27,42,0.6) 12%, transparent 26%);
+      /* Just a few px of softening: the subject's right arm and glove sit
+         right at the photo's left edge, so a wider fade would hide them. */
+      background: linear-gradient(90deg, rgba(13,27,42,0.85) 0, transparent 8px);
     }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 20% center; display: block; }
+    /* Subject is in the left half of the photo: anchor the crop to the left
+       so narrower boxes trim the background on the right, never her face. */
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 0% 25%; display: block; }
     .hero .container { position: relative; z-index: 2; max-width: 1680px; }
-    .hero-bg img { object-position: 100% center; }
     .hero-copy { max-width: 560px; }
     .hero-eyebrow {
       font-family: var(--font-head);
@@ -271,8 +282,8 @@
     @media (max-width: 900px) {
       .hero p.lead { max-width: none; }
     }
-    @media (max-width: 700px) {
-      .hero { padding: 0 0 48px; }
+    @media (max-width: 1000px) {
+      .hero { padding: 0 0 48px; min-height: 0; }
       .hero-bg {
         position: relative; top: auto; right: auto; bottom: auto;
         width: 100%; max-width: none; height: auto; aspect-ratio: 3 / 2;
