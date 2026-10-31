@@ -896,10 +896,12 @@
     .clean-copy { max-width: 540px; }
     .clean-copy h2 { font-size: clamp(32px, 3.8vw, 44px); font-weight: 700; line-height: 1.12; }
     .clean-copy p { font-size: 16px; color: var(--text); line-height: 1.7; margin-bottom: 16px; }
-    .clean-copy p.lead { font-size: 18px; font-weight: 500; color: var(--navy); }
+    .clean-copy h2 { letter-spacing: -0.5px; }
+    .clean-accent { background: linear-gradient(100deg, #b8902a 0%, var(--gold) 55%, #e6c75a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .clean-copy p.lead { font-family: var(--font-head); font-size: clamp(19px, 1.8vw, 22px); font-weight: 600; line-height: 1.55; color: var(--navy); }
     .clean-copy p.muted { color: var(--muted); }
     .clean-points { list-style: none; margin: 28px 0 0; padding: 24px 0 0; border-top: 1px solid rgba(13,27,42,0.12); display: grid; gap: 14px; }
-    .clean-points li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; color: var(--navy); }
+    .clean-points li { display: flex; align-items: center; gap: 14px; font-family: var(--font-head); font-size: 14px; font-weight: 600; letter-spacing: 0.4px; color: var(--navy); }
     .clean-points svg { width: 22px; height: 22px; padding: 4px; box-sizing: content-box; border-radius: 50%; background: rgba(212,175,55,0.18); stroke: var(--navy); fill: none; stroke-width: 2.2; flex-shrink: 0; }
 
     /* How we bring values to life */
@@ -1110,7 +1112,7 @@
     <div class="clean-photo"><img src="assets/primohome/photos/svc-living.webp" width="760" height="570" loading="lazy" alt="A bright, well-kept living room with natural light and indoor plants" /><div class="clean-tag"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>Your Home. Our Heart.</div></div>
     <div class="clean-copy">
       <p class="eyebrow eyebrow-gold">More Than Cleaning</p>
-      <h2>Clean Homes.<br>Better Living.</h2>
+      <h2>Clean Homes.<br><span class="clean-accent">Better Living.</span></h2>
       <hr class="rule-gold" />
       <p class="lead">A well-cared-for home contributes to a more comfortable everyday life.</p>
       <p class="muted">PrimoHome aims to make professional home cleaning something customers can depend on, while building an organisation where employees are respected, communities benefit and high service standards become the norm.</p>
