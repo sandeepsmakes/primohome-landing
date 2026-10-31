@@ -929,21 +929,30 @@
     .life-item p { font-size: 14.5px; color: var(--muted); line-height: 1.65; }
 
     /* Promise */
-    .promise { padding: 0 max(0px, calc((100% - 1400px) / 2)); background: var(--navy); color: #dbe3ec; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
-    .promise-main { padding: 56px 40px 40px 56px; align-self: start; }
+    .promise {
+      position: relative; padding: 0 max(0px, calc((100% - 1400px) / 2)); color: #dbe3ec; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+      background: radial-gradient(900px 420px at 0% 0%, rgba(212,175,55,0.10), transparent 60%), var(--navy);
+    }
+    .promise-main { padding: 44px 40px 44px 56px; align-self: center; }
     .promise-main .eyebrow { color: var(--gold); }
     .promise-main .eyebrow::before { background: var(--gold); }
-    .promise-main h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.2vw, 38px); font-weight: 700; color: var(--white); margin-bottom: 26px; }
-    .promise-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-    .promise-item { text-align: center; padding: 0 22px; position: relative; }
-    .promise-item + .promise-item::before {
-      content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 1px; background: rgba(212,175,55,0.35);
+    .promise-main h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3vw, 36px); font-weight: 700; color: var(--white); margin-bottom: 22px; }
+    .promise-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .promise-item {
+      position: relative; display: flex; align-items: center; gap: 12px; text-align: left; padding: 12px 16px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.22); border-radius: 14px;
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
     }
-    .promise-item svg { width: 42px; height: 42px; stroke: var(--gold); fill: none; stroke-width: 1.6; margin: 0 auto 16px; display: block; }
-    .promise-item h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.35; }
-    .promise-item p { font-size: 14px; color: #cbd5e1; line-height: 1.6; }
-    .promise-photo { background: #16283d; aspect-ratio: 3 / 2; }
+    .promise-item:hover { transform: translateY(-3px); border-color: rgba(212,175,55,0.6); background: rgba(255,255,255,0.07); }
+    .promise-item svg {
+      box-sizing: content-box; width: 20px; height: 20px; padding: 9px; margin: 0; flex-shrink: 0; border-radius: 50%;
+      stroke: var(--gold); fill: none; stroke-width: 1.6; background: rgba(212,175,55,0.12); display: block;
+    }
+    .promise-item h3 { font-size: 14px; font-weight: 700; color: var(--white); margin: 0; line-height: 1.35; letter-spacing: 0.2px; }
+    .promise-photo { position: relative; background: #16283d; aspect-ratio: 16 / 9; }
     .promise-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; display: block; }
+    .promise-photo::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, var(--navy) 0%, rgba(13,27,42,0.6) 12%, rgba(13,27,42,0) 40%); }
     /* Journey */
     .journey { background: var(--cream); padding: 88px 0; }
     .journey-card {
@@ -986,16 +995,14 @@
       .life-grid { grid-template-columns: repeat(2, 1fr); }
       .promise { grid-template-columns: 1fr; }
       .promise-photo { display: none; }
-      .promise-grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
-      .promise-item:nth-child(odd)::before { display: none; }
     }
     @media (max-width: 640px) {
       .values-block .value-grid, .life-grid, .promise-grid { grid-template-columns: 1fr; }
-      .values-block .value-item::before, .promise-item::before { display: none !important; }
+      .values-block .value-item::before { display: none !important; }
       .life-item { padding: 26px 24px; }
       .vm-card { padding: 40px 28px 36px; }
       .vm-card h2 { font-size: 30px; }
-      .promise-main { padding: 64px 24px; }
+      .promise-main { padding: 44px 24px; }
     }
   </style>
 </head>
