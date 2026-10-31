@@ -877,11 +877,30 @@
     .clean { background: var(--cream); }
     .clean-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .img-placeholder { background: #ece6d6; }
-    .clean-photo { aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; }
-    .clean-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .clean-photo { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); }
+    .clean-photo::before {
+      content: ''; position: absolute; inset: 18px -18px -18px 18px; border: 2px solid rgba(212,175,55,0.65);
+      border-radius: var(--radius); z-index: 0;
+    }
+    .clean-photo img {
+      position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block;
+      border-radius: var(--radius); box-shadow: 0 24px 48px -24px rgba(13,27,42,0.4);
+    }
+    .clean-tag {
+      position: absolute; z-index: 2; left: -22px; bottom: 28px; display: flex; align-items: center; gap: 12px;
+      background: var(--navy); color: var(--white); padding: 14px 20px; border-radius: 12px;
+      box-shadow: 0 16px 32px -12px rgba(13,27,42,0.5); font-family: var(--font-head); font-size: 13px;
+      font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    }
+    .clean-tag svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.7; flex-shrink: 0; }
+    .clean-copy { max-width: 540px; }
     .clean-copy h2 { font-size: clamp(32px, 3.8vw, 44px); font-weight: 700; line-height: 1.12; }
     .clean-copy p { font-size: 16px; color: var(--text); line-height: 1.7; margin-bottom: 16px; }
+    .clean-copy p.lead { font-size: 18px; font-weight: 500; color: var(--navy); }
     .clean-copy p.muted { color: var(--muted); }
+    .clean-points { list-style: none; margin: 28px 0 0; padding: 24px 0 0; border-top: 1px solid rgba(13,27,42,0.12); display: grid; gap: 14px; }
+    .clean-points li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; color: var(--navy); }
+    .clean-points svg { width: 22px; height: 22px; padding: 4px; box-sizing: content-box; border-radius: 50%; background: rgba(212,175,55,0.18); stroke: var(--navy); fill: none; stroke-width: 2.2; flex-shrink: 0; }
 
     /* How we bring values to life */
     .life { background: #fbf8f1; padding: 88px 0; }
@@ -951,6 +970,8 @@
       .values-block .value-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 0; }
       .values-block .value-item:nth-child(odd)::before { display: none; }
       .clean-grid, .journey-grid { grid-template-columns: 1fr; gap: 40px; }
+      .clean-photo { margin: 0 18px 18px 0; }
+      .clean-tag { left: 14px; bottom: 14px; padding: 10px 14px; font-size: 11px; }
       .journey-art { width: 100%; margin-right: 0; }
       .life-grid { grid-template-columns: repeat(2, 1fr); }
       .promise { grid-template-columns: 1fr; }
@@ -1086,13 +1107,14 @@
 <!-- ── CLEAN HOMES, BETTER LIVING ───────────────────────────── -->
 <section class="clean">
   <div class="container clean-grid">
-    <div class="clean-photo"><img src="assets/primohome/photos/svc-living.webp" width="760" height="570" loading="lazy" alt="A bright, well-kept living room with natural light and indoor plants" /></div>
+    <div class="clean-photo"><img src="assets/primohome/photos/svc-living.webp" width="760" height="570" loading="lazy" alt="A bright, well-kept living room with natural light and indoor plants" /><div class="clean-tag"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>Your Home. Our Heart.</div></div>
     <div class="clean-copy">
       <p class="eyebrow eyebrow-gold">More Than Cleaning</p>
       <h2>Clean Homes.<br>Better Living.</h2>
       <hr class="rule-gold" />
-      <p>A well-cared-for home contributes to a more comfortable everyday life.</p>
+      <p class="lead">A well-cared-for home contributes to a more comfortable everyday life.</p>
       <p class="muted">PrimoHome aims to make professional home cleaning something customers can depend on, while building an organisation where employees are respected, communities benefit and high service standards become the norm.</p>
+      <ul class="clean-points"><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Trained, uniformed professionals</li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Defined room-by-room standards</li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Supervisor-led quality checks</li></ul>
     </div>
   </div>
 </section>
