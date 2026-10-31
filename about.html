@@ -816,19 +816,36 @@
 
     /* Vision & mission */
     .vm { background: var(--cream); padding: 80px 0; }
-    .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
-    .vm-card { border-radius: var(--radius); padding: 52px 44px; text-align: center; }
-    .vm-icon { width: 56px; height: 56px; margin: 0 auto 16px; stroke: var(--gold); fill: none; stroke-width: 1.6; }
-    .vm-card h2 { font-size: 34px; font-weight: 700; margin-bottom: 12px; }
-    .vm-sub { font-family: var(--font-head); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); line-height: 1.5; margin-bottom: 20px; }
-    .vm-card p.vm-body { font-size: 16px; line-height: 1.7; max-width: 380px; margin: 0 auto; }
-    .vm-card .rule-gold { margin: 26px auto 0; }
-    .vm-vision { background: #f1e8d3; color: var(--text); }
-    .vm-vision h2 { color: var(--navy); }
-    .vm-mission { background: #fbf8f1; color: var(--text); }
-    .vm-mission h2 { color: var(--navy); }
+    .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .vm-card {
+      position: relative; overflow: hidden; border-radius: var(--radius); padding: 52px 48px 48px; text-align: left;
+      box-shadow: 0 1px 2px rgba(13,27,42,0.05), 0 20px 40px -22px rgba(13,27,42,0.22);
+    }
+    .vm-card::before {
+      content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--gold), rgba(212,175,55,0));
+    }
+    .vm-card::after {
+      content: ''; position: absolute; right: -70px; bottom: -70px; width: 220px; height: 220px; border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.35); box-shadow: 0 0 0 28px rgba(212,175,55,0.06);
+      pointer-events: none;
+    }
+    .vm-icon {
+      box-sizing: content-box; width: 30px; height: 30px; padding: 17px; margin: 0 0 26px; border-radius: 50%;
+      stroke: var(--gold); fill: none; stroke-width: 1.6; display: block;
+    }
+    .vm-card h2 { font-size: 36px; font-weight: 700; margin-bottom: 14px; }
+    .vm-card h2::after { content: ''; display: block; width: 44px; height: 3px; background: var(--gold); margin-top: 16px; border-radius: 2px; }
+    .vm-card p.vm-body { font-size: 17px; line-height: 1.75; max-width: 440px; margin: 20px 0 0; position: relative; z-index: 1; }
+    .vm-card .rule-gold { display: none; }
     .vm-body .hl { font-weight: 600; }
-    .vm-vision .hl { color: #007f7f; }
+    .vm-vision { background: var(--navy); color: #dbe3ec; }
+    .vm-vision h2 { color: var(--white); }
+    .vm-vision .vm-icon { background: rgba(212,175,55,0.12); }
+    .vm-vision .hl { color: var(--gold); }
+    .vm-mission { background: var(--white); color: var(--text); border: 1px solid rgba(13,27,42,0.08); }
+    .vm-mission h2 { color: var(--navy); }
+    .vm-mission .vm-icon { background: var(--navy); }
     .vm-mission .hl { color: #007f7f; }
 
     /* Values */
@@ -860,10 +877,32 @@
     .clean { background: var(--cream); }
     .clean-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .img-placeholder { background: #ece6d6; }
-    .clean-photo { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+    .clean-photo { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); }
+    .clean-photo::before {
+      content: ''; position: absolute; inset: 18px -18px -18px 18px; border: 2px solid rgba(212,175,55,0.65);
+      border-radius: var(--radius); z-index: 0;
+    }
+    .clean-photo img {
+      position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block;
+      border-radius: var(--radius); box-shadow: 0 24px 48px -24px rgba(13,27,42,0.4);
+    }
+    .clean-tag {
+      position: absolute; z-index: 2; left: -22px; bottom: 28px; display: flex; align-items: center; gap: 12px;
+      background: var(--navy); color: var(--white); padding: 14px 20px; border-radius: 12px;
+      box-shadow: 0 16px 32px -12px rgba(13,27,42,0.5); font-family: var(--font-head); font-size: 13px;
+      font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    }
+    .clean-tag svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.7; flex-shrink: 0; }
+    .clean-copy { max-width: 540px; }
     .clean-copy h2 { font-size: clamp(32px, 3.8vw, 44px); font-weight: 700; line-height: 1.12; }
     .clean-copy p { font-size: 16px; color: var(--text); line-height: 1.7; margin-bottom: 16px; }
+    .clean-copy h2 { letter-spacing: -0.5px; }
+    .clean-accent { background: linear-gradient(100deg, #b8902a 0%, var(--gold) 55%, #e6c75a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .clean-copy p.lead { font-family: var(--font-head); font-size: clamp(19px, 1.8vw, 22px); font-weight: 600; line-height: 1.55; color: var(--navy); }
     .clean-copy p.muted { color: var(--muted); }
+    .clean-points { list-style: none; margin: 28px 0 0; padding: 24px 0 0; border-top: 1px solid rgba(13,27,42,0.12); display: grid; gap: 14px; }
+    .clean-points li { display: flex; align-items: center; gap: 14px; font-family: var(--font-head); font-size: 14px; font-weight: 600; letter-spacing: 0.4px; color: var(--navy); }
+    .clean-points svg { width: 22px; height: 22px; padding: 4px; box-sizing: content-box; border-radius: 50%; background: rgba(212,175,55,0.18); stroke: var(--navy); fill: none; stroke-width: 2.2; flex-shrink: 0; }
 
     /* How we bring values to life */
     .life { background: #fbf8f1; padding: 88px 0; }
@@ -871,18 +910,23 @@
     .life-head .eyebrow { justify-content: center; color: var(--gold); margin-bottom: 14px; }
     .life-head .eyebrow::after { content: ''; width: 22px; height: 2px; background: var(--gold); display: inline-block; }
     .life-head h2 { font-size: clamp(30px, 3.6vw, 42px); font-weight: 700; }
-    .life-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 0; }
-    .life-item { position: relative; display: flex; gap: 20px; padding: 0 32px; align-items: flex-start; }
-    .life-item:nth-child(3n+1) { padding-left: 0; }
-    .life-item:nth-child(3n) { padding-right: 0; }
-    .life-item:nth-child(3n+2)::before, .life-item:nth-child(3n)::before {
-      content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 1px; background: rgba(212,175,55,0.45);
+    .life-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .life-item {
+      position: relative; display: flex; flex-direction: column; gap: 20px; padding: 32px 30px 30px;
+      background: var(--white); border: 1px solid rgba(13,27,42,0.08); border-radius: var(--radius);
+      box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 8px 24px -12px rgba(13,27,42,0.10);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
-    .life-item:nth-child(3n)::before { display: none; }
-    .life-item .icon-circle { width: 62px; height: 62px; flex-shrink: 0; background: #f8ecd2; color: var(--navy); }
-    .life-item .icon-circle svg { width: 26px; height: 26px; stroke: var(--navy); }
-    .life-item h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-    .life-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .life-item::after {
+      content: ''; position: absolute; left: 30px; right: 30px; top: -1px; height: 3px; border-radius: 0 0 3px 3px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+    }
+    .life-item:hover { transform: translateY(-4px); border-color: rgba(212,175,55,0.5); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 18px 36px -14px rgba(13,27,42,0.18); }
+    .life-item:hover::after { transform: scaleX(1); }
+    .life-item .icon-circle { width: 56px; height: 56px; flex-shrink: 0; background: var(--navy); color: var(--gold); transition: background .25s ease; }
+    .life-item .icon-circle svg { width: 26px; height: 26px; stroke: var(--gold); }
+    .life-item h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .life-item p { font-size: 14.5px; color: var(--muted); line-height: 1.65; }
 
     /* Promise */
     .promise { padding: 0 max(0px, calc((100% - 1400px) / 2)); background: var(--navy); color: #dbe3ec; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
@@ -900,21 +944,26 @@
     .promise-item p { font-size: 14px; color: #cbd5e1; line-height: 1.6; }
     .promise-photo { background: #16283d; aspect-ratio: 3 / 2; }
     .promise-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; display: block; }
-    .journey-art {
-      display: block; width: calc(100% + 70px); max-width: none; margin-right: -70px; height: auto;
-      /* feathered edges so the photo melts into the cream section */
-      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%), linear-gradient(180deg, transparent 0, #000 4%, #000 96%, transparent 100%);
-      -webkit-mask-composite: source-in;
-              mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%), linear-gradient(180deg, transparent 0, #000 4%, #000 96%, transparent 100%);
-              mask-composite: intersect;
-    }
-
     /* Journey */
     .journey { background: var(--cream); padding: 88px 0; }
-    .journey-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: center; }
+    .journey-card {
+      position: relative; display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: stretch; overflow: hidden;
+      background: var(--navy); border-radius: 24px; min-height: 420px;
+      box-shadow: 0 28px 60px -28px rgba(13,27,42,0.55);
+    }
+    .journey-copy { position: relative; z-index: 2; padding: 64px 24px 64px 64px; align-self: center; }
     .journey .eyebrow { color: var(--gold); font-weight: 600; letter-spacing: 1.5px; }
-    .journey h2 { font-size: clamp(30px, 3.8vw, 42px); font-weight: 700; margin-bottom: 20px; }
-    .journey p { color: var(--text); font-size: 16px; line-height: 1.7; margin-bottom: 30px; }
+    .journey h2 { font-size: clamp(30px, 3.6vw, 42px); font-weight: 700; color: var(--white); margin-bottom: 18px; }
+    .journey-copy p { color: #cbd5e1; font-size: 16px; line-height: 1.75; margin-bottom: 28px; max-width: 440px; }
+    .journey-pill {
+      display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; margin-bottom: 22px; border-radius: 999px;
+      background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.4); color: var(--gold);
+      font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    }
+    .journey-pill::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(212,175,55,0.25); }
+    .journey-media { position: relative; min-height: 100%; }
+    .journey-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .journey-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--navy) 0%, rgba(13,27,42,0.55) 22%, rgba(13,27,42,0) 55%); }
     .btn-gold-gradient {
       background: linear-gradient(90deg, #C9A23A, #E0BC52); color: var(--navy);
       box-shadow: 0 10px 28px rgba(212,175,55,0.3);
@@ -927,13 +976,14 @@
       .vm-grid { grid-template-columns: 1fr; }
       .values-block .value-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 0; }
       .values-block .value-item:nth-child(odd)::before { display: none; }
-      .clean-grid, .journey-grid { grid-template-columns: 1fr; gap: 40px; }
-      .journey-art { width: 100%; margin-right: 0; }
+      .clean-grid { grid-template-columns: 1fr; gap: 40px; }
+      .journey-card { grid-template-columns: 1fr; }
+      .journey-copy { padding: 48px 36px 32px; }
+      .journey-media { min-height: 260px; }
+      .journey-media::after { background: linear-gradient(180deg, var(--navy) 0%, rgba(13,27,42,0.4) 30%, rgba(13,27,42,0) 60%); }
+      .clean-photo { margin: 0 18px 18px 0; }
+      .clean-tag { left: 14px; bottom: 14px; padding: 10px 14px; font-size: 11px; }
       .life-grid { grid-template-columns: repeat(2, 1fr); }
-      .life-item:nth-child(3n)::before, .life-item:nth-child(3n+1) { padding-left: 0; }
-      .life-item:nth-child(3n+2)::before { display: block; }
-      .life-item:nth-child(odd)::before { display: none; }
-      .life-item:nth-child(even) { padding-right: 0; padding-left: 24px; }
       .promise { grid-template-columns: 1fr; }
       .promise-photo { display: none; }
       .promise-grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
@@ -941,9 +991,10 @@
     }
     @media (max-width: 640px) {
       .values-block .value-grid, .life-grid, .promise-grid { grid-template-columns: 1fr; }
-      .values-block .value-item::before, .life-item::before, .promise-item::before { display: none !important; }
-      .life-item { padding: 0; }
-      .vm-card { padding: 40px 28px; }
+      .values-block .value-item::before, .promise-item::before { display: none !important; }
+      .life-item { padding: 26px 24px; }
+      .vm-card { padding: 40px 28px 36px; }
+      .vm-card h2 { font-size: 30px; }
       .promise-main { padding: 64px 24px; }
     }
   </style>
@@ -1066,13 +1117,14 @@
 <!-- ── CLEAN HOMES, BETTER LIVING ───────────────────────────── -->
 <section class="clean">
   <div class="container clean-grid">
-    <div class="clean-photo img-placeholder" aria-hidden="true"></div>
+    <div class="clean-photo"><img src="assets/primohome/photos/svc-living.webp" width="760" height="570" loading="lazy" alt="A bright, well-kept living room with natural light and indoor plants" /><div class="clean-tag"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>Your Home. Our Heart.</div></div>
     <div class="clean-copy">
       <p class="eyebrow eyebrow-gold">More Than Cleaning</p>
-      <h2>Clean Homes.<br>Better Living.</h2>
+      <h2>Clean Homes.<br><span class="clean-accent">Better Living.</span></h2>
       <hr class="rule-gold" />
-      <p>A well-cared-for home contributes to a more comfortable everyday life.</p>
+      <p class="lead">A well-cared-for home contributes to a more comfortable everyday life.</p>
       <p class="muted">PrimoHome aims to make professional home cleaning something customers can depend on, while building an organisation where employees are respected, communities benefit and high service standards become the norm.</p>
+      <ul class="clean-points"><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Trained, uniformed professionals</li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Defined room-by-room standards</li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Supervisor-led quality checks</li></ul>
     </div>
   </div>
 </section>
@@ -1112,17 +1164,21 @@
 
 <!-- ── OUR JOURNEY ──────────────────────────────────────────── -->
 <section class="journey">
-  <div class="container journey-grid">
-    <div>
-      <p class="eyebrow eyebrow-gold">Our Journey</p>
-      <h2>Starting in Thiruvananthapuram</h2>
-      <p>PrimoHome is initially serving selected areas of Thiruvananthapuram. Our service network will expand progressively as we build teams capable of maintaining PrimoHome standards.</p>
-      <a class="btn btn-gold-gradient" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20check%20service%20availability" target="_blank" rel="noopener">
-        Check Service Availability
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+  <div class="container">
+    <div class="journey-card">
+      <div class="journey-copy">
+        <span class="journey-pill">Now serving selected areas</span>
+        <h2>Starting in Thiruvananthapuram</h2>
+        <p>PrimoHome is initially serving selected areas of Thiruvananthapuram. Our service network will expand progressively as we build teams capable of maintaining PrimoHome standards.</p>
+        <a class="btn btn-gold-gradient" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20check%20service%20availability" target="_blank" rel="noopener">
+          Check Service Availability
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="journey-media">
+        <img src="assets/primohome/photos/about-journey.webp" width="1408" height="768" loading="lazy" decoding="async" alt="Evening light over the rooftops and coconut palms of Thiruvananthapuram" />
+      </div>
     </div>
-    <img class="journey-art" src="assets/primohome/photos/about-journey.webp" width="1408" height="768" loading="lazy" decoding="async" alt="Evening light over the rooftops and coconut palms of Thiruvananthapuram" />
   </div>
 </section>
 
