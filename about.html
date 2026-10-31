@@ -944,21 +944,26 @@
     .promise-item p { font-size: 14px; color: #cbd5e1; line-height: 1.6; }
     .promise-photo { background: #16283d; aspect-ratio: 3 / 2; }
     .promise-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; display: block; }
-    .journey-art {
-      display: block; width: calc(100% + 70px); max-width: none; margin-right: -70px; height: auto;
-      /* feathered edges so the photo melts into the cream section */
-      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%), linear-gradient(180deg, transparent 0, #000 4%, #000 96%, transparent 100%);
-      -webkit-mask-composite: source-in;
-              mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%), linear-gradient(180deg, transparent 0, #000 4%, #000 96%, transparent 100%);
-              mask-composite: intersect;
-    }
-
     /* Journey */
     .journey { background: var(--cream); padding: 88px 0; }
-    .journey-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: center; }
+    .journey-card {
+      position: relative; display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: stretch; overflow: hidden;
+      background: var(--navy); border-radius: 24px; min-height: 420px;
+      box-shadow: 0 28px 60px -28px rgba(13,27,42,0.55);
+    }
+    .journey-copy { position: relative; z-index: 2; padding: 64px 24px 64px 64px; align-self: center; }
     .journey .eyebrow { color: var(--gold); font-weight: 600; letter-spacing: 1.5px; }
-    .journey h2 { font-size: clamp(30px, 3.8vw, 42px); font-weight: 700; margin-bottom: 20px; }
-    .journey p { color: var(--text); font-size: 16px; line-height: 1.7; margin-bottom: 30px; }
+    .journey h2 { font-size: clamp(30px, 3.6vw, 42px); font-weight: 700; color: var(--white); margin-bottom: 18px; }
+    .journey-copy p { color: #cbd5e1; font-size: 16px; line-height: 1.75; margin-bottom: 28px; max-width: 440px; }
+    .journey-pill {
+      display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; margin-bottom: 22px; border-radius: 999px;
+      background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.4); color: var(--gold);
+      font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    }
+    .journey-pill::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(212,175,55,0.25); }
+    .journey-media { position: relative; min-height: 100%; }
+    .journey-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .journey-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--navy) 0%, rgba(13,27,42,0.55) 22%, rgba(13,27,42,0) 55%); }
     .btn-gold-gradient {
       background: linear-gradient(90deg, #C9A23A, #E0BC52); color: var(--navy);
       box-shadow: 0 10px 28px rgba(212,175,55,0.3);
@@ -971,10 +976,13 @@
       .vm-grid { grid-template-columns: 1fr; }
       .values-block .value-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 0; }
       .values-block .value-item:nth-child(odd)::before { display: none; }
-      .clean-grid, .journey-grid { grid-template-columns: 1fr; gap: 40px; }
+      .clean-grid { grid-template-columns: 1fr; gap: 40px; }
+      .journey-card { grid-template-columns: 1fr; }
+      .journey-copy { padding: 48px 36px 32px; }
+      .journey-media { min-height: 260px; }
+      .journey-media::after { background: linear-gradient(180deg, var(--navy) 0%, rgba(13,27,42,0.4) 30%, rgba(13,27,42,0) 60%); }
       .clean-photo { margin: 0 18px 18px 0; }
       .clean-tag { left: 14px; bottom: 14px; padding: 10px 14px; font-size: 11px; }
-      .journey-art { width: 100%; margin-right: 0; }
       .life-grid { grid-template-columns: repeat(2, 1fr); }
       .promise { grid-template-columns: 1fr; }
       .promise-photo { display: none; }
@@ -1156,17 +1164,21 @@
 
 <!-- ── OUR JOURNEY ──────────────────────────────────────────── -->
 <section class="journey">
-  <div class="container journey-grid">
-    <div>
-      <p class="eyebrow eyebrow-gold">Our Journey</p>
-      <h2>Starting in Thiruvananthapuram</h2>
-      <p>PrimoHome is initially serving selected areas of Thiruvananthapuram. Our service network will expand progressively as we build teams capable of maintaining PrimoHome standards.</p>
-      <a class="btn btn-gold-gradient" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20check%20service%20availability" target="_blank" rel="noopener">
-        Check Service Availability
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+  <div class="container">
+    <div class="journey-card">
+      <div class="journey-copy">
+        <span class="journey-pill">Now serving selected areas</span>
+        <h2>Starting in Thiruvananthapuram</h2>
+        <p>PrimoHome is initially serving selected areas of Thiruvananthapuram. Our service network will expand progressively as we build teams capable of maintaining PrimoHome standards.</p>
+        <a class="btn btn-gold-gradient" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20check%20service%20availability" target="_blank" rel="noopener">
+          Check Service Availability
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="journey-media">
+        <img src="assets/primohome/photos/about-journey.webp" width="1408" height="768" loading="lazy" decoding="async" alt="Evening light over the rooftops and coconut palms of Thiruvananthapuram" />
+      </div>
     </div>
-    <img class="journey-art" src="assets/primohome/photos/about-journey.webp" width="1408" height="768" loading="lazy" decoding="async" alt="Evening light over the rooftops and coconut palms of Thiruvananthapuram" />
   </div>
 </section>
 
