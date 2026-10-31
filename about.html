@@ -860,7 +860,8 @@
     .clean { background: var(--cream); }
     .clean-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .img-placeholder { background: #ece6d6; }
-    .clean-photo { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+    .clean-photo { aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; }
+    .clean-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .clean-copy h2 { font-size: clamp(32px, 3.8vw, 44px); font-weight: 700; line-height: 1.12; }
     .clean-copy p { font-size: 16px; color: var(--text); line-height: 1.7; margin-bottom: 16px; }
     .clean-copy p.muted { color: var(--muted); }
@@ -1066,7 +1067,7 @@
 <!-- ── CLEAN HOMES, BETTER LIVING ───────────────────────────── -->
 <section class="clean">
   <div class="container clean-grid">
-    <div class="clean-photo img-placeholder" aria-hidden="true"></div>
+    <div class="clean-photo"><img src="assets/primohome/photos/svc-living.webp" width="760" height="570" loading="lazy" alt="A bright, well-kept living room with natural light and indoor plants" /></div>
     <div class="clean-copy">
       <p class="eyebrow eyebrow-gold">More Than Cleaning</p>
       <h2>Clean Homes.<br>Better Living.</h2>
