@@ -865,25 +865,34 @@
     .values-block .eyebrow { justify-content: center; margin: 0 auto 14px; width: fit-content; color: var(--gold); }
     .values-block .section-title { font-family: 'Playfair Display', serif; font-weight: 700; text-align: center; margin: 0 auto 12px; }
     .values-block .intro { text-align: center; color: var(--muted); margin: 0 auto 48px; max-width: 560px; }
-    .values-block .value-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+    .values-block .value-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
     .values-closing { display: flex; align-items: center; justify-content: center; gap: 14px; max-width: 620px; margin: 56px auto 0; padding-top: 28px; border-top: 1px solid rgba(212,175,55,0.35); font-family: var(--font-head); font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); text-align: center; }
     .values-closing em { font-style: normal; color: #007f7f; }
     .values-closing svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
     @media (max-width: 640px) { .values-closing { font-size: 12px; letter-spacing: 1px; gap: 10px; } }
-    .values-block .value-item { position: relative; text-align: center; padding: 8px 18px; }
-    .values-block .value-item + .value-item::before {
-      content: ''; position: absolute; left: 0; top: 12%; bottom: 12%; width: 1px; background: rgba(212,175,55,0.45);
+    .values-block .value-grid { counter-reset: val; gap: 18px; }
+    .values-block .value-item {
+      counter-increment: val; position: relative; overflow: hidden; text-align: left; padding: 28px 24px 26px;
+      background: var(--white); border: 1px solid rgba(13,27,42,0.08); border-radius: var(--radius);
+      box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 10px 26px -16px rgba(13,27,42,0.14);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
-    .values-block .value-item .icon-circle { width: 66px; height: 66px; margin: 0 auto 18px; background: #f8ecd2; color: var(--navy); }
-    .values-block .value-item .icon-circle svg { width: 32px; height: 32px; stroke: var(--navy); }
+    .values-block .value-item::after {
+      content: counter(val, decimal-leading-zero); position: absolute; right: 18px; top: 14px;
+      font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; line-height: 1; color: rgba(212,175,55,0.28);
+    }
+    .values-block .value-item:hover { transform: translateY(-5px); border-color: rgba(212,175,55,0.55); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 22px 40px -18px rgba(13,27,42,0.22); }
+    .values-block .value-item .icon-circle { width: 54px; height: 54px; margin: 0 0 22px; background: var(--navy); color: var(--gold); transition: background .25s ease; }
+    .values-block .value-item .icon-circle svg { width: 26px; height: 26px; stroke: var(--gold); }
     .values-block .value-item h3 {
-      font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase; color: var(--navy); margin-bottom: 0;
+      font-family: var(--font-head); font-size: 15px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase; color: var(--navy); margin-bottom: 0;
     }
     .values-block .value-item h3::after {
-      content: ''; display: block; width: 28px; height: 2px; background: var(--gold); margin: 10px auto 12px;
+      content: ''; display: block; width: 28px; height: 3px; border-radius: 2px; background: var(--gold); margin: 12px 0 14px; transition: width .3s ease;
     }
-    .values-block .value-item p { color: var(--muted); font-size: 14px; }
+    .values-block .value-item:hover h3::after { width: 48px; }
+    .values-block .value-item p { color: var(--muted); font-size: 14px; line-height: 1.65; }
 
     /* Clean homes */
     .clean { background: var(--cream); }
@@ -995,8 +1004,7 @@
       .about-banner { padding: 72px 0 64px; }
       .about-cards { grid-template-columns: repeat(2, 1fr); }
       .vm-grid { grid-template-columns: 1fr; }
-      .values-block .value-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 0; }
-      .values-block .value-item:nth-child(odd)::before { display: none; }
+      .values-block .value-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
       .clean-grid { grid-template-columns: 1fr; gap: 40px; }
       .journey-card { grid-template-columns: 1fr; }
       .journey-copy { padding: 48px 36px 32px; }
@@ -1010,7 +1018,6 @@
     }
     @media (max-width: 640px) {
       .values-block .value-grid, .life-grid, .promise-grid { grid-template-columns: 1fr; }
-      .values-block .value-item::before { display: none !important; }
       .life-item { padding: 26px 24px; }
       .vm-card { padding: 40px 28px 36px; }
       .vm-card h2 { font-size: 30px; }
