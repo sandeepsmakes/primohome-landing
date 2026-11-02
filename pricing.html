@@ -624,34 +624,16 @@
     .pp-head p { color: var(--muted); font-size: 16px; line-height: 1.6; }
 
     /* hero */
-    .pp-hero { position: relative; overflow: hidden; color: #fff; padding: 96px 0 88px;
-      background:
-        radial-gradient(900px 420px at 12% -10%, rgba(212,175,55,0.20), transparent 60%),
-        radial-gradient(700px 480px at 95% 110%, rgba(0,166,166,0.20), transparent 60%),
-        linear-gradient(135deg, #0D1B2A 0%, #16283d 100%); }
-    .pp-hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
-      background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px); background-size: 26px 26px;
-      -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%); mask-image: linear-gradient(to bottom, #000, transparent 85%); }
-    .pp-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.3fr 1fr; gap: 64px; align-items: center; }
-    .pp-hero .eyebrow { display: inline-flex; color: var(--gold); margin-bottom: 22px; padding: 8px 16px; border-radius: 999px;
-      background: rgba(212,175,55,0.10); border: 1px solid rgba(212,175,55,0.35); font-size: 12px; letter-spacing: 1.8px; }
-    .pp-hero .eyebrow::before { width: 6px; height: 6px; border-radius: 50%; }
-    .pp-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5.4vw, 66px); font-weight: 700; color: #fff; line-height: 1.07; letter-spacing: -0.02em; margin-bottom: 22px; }
-    .pp-hero h1 em { font-style: italic; font-weight: 600; background: linear-gradient(100deg, #F3DC8A 0%, #D4AF37 55%, #B8912A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .pp-lead { font-size: 18px; line-height: 1.7; color: #b9c4d0; max-width: 540px; margin-bottom: 34px; }
-    .pp-hero .btn-gold { border-radius: 999px; padding: 16px 30px; box-shadow: 0 14px 34px -10px rgba(212,175,55,0.65); }
-    .pp-promise { position: relative; border-radius: 22px; padding: 34px 34px 30px; color: #fff;
-      background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
-      border: 1px solid rgba(255,255,255,0.16); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.12); }
-    .pp-promise::before { content: ''; position: absolute; left: 34px; right: 34px; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-    .pp-promise .eyebrow { margin-bottom: 20px; color: var(--gold); font-size: 12px; }
-    .pp-promise ul { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 16px; }
-    .pp-promise li { display: flex; align-items: center; gap: 14px; font-family: 'Playfair Display', serif; font-size: 21px; line-height: 1.3; font-weight: 600; color: #fff; }
-    .pp-promise li i { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: rgba(212,175,55,0.16); border: 1px solid rgba(212,175,55,0.5); }
-    .pp-promise li i svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-    .pp-promise li.hl { color: #F3DC8A; }
-    .pp-promise p { font-size: 14px; color: #aebbc8; margin: 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.12); }
+    .pp-hero { background: var(--cream); padding: 72px 0 64px; }
+    .pp-hero-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+    .pp-hero .eyebrow { color: var(--gold); margin-bottom: 14px; }
+    .pp-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 56px); font-weight: 700; color: var(--navy); line-height: 1.12; margin-bottom: 18px; }
+    .pp-lead { font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 560px; margin-bottom: 28px; }
+    .pp-promise { background: var(--white); border: 1px solid #eef1f4; border-radius: 16px; box-shadow: 0 6px 22px rgba(13,27,42,0.08); padding: 28px 30px; }
+    .pp-promise .eyebrow { margin-bottom: 12px; }
+    .pp-promise strong { display: block; font-family: 'Playfair Display', serif; font-size: 22px; line-height: 1.4; color: var(--navy); margin-bottom: 12px; }
+    .pp-promise strong span { color: #134e4e; }
+    .pp-promise p { font-size: 14px; color: var(--muted); }
 
     /* card grids; cards reuse .fp-card (incl. its hover pop) */
     .pp-grid { display: grid; gap: 26px; }
@@ -697,43 +679,6 @@
       #pp-offerings .pp-card .link-arrow { margin-top: 0; align-self: start; justify-self: start; }
     }
     .pp-featured { border-color: var(--gold); }
-
-    /* ── Services: modern card refresh (visual only; subgrid row structure above is untouched) ── */
-    #pp-offerings { background: linear-gradient(180deg, #fbfaf6 0%, #ffffff 70%); }
-    #pp-offerings .pp-head { max-width: 760px; margin-bottom: 52px; }
-    #pp-offerings .pp-head .eyebrow { display: inline-flex; padding: 7px 16px; border-radius: 999px; background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.35); font-size: 12px; letter-spacing: 1.8px; margin-bottom: 18px; }
-    #pp-offerings .pp-head h2 { font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.02em; line-height: 1.12; }
-    #pp-offerings .pp-head p { font-size: 17px; }
-    #pp-offerings .pp-grid-4 { gap: 22px; }
-    #pp-offerings .pp-card { --acc: #CC8200; --acc-bg: rgba(204,130,0,0.10); border-radius: 22px; border: 1px solid #e7ecf1;
-      box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 14px 34px -14px rgba(13,27,42,0.14); }
-    #pp-offerings .pp-grid-4 > .pp-card:nth-child(2) { --acc: #00919C; --acc-bg: rgba(0,145,156,0.10); }
-    #pp-offerings .pp-grid-4 > .pp-card:nth-child(4) { --acc: #6F66D6; --acc-bg: rgba(111,102,214,0.12); }
-    #pp-offerings .pp-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--acc), transparent 90%); opacity: .9; }
-    #pp-offerings .pp-card:hover { transform: translateY(-6px); border-color: var(--acc); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 28px 50px -18px rgba(13,27,42,0.28); }
-    #pp-offerings .pp-card-pad { padding: 32px 28px 28px; }
-    #pp-offerings .pp-icon { width: 60px; height: 60px; border-radius: 18px; background: var(--acc-bg); color: var(--acc); border: 1px solid color-mix(in srgb, var(--acc) 22%, transparent); }
-    #pp-offerings .pp-card h3 { font-size: 26px; letter-spacing: -0.01em; }
-    #pp-offerings .pp-tagline { font-size: 15.5px; line-height: 1.4; }
-    #pp-offerings .pp-pt { flex-basis: 26px; width: 26px; height: 26px; border: 0; background: var(--acc-bg); color: var(--acc); }
-    #pp-offerings .pp-pt svg { width: 13px; height: 13px; }
-    #pp-offerings .pp-points li { color: #526171; }
-    #pp-offerings .pp-starts { padding-top: 18px; border-top: 1px solid #edf1f5; font-size: 11px; }
-    #pp-offerings .pp-price { font-size: 38px; letter-spacing: -0.02em; }
-    #pp-offerings .pp-card .link-arrow { color: var(--acc); font-weight: 700; }
-
-    /* Featured (PrimoCare): dark navy card */
-    #pp-offerings .pp-featured { background: linear-gradient(165deg, #16283d 0%, #0D1B2A 100%); border-color: rgba(212,175,55,0.55);
-      box-shadow: 0 0 0 1px rgba(212,175,55,0.25), 0 30px 60px -20px rgba(13,27,42,0.6); }
-    #pp-offerings .pp-featured::before { background: linear-gradient(90deg, var(--gold), #F3DC8A 50%, var(--gold)); height: 4px; opacity: 1; }
-    #pp-offerings .pp-featured .pp-icon { background: rgba(212,175,55,0.14); color: var(--gold); border-color: rgba(212,175,55,0.4); }
-    #pp-offerings .pp-featured h3, #pp-offerings .pp-featured .pn-p, #pp-offerings .pp-featured .pp-tagline, #pp-offerings .pp-featured .pp-price { color: #fff; }
-    #pp-offerings .pp-featured .pn-w { color: #A9A3F5; }
-    #pp-offerings .pp-featured .pp-points li { color: #c3cdd8; }
-    #pp-offerings .pp-featured .pp-pt { background: rgba(212,175,55,0.16); color: var(--gold); }
-    #pp-offerings .pp-featured .pp-starts { color: #98a6b5; border-top-color: rgba(255,255,255,0.12); }
-    #pp-offerings .pp-featured .link-arrow { color: var(--gold); }
-    #pp-offerings .pp-featured:hover { border-color: var(--gold); }
     .pp-total { margin-bottom: 8px; }
 
     /* BHK selector: one sticky bar pinned under the (sticky, in-flow) nav; --nav-h/--bar-h are measured by script */
@@ -754,25 +699,6 @@
     .pp-size-btn[aria-pressed="true"] span { color: #d9e1e8; }
     .pp-selected { flex: 0 0 auto; margin: 0; font-size: 13px; color: var(--muted); }
     .pp-selected strong { color: var(--navy); }
-
-    /* ── Pricing intro + home-size selector: modern refresh ── */
-    .pp-intro { position: relative; overflow: hidden; padding: 84px 0 56px;
-      background: radial-gradient(700px 300px at 50% -20%, rgba(212,175,55,0.20), transparent 65%), linear-gradient(180deg, #f7f2e7 0%, #fbf9f3 100%); }
-    .pp-intro .pp-head { margin-bottom: 0; }
-    .pp-intro .pp-head .eyebrow { display: inline-flex; padding: 7px 16px; border-radius: 999px; background: rgba(212,175,55,0.14); border: 1px solid rgba(212,175,55,0.4); font-size: 12px; letter-spacing: 1.8px; margin-bottom: 18px; }
-    .pp-intro .pp-head h2 { font-size: clamp(30px, 4.2vw, 48px); letter-spacing: -0.02em; line-height: 1.1; }
-    .pp-intro .pp-head p:last-child { font-size: 17px; }
-    .pp-sticky { background: rgba(255,255,255,0.88); -webkit-backdrop-filter: saturate(180%) blur(14px); backdrop-filter: saturate(180%) blur(14px);
-      border-bottom: 1px solid #e7ecf1; box-shadow: 0 10px 30px -12px rgba(13,27,42,0.16); }
-    .pp-size-bar { gap: 20px; }
-    .pp-size-sel { gap: 12px; }
-    .pp-size-btn { border: 1.5px solid #e3e9ef; border-radius: 14px; padding: 9px 16px; position: relative;
-      box-shadow: 0 1px 2px rgba(13,27,42,0.04); transition: border-color .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease; }
-    .pp-size-btn:hover { border-color: var(--gold); transform: translateY(-1px); box-shadow: 0 8px 18px -8px rgba(212,175,55,0.45); }
-    .pp-size-btn[aria-pressed="true"] { background: linear-gradient(160deg, #16283d, #0D1B2A); border-color: var(--navy);
-      box-shadow: 0 10px 24px -10px rgba(13,27,42,0.6), inset 0 0 0 1px rgba(212,175,55,0.35); }
-    .pp-size-btn[aria-pressed="true"] b { color: #F3DC8A; }
-    .pp-selected { padding: 8px 14px; border-radius: 12px; background: #f4f6f8; border: 1px solid #e7ecf1; }
     .pp-plans section[id] { scroll-margin-top: calc(var(--nav-h) + var(--bar-h) + 16px); }
     .pp-plans #pp-choose { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
@@ -789,24 +715,6 @@
     .pp-collapse-inner { overflow: hidden; min-height: 0; padding: 14px 14px 34px; margin: -14px -14px -34px; }
     .js .pp-collapse:not(.is-open) .pp-collapse-panel { grid-template-rows: 0fr; opacity: 0; margin-top: 0; visibility: hidden; transition: grid-template-rows 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0.45s; }
     .pp-care-intro { margin-bottom: 28px; }
-
-    /* ── One-time / recurring section headers + one-time cards: modern refresh ── */
-    .pp-collapse-btn { border-radius: 18px; border: 1px solid #e7ecf1; padding: 18px 26px; box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 14px 34px -16px rgba(13,27,42,0.16); transition: box-shadow .25s ease, border-color .25s ease; }
-    .js .pp-collapse-btn:hover { border-color: var(--gold); box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 18px 40px -16px rgba(212,175,55,0.4); }
-    .pp-collapse-title { font-size: 28px; letter-spacing: -0.01em; }
-    .pp-tag { padding: 7px 14px; font-size: 11.5px; letter-spacing: 1.2px; background: rgba(0,145,156,0.10); border: 1px solid rgba(0,145,156,0.25); color: #0b6e6e; }
-    #pp-one-time .pp-grid-3 { gap: 22px; }
-    #pp-one-time .pp-card { --acc: #CC8200; border-radius: 22px; border: 1px solid #e7ecf1; position: relative;
-      box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 14px 34px -14px rgba(13,27,42,0.14); }
-    #pp-one-time .pp-grid-3 > .pp-card:nth-child(2) { --acc: #00919C; }
-    #pp-one-time .pp-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--acc), transparent 90%); }
-    #pp-one-time .pp-card:hover { transform: translateY(-6px); border-color: var(--acc); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 28px 50px -18px rgba(13,27,42,0.28); }
-    #pp-one-time .pp-card-pad { padding: 34px 30px 30px; }
-    #pp-one-time .pp-card h3 { font-size: 28px; letter-spacing: -0.01em; margin-bottom: 6px; }
-    #pp-one-time .pp-meta { color: #64748b; margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid #edf1f5; }
-    #pp-one-time .pp-price { font-size: 46px; letter-spacing: -0.03em; line-height: 1.15; }
-    #pp-one-time .pp-per { display: block; font-size: 13px; color: var(--muted); margin: 2px 0 24px; }
-    #pp-one-time .pp-card .btn { border-radius: 999px; padding: 15px 24px; }
 
     /* Odometer price: each digit is a 0-9 strip that rolls to its value, like a clock/odometer (no fade) */
     .pp-roll { display: inline-flex; height: 1.15em; line-height: 1.15; overflow: hidden; vertical-align: top; font-variant-numeric: tabular-nums; }
@@ -831,32 +739,6 @@
     .pp-plan .pp-total { justify-content: space-between; font-size: 13px; padding: 12px 14px; gap: 8px; }
     .pp-plan .pp-total strong { font-size: 15px; white-space: nowrap; }
     .pp-plan .btn { margin-top: auto; }
-
-    /* ── PrimoCare recurring plans: modern refresh ── */
-    #pp-care-c .pp-care-intro .pp-head h2, #pp-care-c .pp-care-intro h2 { font-size: clamp(28px, 3.8vw, 42px); letter-spacing: -0.02em; line-height: 1.12; }
-    #pp-care-c .pp-care-intro .eyebrow { display: inline-flex; padding: 7px 16px; border-radius: 999px; background: rgba(111,102,214,0.10); border: 1px solid rgba(111,102,214,0.28); font-size: 12px; letter-spacing: 1.6px; margin-bottom: 18px; }
-    #pp-care-c .pp-care-banner { gap: 18px; margin-bottom: 36px; }
-    #pp-care-c .pp-care-benefit { background: #fff; border: 1px solid #e7ecf1; border-left: 4px solid #6F66D6; border-radius: 18px; padding: 22px 26px;
-      box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 14px 30px -16px rgba(13,27,42,0.14); }
-    #pp-care-c .pp-care-benefit strong { font-size: 17px; }
-    #pp-care-c .pp-grid-3 { gap: 22px; }
-    #pp-care-c .pp-plan { border-radius: 22px; border: 1px solid #e7ecf1; position: relative;
-      box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 14px 34px -14px rgba(13,27,42,0.14); }
-    #pp-care-c .pp-plan::before { content: ''; position: absolute; z-index: 2; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, #6F66D6, #A9A3F5 60%, transparent); }
-    #pp-care-c .pp-plan:hover { transform: translateY(-6px); border-color: #6F66D6; box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 28px 50px -18px rgba(13,27,42,0.28); }
-    #pp-care-c .pp-plan .fp-photo { position: relative; }
-    #pp-care-c .pp-plan .fp-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(13,27,42,0.28)); pointer-events: none; }
-    #pp-care-c .pp-plan .fp-photo img { transition: transform .6s ease; }
-    #pp-care-c .pp-plan:hover .fp-photo img { transform: scale(1.05); }
-    #pp-care-c .pp-plan .fp-body { padding: 30px 28px 28px; }
-    #pp-care-c .pp-plan h3 { font-size: 28px; letter-spacing: -0.01em; margin-bottom: 6px; }
-    #pp-care-c .pp-plan .pp-meta { margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid #edf1f5; }
-    #pp-care-c .pp-plan .pp-price { font-size: 46px; letter-spacing: -0.03em; line-height: 1.15; }
-    #pp-care-c .pp-plan .pp-per { display: block; margin: 2px 0 20px; }
-    #pp-care-c .pp-plan .pp-total { background: #f3f2fd; border: 1px solid #e1def8; border-radius: 14px; color: var(--navy); padding: 14px 16px; margin-bottom: 12px; }
-    #pp-care-c .pp-plan .pp-total strong { font-size: 17px; color: #4b43b8; }
-    #pp-care-c .pp-save { border-radius: 14px; padding: 12px 14px; margin-bottom: 22px; }
-    #pp-care-c .pp-plan .btn { border-radius: 999px; padding: 15px 24px; }
     .pp-save { display: flex; align-items: baseline; justify-content: center; gap: 8px; flex-wrap: wrap; background: linear-gradient(135deg, #fff6d6, #f6e3a0); border: 1.5px solid var(--gold); border-radius: 12px; padding: 10px 14px; margin-bottom: 18px; color: #134e4e; font-weight: 700; font-size: 9px; text-align: center; }
     .pp-save b { font-family: var(--font-head); font-size: 18.5px; line-height: 1; font-weight: 800; color: #0b5d5d; letter-spacing: -.5px; }
 
@@ -1013,17 +895,13 @@
   <div class="container pp-hero-inner">
     <div>
       <p class="eyebrow">PrimoHome · Your Home. Our Heart.</p>
-      <h1>A cleaner home.<br><em>A clearer price.</em></h1>
+      <h1>A cleaner home. A clearer price.</h1>
       <p class="pp-lead">From a quick refresh to a complete deep clean, enjoy professional home cleaning with simple prices and reliable care.</p>
       <a class="btn btn-gold" href="#pp-choose">Explore prices <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <aside class="pp-promise" aria-label="Our promise">
       <p class="eyebrow">The PrimoHome promise</p>
-      <ul>
-        <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>We bring the materials.</li>
-        <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>We check the quality.</li>
-        <li class="hl"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>You inspect before you pay.</li>
-      </ul>
+      <strong>We bring the materials.<br>We check the quality.<br><span>You inspect before you pay.</span></strong>
       <p>Thoughtful cleaning, delivered with care.</p>
     </aside>
   </div>
@@ -1366,23 +1244,12 @@
     var money = function (n) { return '\u20b9' + n.toLocaleString('en-IN'); };
     var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Numbers roll upward like an odometer: every digit is a 0-9-0-9 strip that only ever slides UP to its value.
-    // First render: digits start at 0 and roll up once the number scrolls into view. Later changes roll up from the old digit.
-    var revealIO = (!reduceMq.matches && 'IntersectionObserver' in window) ? new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        revealIO.unobserve(e.target);
-        e.target._unseen = false;
-        if (e.target._go) e.target._go();
-      });
-    }, { threshold: 0.4 }) : null;
-
-    function rollText(el, next) {
-      var first = !el.hasAttribute('data-v');
-      var prevText = el.getAttribute('data-v') || '';
+    // Prices roll like an odometer: each digit strip slides to its value (no fade; instant for reduced motion)
+    function setPrice(el, n) {
+      var next = money(n);
+      var prevText = el.getAttribute('data-v') || el.textContent;
       if (prevText === next && el.querySelector('.pp-roll')) return;
-      if (first) el._unseen = !!revealIO;
-      var prev = el._unseen ? '' : prevText.replace(/\D/g, '');
+      var prev = prevText.replace(/\D/g, '');
       var digits = next.replace(/\D/g, '');
       var roll = document.createElement('span');
       roll.className = 'pp-roll';
@@ -1395,14 +1262,13 @@
           box.className = 'pp-d';
           var strip = document.createElement('span');
           strip.className = 'pp-strip';
-          for (var d = 0; d < 20; d++) { var t = document.createElement('i'); t.textContent = d % 10; strip.appendChild(t); }
-          var col = digits.length - 1 - di;           // column counted from the right
-          var target = Number(c);
-          var from = reduceMq.matches ? target : (col < prev.length ? Number(prev.charAt(prev.length - 1 - col)) : 0);
-          var end = from + ((target - from + 10) % 10);   // always scrolls upward (0-9 wraps into the second copy)
+          for (var d = 0; d < 10; d++) { var t = document.createElement('i'); t.textContent = d; strip.appendChild(t); }
+          // start from the digit that sat in this column before (aligned from the right), else 0
+          var fr = digits.length - 1 - di;
+          var from = reduceMq.matches ? Number(c) : (fr < prev.length ? Number(prev.charAt(prev.length - 1 - fr)) : 0);
           strip.style.transform = 'translateY(' + (-1.15 * from) + 'em)';
           box.appendChild(strip);
-          strips.push([strip, end, col]);
+          strips.push([strip, Number(c), digits.length - 1 - di]);
         } else {
           box.className = 'pp-ch';
           box.textContent = c;
@@ -1413,16 +1279,12 @@
       el.setAttribute('aria-label', next);
       el.textContent = '';
       el.appendChild(roll);
-      el._go = function () {
-        void roll.offsetWidth;   // commit the start positions before rolling
-        strips.forEach(function (x) {
-          x[0].style.transitionDelay = reduceMq.matches ? '0s' : (x[2] * 0.07) + 's';
-          x[0].style.transform = 'translateY(' + (-1.15 * x[1]) + 'em)';
-        });
-      };
-      if (el._unseen) revealIO.observe(el); else el._go();
+      void roll.offsetWidth;   // commit the start positions before rolling
+      strips.forEach(function (x) {
+        x[0].style.transitionDelay = reduceMq.matches ? '0s' : (x[2] * 0.06) + 's';
+        x[0].style.transform = 'translateY(' + (-1.15 * x[1]) + 'em)';
+      });
     }
-    function setPrice(el, n) { rollText(el, money(n)); }
 
     function renderPrices() {
       var h = HOMES[selectedHome];
@@ -1431,21 +1293,17 @@
       });
       document.querySelectorAll('[data-selected-home]').forEach(function (el) { el.textContent = h.label + ' \u00b7 ' + h.area; });
       document.querySelectorAll('[data-price]').forEach(function (el) { setPrice(el, h[el.getAttribute('data-price')]); });
-      document.querySelectorAll('[data-starts]').forEach(function (el) { setPrice(el, HOMES[0][el.getAttribute('data-starts')]); });
       var individual = 7 * h.fresh + h.max;
       ['weekly', 'fortnightly', 'monthly'].forEach(function (k) {
         var total = 8 * h[k];
         setPrice(document.querySelector('[data-plan-price="' + k + '"]'), h[k]);
         setPrice(document.querySelector('[data-plan-total="' + k + '"]'), total);
-        var sv = document.querySelector('[data-plan-saving="' + k + '"]');
-        if (!sv._b) { sv.innerHTML = '<b></b> <span>effective savings*</span>'; sv._b = sv.firstChild; }
-        rollText(sv._b, ((individual - total) / individual * 100).toFixed(1) + '%');
+        document.querySelector('[data-plan-saving="' + k + '"]').innerHTML = '<b>' + ((individual - total) / individual * 100).toFixed(1) + '%</b> <span>effective savings*</span>';
       });
     }
     document.querySelectorAll('[data-home]').forEach(function (b) {
       b.addEventListener('click', function () { selectedHome = Number(b.getAttribute('data-home')); renderPrices(); });
     });
-    renderPrices();   // initial render: numbers roll up from 0 as they scroll into view
 
     // Builds the approved enquiry text from the same data that renders the prices.
     function buildRequest(kind) {
