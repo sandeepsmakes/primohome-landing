@@ -733,15 +733,13 @@
     .js .pp-collapse:not(.is-open) .pp-collapse-panel { grid-template-rows: 0fr; opacity: 0; margin-top: 0; visibility: hidden; transition: grid-template-rows 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0.45s; }
     .pp-care-intro { margin-bottom: 28px; }
 
-    /* Odometer price: each digit is a 0-9 strip that rolls to its value, like a clock/odometer (no fade) */
-    .pp-roll { display: inline-flex; height: 1.15em; line-height: 1.15; overflow: hidden; vertical-align: top; font-variant-numeric: tabular-nums; }
-    .pp-ch { display: block; height: 1.15em; }
-    .pp-d { display: block; overflow: hidden; height: 1.15em; }
-    .pp-strip { display: block; transition: transform var(--price-anim) cubic-bezier(0.22, 0.85, 0.25, 1); will-change: transform; }
-    .pp-strip i { display: block; height: 1.15em; font-style: normal; text-align: center; }
+    /* Price glide: old and new price slide up (or down) together as one, with a short settle delay */
+    .pp-roll { display: inline-block; height: 1.15em; line-height: 1.15; overflow: hidden; vertical-align: top; font-variant-numeric: tabular-nums; transition: width 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s; }
+    .pp-col { display: block; transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s; will-change: transform; }
+    .pp-col > span { display: block; height: 1.15em; white-space: nowrap; }
     @media (prefers-reduced-motion: reduce) {
       .pp-collapse-panel, .js .pp-collapse:not(.is-open) .pp-collapse-panel, .pp-collapse-chev { transition: none; }
-      .pp-strip { transition: none; }
+      .pp-col, .pp-roll { transition: none; }
       /* before the script runs, reduced-motion users already see both sections open */
       .js:not(.pp-ready) .pp-collapse .pp-collapse-panel { grid-template-rows: 1fr; opacity: 1; margin-top: 24px; visibility: visible; }
     }
@@ -1255,46 +1253,36 @@
     var money = function (n) { return '\u20b9' + n.toLocaleString('en-IN'); };
     var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Prices roll like an odometer: each digit strip slides to its value (no fade; instant for reduced motion)
+    // Prices glide: the old and new price slide up (rising) or down (falling) together, after a short pause
     function setPrice(el, n) {
       var next = money(n);
-      var prevText = el.getAttribute('data-v') || el.textContent;
-      if (prevText === next && el.querySelector('.pp-roll')) return;
-      var prev = prevText.replace(/\D/g, '');
-      var digits = next.replace(/\D/g, '');
+      var prevText = el.getAttribute('data-v') || el.textContent.trim();
+      if (prevText === next) return;
+      el.setAttribute('data-v', next);
+      el.setAttribute('aria-label', next);
+      if (!prevText || reduceMq.matches) { el.textContent = next; return; }
+      var rising = n > Number(prevText.replace(/\D/g, ''));
       var roll = document.createElement('span');
       roll.className = 'pp-roll';
       roll.setAttribute('aria-hidden', 'true');
-      var strips = [], di = digits.length;
-      for (var i = 0; i < next.length; i++) {
-        var c = next.charAt(i), box = document.createElement('span');
-        if (/\d/.test(c)) {
-          di--;
-          box.className = 'pp-d';
-          var strip = document.createElement('span');
-          strip.className = 'pp-strip';
-          for (var d = 0; d < 10; d++) { var t = document.createElement('i'); t.textContent = d; strip.appendChild(t); }
-          // start from the digit that sat in this column before (aligned from the right), else 0
-          var fr = digits.length - 1 - di;
-          var from = reduceMq.matches ? Number(c) : (fr < prev.length ? Number(prev.charAt(prev.length - 1 - fr)) : 0);
-          strip.style.transform = 'translateY(' + (-1.15 * from) + 'em)';
-          box.appendChild(strip);
-          strips.push([strip, Number(c), digits.length - 1 - di]);
-        } else {
-          box.className = 'pp-ch';
-          box.textContent = c;
-        }
-        roll.appendChild(box);
-      }
-      el.setAttribute('data-v', next);
-      el.setAttribute('aria-label', next);
+      var col = document.createElement('span');
+      col.className = 'pp-col';
+      var a = document.createElement('span'); a.textContent = prevText;
+      var b = document.createElement('span'); b.textContent = next;
+      col.appendChild(rising ? a : b);
+      col.appendChild(rising ? b : a);
+      roll.appendChild(col);
       el.textContent = '';
       el.appendChild(roll);
-      void roll.offsetWidth;   // commit the start positions before rolling
-      strips.forEach(function (x) {
-        x[0].style.transitionDelay = reduceMq.matches ? '0s' : (x[2] * 0.06) + 's';
-        x[0].style.transform = 'translateY(' + (-1.15 * x[1]) + 'em)';
-      });
+      var w0 = a.getBoundingClientRect().width, w1 = b.getBoundingClientRect().width;
+      roll.style.width = w0 + 'px';
+      col.style.transform = 'translateY(' + (rising ? '0' : '-1.15em') + ')';
+      void roll.offsetWidth;   // commit the start position before gliding
+      roll.style.width = w1 + 'px';
+      col.style.transform = 'translateY(' + (rising ? '-1.15em' : '0') + ')';
+      var done = function () { if (el.getAttribute('data-v') === next) el.textContent = next; };
+      col.addEventListener('transitionend', done, { once: true });
+      setTimeout(done, 1300);
     }
 
     function renderPrices() {
