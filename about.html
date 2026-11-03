@@ -156,6 +156,7 @@
       transition: color 0.18s ease, border-color 0.18s ease;
     }
     .nav-links a:hover { color: var(--teal); border-color: var(--gold); }
+    .nav-links li.nav-mobile-cta { display: none; }
     .nav-right { display: flex; align-items: center; gap: 20px; }
     /* Modern nav: frosted bar, animated link underline, pill CTA */
     header.site-nav {
@@ -194,28 +195,34 @@
     .nav-toggle svg { width: 26px; height: 26px; }
 
     @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: flex; }
-      .nav-right .btn-gold { display: none; }
-      header.site-nav.mobile-open .nav-links {
+      .nav-links {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 0;
-        position: absolute;
-        top: 100%;
-        left: 0;
+        position: fixed;
+        top: 0;
         right: 0;
+        bottom: 0;
+        width: min(320px, 82vw);
+        z-index: 150;
         background: var(--white);
-        padding: 8px 40px 20px;
-        box-shadow: 0 12px 24px rgba(13,27,42,0.1);
+        padding: 96px 28px 32px;
+        box-shadow: -12px 0 32px rgba(13,27,42,0.15);
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+        overflow-y: auto;
       }
-      header.site-nav.mobile-open .nav-links a { padding: 12px 0; width: 100%; border-bottom: 1px solid #eef1f4; }
+      header.site-nav.mobile-open .nav-links { transform: translateX(0); }
+      .nav-links a { padding: 14px 0; border-bottom: 1px solid #eef1f4; font-size: 16px; }
       .nav-links li:not(.nav-mobile-cta) a { display: block; width: 100%; }
-      header.site-nav.mobile-open .nav-right .btn-gold {
-        display: inline-flex;
-        margin: 0 40px 20px;
-      }
+      .nav-links li.nav-mobile-cta { display: block; margin-top: 24px; border: 0; }
+      .nav-links .nav-mobile-cta a { border: 0; padding: 14px 22px; justify-content: center; }
+      .nav-right .btn-gold { display: none; }
+      .nav-toggle { display: flex; position: relative; z-index: 160; }
+      /* backdrop-filter on the header makes it the containing block for the fixed drawer,
+         clipping the menu to the header's height. Use a solid bar on mobile instead. */
+      header.site-nav { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--white); }
     }
 
     /* ── HERO ────────────────────────────────────────────── */
@@ -1080,6 +1087,7 @@
       <li><a href="pricing.html">Pricing</a></li>
       <li><a href="index.html#why-us">Why PrimoHome</a></li>
       <li><a href="about.html" aria-current="page">About Us</a></li>
+      <li class="nav-mobile-cta"><a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">Book Now</a></li>
     </ul>
     <div class="nav-right">
       <a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">

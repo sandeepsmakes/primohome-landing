@@ -223,6 +223,9 @@
       .nav-links .nav-mobile-cta a { border: 0; padding: 14px 22px; justify-content: center; }
       .nav-right .btn-gold { display: none; }
       .nav-toggle { display: flex; position: relative; z-index: 160; }
+      /* backdrop-filter on the header makes it the containing block for the fixed drawer,
+         clipping the menu to the header's height. Use a solid bar on mobile instead. */
+      header.site-nav { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--white); }
     }
 
     /* ── HERO ────────────────────────────────────────────── */
