@@ -639,16 +639,23 @@
     .pp-head p { color: var(--muted); font-size: 16px; line-height: 1.6; }
 
     /* hero */
-    .pp-hero { background: var(--cream); padding: 72px 0 64px; }
-    .pp-hero-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
-    .pp-hero .eyebrow { color: var(--gold); margin-bottom: 14px; }
-    .pp-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 56px); font-weight: 700; color: var(--navy); line-height: 1.12; margin-bottom: 18px; }
-    .pp-lead { font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 560px; margin-bottom: 28px; }
-    .pp-promise { background: var(--white); border: 1px solid #eef1f4; border-radius: 16px; box-shadow: 0 6px 22px rgba(13,27,42,0.08); padding: 28px 30px; }
-    .pp-promise .eyebrow { margin-bottom: 12px; }
-    .pp-promise strong { display: block; font-family: 'Playfair Display', serif; font-size: 22px; line-height: 1.4; color: var(--navy); margin-bottom: 12px; }
-    .pp-promise strong span { color: #134e4e; }
-    .pp-promise p { font-size: 14px; color: var(--muted); }
+    .pp-hero { position: relative; overflow: hidden; color: #fff; padding: 96px 0 88px;
+      background:
+        radial-gradient(900px 420px at 12% -10%, rgba(212,175,55,0.20), transparent 60%),
+        radial-gradient(700px 480px at 95% 110%, rgba(0,166,166,0.20), transparent 60%),
+        linear-gradient(135deg, #0D1B2A 0%, #16283d 100%); }
+    .pp-hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+      background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px); background-size: 26px 26px;
+      -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%); mask-image: linear-gradient(to bottom, #000, transparent 85%); }
+    .pp-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; }
+    .pp-hero-inner > div { max-width: 720px; }
+    .pp-hero .eyebrow { display: inline-flex; color: var(--gold); margin-bottom: 22px; padding: 8px 16px; border-radius: 999px;
+      background: rgba(212,175,55,0.10); border: 1px solid rgba(212,175,55,0.35); font-size: 12px; letter-spacing: 1.8px; }
+    .pp-hero .eyebrow::before { width: 6px; height: 6px; border-radius: 50%; }
+    .pp-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5.4vw, 66px); font-weight: 700; color: #fff; line-height: 1.07; letter-spacing: -0.02em; margin-bottom: 22px; }
+    .pp-hero h1 em { font-style: italic; font-weight: 600; background: linear-gradient(100deg, #F3DC8A 0%, #D4AF37 55%, #B8912A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .pp-lead { font-size: 18px; line-height: 1.7; color: #b9c4d0; max-width: 540px; margin-bottom: 34px; }
+    .pp-hero .btn-gold { border-radius: 999px; padding: 16px 30px; box-shadow: 0 14px 34px -10px rgba(212,175,55,0.65); }
 
     /* card grids; cards reuse .fp-card (incl. its hover pop) */
     .pp-grid { display: grid; gap: 26px; }
@@ -694,6 +701,16 @@
       #pp-offerings .pp-card .link-arrow { margin-top: 0; align-self: start; justify-self: start; }
     }
     .pp-featured { border-color: var(--gold); }
+
+    /* Services cards: outline + hover treatment from #48 (colours/backgrounds otherwise unchanged) */
+    #pp-offerings .pp-card { --acc: #CC8200; border-radius: 22px; border: 1px solid #e7ecf1;
+      box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 14px 34px -14px rgba(13,27,42,0.14); }
+    #pp-offerings .pp-grid-4 > .pp-card:nth-child(2) { --acc: #00919C; }
+    #pp-offerings .pp-grid-4 > .pp-card:nth-child(4) { --acc: #6F66D6; }
+    #pp-offerings .pp-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--acc), transparent 90%); opacity: .9; }
+    #pp-offerings .pp-card:hover { transform: translateY(-6px); border-color: var(--acc); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 28px 50px -18px rgba(13,27,42,0.28); }
+    #pp-offerings .pp-featured { border-color: #e7ecf1; }
+    #pp-offerings .pp-featured:hover { border-color: var(--acc); }
     .pp-total { margin-bottom: 8px; }
 
     /* BHK selector: one sticky bar pinned under the (sticky, in-flow) nav; --nav-h/--bar-h are measured by script */
@@ -731,15 +748,13 @@
     .js .pp-collapse:not(.is-open) .pp-collapse-panel { grid-template-rows: 0fr; opacity: 0; margin-top: 0; visibility: hidden; transition: grid-template-rows 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0.45s; }
     .pp-care-intro { margin-bottom: 28px; }
 
-    /* Odometer price: each digit is a 0-9 strip that rolls to its value, like a clock/odometer (no fade) */
-    .pp-roll { display: inline-flex; height: 1.15em; line-height: 1.15; overflow: hidden; vertical-align: top; font-variant-numeric: tabular-nums; }
-    .pp-ch { display: block; height: 1.15em; }
-    .pp-d { display: block; overflow: hidden; height: 1.15em; }
-    .pp-strip { display: block; transition: transform var(--price-anim) cubic-bezier(0.22, 0.85, 0.25, 1); will-change: transform; }
-    .pp-strip i { display: block; height: 1.15em; font-style: normal; text-align: center; }
+    /* Price glide: old and new price slide up (or down) together as one, with a short settle delay */
+    .pp-roll { display: inline-block; height: 1.15em; line-height: 1.15; overflow: hidden; vertical-align: top; transition: width 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.05s; }
+    .pp-col { display: block; margin-top: 0; transition: margin-top 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.05s; }
+    .pp-col > span { display: block; height: 1.15em; white-space: nowrap; }
     @media (prefers-reduced-motion: reduce) {
       .pp-collapse-panel, .js .pp-collapse:not(.is-open) .pp-collapse-panel, .pp-collapse-chev { transition: none; }
-      .pp-strip { transition: none; }
+      .pp-col, .pp-roll { transition: none; }
       /* before the script runs, reduced-motion users already see both sections open */
       .js:not(.pp-ready) .pp-collapse .pp-collapse-panel { grid-template-rows: 1fr; opacity: 1; margin-top: 24px; visibility: visible; }
     }
@@ -798,7 +813,6 @@
       .pp-grid-4 { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 900px) {
-      .pp-hero-inner { grid-template-columns: 1fr; gap: 32px; }
       .pp-grid-3, .pp-why { grid-template-columns: 1fr; }
       .pp-care-banner { grid-template-columns: 1fr; }
       .pp-extras-list { grid-template-columns: repeat(2, 1fr); }
@@ -910,15 +924,10 @@
   <div class="container pp-hero-inner">
     <div>
       <p class="eyebrow">PrimoHome · Your Home. Our Heart.</p>
-      <h1>A cleaner home. A clearer price.</h1>
+      <h1>A cleaner home.<br><em>A clearer price.</em></h1>
       <p class="pp-lead">From a quick refresh to a complete deep clean, enjoy professional home cleaning with simple prices and reliable care.</p>
       <a class="btn btn-gold" href="#pp-choose">Explore prices <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
-    <aside class="pp-promise" aria-label="Our promise">
-      <p class="eyebrow">The PrimoHome promise</p>
-      <strong>We bring the materials.<br>We check the quality.<br><span>You inspect before you pay.</span></strong>
-      <p>Thoughtful cleaning, delivered with care.</p>
-    </aside>
   </div>
 </section>
 
@@ -1259,46 +1268,39 @@
     var money = function (n) { return '\u20b9' + n.toLocaleString('en-IN'); };
     var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Prices roll like an odometer: each digit strip slides to its value (no fade; instant for reduced motion)
+    // Prices glide: the old and new price slide up (rising) or down (falling) together, after a short pause
     function setPrice(el, n) {
       var next = money(n);
-      var prevText = el.getAttribute('data-v') || el.textContent;
-      if (prevText === next && el.querySelector('.pp-roll')) return;
-      var prev = prevText.replace(/\D/g, '');
-      var digits = next.replace(/\D/g, '');
+      var prevText = el.getAttribute('data-v') || el.textContent.trim();
+      if (prevText === next) return;
+      el.setAttribute('data-v', next);
+      el.setAttribute('aria-label', next);
+      if (!prevText || reduceMq.matches) { el.textContent = next; return; }
+      var rising = n > Number(prevText.replace(/\D/g, ''));
       var roll = document.createElement('span');
       roll.className = 'pp-roll';
       roll.setAttribute('aria-hidden', 'true');
-      var strips = [], di = digits.length;
-      for (var i = 0; i < next.length; i++) {
-        var c = next.charAt(i), box = document.createElement('span');
-        if (/\d/.test(c)) {
-          di--;
-          box.className = 'pp-d';
-          var strip = document.createElement('span');
-          strip.className = 'pp-strip';
-          for (var d = 0; d < 10; d++) { var t = document.createElement('i'); t.textContent = d; strip.appendChild(t); }
-          // start from the digit that sat in this column before (aligned from the right), else 0
-          var fr = digits.length - 1 - di;
-          var from = reduceMq.matches ? Number(c) : (fr < prev.length ? Number(prev.charAt(prev.length - 1 - fr)) : 0);
-          strip.style.transform = 'translateY(' + (-1.15 * from) + 'em)';
-          box.appendChild(strip);
-          strips.push([strip, Number(c), digits.length - 1 - di]);
-        } else {
-          box.className = 'pp-ch';
-          box.textContent = c;
-        }
-        roll.appendChild(box);
-      }
-      el.setAttribute('data-v', next);
-      el.setAttribute('aria-label', next);
+      var col = document.createElement('span');
+      col.className = 'pp-col';
+      var a = document.createElement('span'); a.textContent = prevText;
+      var b = document.createElement('span'); b.textContent = next;
+      col.appendChild(rising ? a : b);
+      col.appendChild(rising ? b : a);
+      roll.appendChild(col);
       el.textContent = '';
       el.appendChild(roll);
-      void roll.offsetWidth;   // commit the start positions before rolling
-      strips.forEach(function (x) {
-        x[0].style.transitionDelay = reduceMq.matches ? '0s' : (x[2] * 0.06) + 's';
-        x[0].style.transform = 'translateY(' + (-1.15 * x[1]) + 'em)';
-      });
+      var w0 = a.getBoundingClientRect().width, w1 = b.getBoundingClientRect().width;
+      roll.style.width = w0 + 'px';
+      col.style.transition = roll.style.transition = 'none';   // park at the start position without animating
+      col.style.marginTop = rising ? '0' : '-1.15em';
+      void roll.offsetWidth;
+      col.style.transition = roll.style.transition = '';
+      void roll.offsetWidth;
+      roll.style.width = w1 + 'px';
+      col.style.marginTop = rising ? '-1.15em' : '0';
+      var done = function () { if (el.getAttribute('data-v') === next) el.textContent = next; };
+      col.addEventListener('transitionend', done, { once: true });
+      setTimeout(done, 1000);
     }
 
     function renderPrices() {
