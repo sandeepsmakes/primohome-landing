@@ -852,6 +852,19 @@
       .pp-grid-4 { grid-template-columns: 1fr; }
       .pp-extras-list { grid-template-columns: 1fr; }
     }
+    /* ── Touch/mobile: the card nearest the middle of the screen "pops" like the desktop hover ── */
+    @media (hover: none), (max-width: 900px) {
+      .service-card.is-popped { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(13,27,42,0.12); }
+      .fp-card.is-popped { transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 44px rgba(13,27,42,0.18); z-index: 1; }
+      #pp-offerings .pp-card.is-popped { transform: translateY(-6px); border-color: var(--acc); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 28px 50px -18px rgba(13,27,42,0.28); }
+      .values-block .value-item.is-popped { transform: translateY(-5px); border-color: rgba(212,175,55,0.55); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 22px 40px -18px rgba(13,27,42,0.22); }
+      .values-block .value-item.is-popped h3::after { width: 48px; }
+      .about-card.is-popped { transform: translateY(-4px); border-color: rgba(212,175,55,0.65); background: rgba(255,255,255,0.09); }
+      .promise-item.is-popped { transform: translateY(-3px); border-color: rgba(212,175,55,0.6); background: rgba(255,255,255,0.07); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fp-card.is-popped, .service-card.is-popped, .pp-card.is-popped, .value-item.is-popped, .about-card.is-popped, .promise-item.is-popped { transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -1539,6 +1552,33 @@
           submitBtn.textContent = 'Request Callback';
         });
     });
+  })();
+</script>
+<script>
+  // Mobile/touch: pop the card nearest the middle of the screen, as hover does on desktop
+  (function () {
+    var mq = window.matchMedia('(hover: none), (max-width: 900px)');
+    var sel = '.service-card, .fp-card, .pp-card, .value-item, .about-card, .promise-item';
+    var cards = [].slice.call(document.querySelectorAll(sel)), cur = null, ticking = false;
+    function update() {
+      ticking = false;
+      var best = null, bestD = Infinity, mid = window.innerHeight * 0.5;
+      if (mq.matches) cards.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        var d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD && d < window.innerHeight * 0.35) { best = c; bestD = d; }
+      });
+      if (best === cur) return;
+      if (cur) cur.classList.remove('is-popped');
+      if (best) best.classList.add('is-popped');
+      cur = best;
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', update);
+    update();
   })();
 </script>
 </body>
