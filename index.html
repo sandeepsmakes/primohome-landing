@@ -220,7 +220,7 @@
       .nav-links a { padding: 14px 0; border-bottom: 1px solid #eef1f4; font-size: 16px; }
       .nav-links li:not(.nav-mobile-cta) a { display: block; width: 100%; }
       .nav-links li.nav-mobile-cta { display: block; margin-top: 24px; border: 0; }
-      .nav-links .nav-mobile-cta a { border: 0; padding: 14px 22px; justify-content: center; }
+      .nav-links .nav-mobile-cta a { border: 0; padding: 10px 20px; font-size: 14px; letter-spacing: 0.6px; justify-content: center; width: auto; display: inline-flex; }
       .nav-right .btn-gold { display: none; }
       .nav-toggle { display: flex; position: relative; z-index: 160; }
       /* backdrop-filter on the header makes it the containing block for the fixed drawer,
@@ -757,6 +757,8 @@
 
     /* ── ENQUIRY WIDGET (floating, chat-bubble style) ─────── */
     .enquiry-widget { position: fixed; right: 24px; bottom: 24px; z-index: 300; }
+    .mobile-book-bar { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 250; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,0.96); border-top: 1px solid rgba(13,27,42,0.08); box-shadow: 0 -8px 24px -12px rgba(13,27,42,0.25); }
+    .mobile-book-bar .btn { display: flex; width: 100%; justify-content: center; padding: 12px 20px; font-size: 15px; }
     .enquiry-bubble {
       width: 60px; height: 60px;
       border-radius: 50%;
@@ -906,9 +908,26 @@
       section { padding: 56px 0; }
       .nav-inner { padding: 12px 20px; }
       .story-copy { padding: 48px 20px 24px; }
-      .enquiry-widget { right: 16px; bottom: 16px; }
-      .enquiry-panel { position: fixed; left: 16px; right: 16px; width: auto; bottom: 92px; padding: 20px; }
+      /* sticky Book bar; chat bubble and panel sit above it */
+      .mobile-book-bar { display: block; }
+      body { padding-bottom: 64px; }
+      body:has(.site-nav.mobile-open) .mobile-book-bar, body:has(.enquiry-widget.open) .mobile-book-bar { display: none; }
+      .enquiry-widget { right: 16px; bottom: 76px; }
+      .enquiry-panel { position: fixed; left: 16px; right: 16px; width: auto; bottom: 152px; padding: 20px; }
       .enquiry-panel input, .enquiry-panel select, .enquiry-panel textarea { font-size: 16px; }
+    }
+    /* ── Touch/mobile: the card nearest the middle of the screen "pops" like the desktop hover ── */
+    @media (hover: none), (max-width: 900px) {
+      .service-card.is-popped { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(13,27,42,0.12); }
+      .fp-card.is-popped { transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 44px rgba(13,27,42,0.18); z-index: 1; }
+      #pp-offerings .pp-card.is-popped { transform: translateY(-6px); border-color: var(--acc); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 28px 50px -18px rgba(13,27,42,0.28); }
+      .values-block .value-item.is-popped { transform: translateY(-5px); border-color: rgba(212,175,55,0.55); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 22px 40px -18px rgba(13,27,42,0.22); }
+      .values-block .value-item.is-popped h3::after { width: 48px; }
+      .about-card.is-popped { transform: translateY(-4px); border-color: rgba(212,175,55,0.65); background: rgba(255,255,255,0.09); }
+      .promise-item.is-popped { transform: translateY(-3px); border-color: rgba(212,175,55,0.6); background: rgba(255,255,255,0.07); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fp-card.is-popped, .service-card.is-popped, .pp-card.is-popped, .value-item.is-popped, .about-card.is-popped, .promise-item.is-popped { transform: none; }
     }
   </style>
 </head>
@@ -1259,6 +1278,8 @@
   </div>
 </footer>
 
+<div class="mobile-book-bar"><a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">Book a Cleaning <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+
 <!-- ── ENQUIRY WIDGET (floating corner form) ────────────────── -->
 <div class="enquiry-widget" id="enquiry-widget">
   <div class="butterflies" aria-hidden="true">
@@ -1489,5 +1510,32 @@
   })();
 </script>
 
+<script>
+  // Mobile/touch: pop the card nearest the middle of the screen, as hover does on desktop
+  (function () {
+    var mq = window.matchMedia('(hover: none), (max-width: 900px)');
+    var sel = '.service-card, .fp-card, .pp-card, .value-item, .about-card, .promise-item';
+    var cards = [].slice.call(document.querySelectorAll(sel)), cur = null, ticking = false;
+    function update() {
+      ticking = false;
+      var best = null, bestD = Infinity, mid = window.innerHeight * 0.5;
+      if (mq.matches) cards.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        var d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD && d < window.innerHeight * 0.35) { best = c; bestD = d; }
+      });
+      if (best === cur) return;
+      if (cur) cur.classList.remove('is-popped');
+      if (best) best.classList.add('is-popped');
+      cur = best;
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', update);
+    update();
+  })();
+</script>
 </body>
 </html>
