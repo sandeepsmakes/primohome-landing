@@ -643,7 +643,9 @@
     @media (max-width: 900px) {
       .final-cta-inner { flex-direction: column; align-items: flex-start; padding: 56px 24px; }
       .final-cta-script { text-align: left; }
-      .cta-plant { display: none; }
+      /* keep the plant on phones: tucked bottom-right, beside the script line */
+      .cta-plant { display: block; right: 8px; height: 190px; -webkit-mask-image: none; mask-image: none; }
+      .final-cta-inner { padding-bottom: 64px; }
     }
 
     /* ── FOOTER ──────────────────────────────────────────── */
