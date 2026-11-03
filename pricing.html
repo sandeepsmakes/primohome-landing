@@ -734,8 +734,8 @@
     .pp-care-intro { margin-bottom: 28px; }
 
     /* Price glide: old and new price slide up (or down) together as one, with a short settle delay */
-    .pp-roll { display: inline-block; height: 1.15em; line-height: 1.15; overflow: hidden; vertical-align: top; font-variant-numeric: tabular-nums; transition: width 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s; }
-    .pp-col { display: block; transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s; will-change: transform; }
+    .pp-roll { display: inline-block; height: 1.15em; line-height: 1.15; overflow: hidden; vertical-align: top; transition: width 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.05s; }
+    .pp-col { display: block; margin-top: 0; transition: margin-top 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.05s; }
     .pp-col > span { display: block; height: 1.15em; white-space: nowrap; }
     @media (prefers-reduced-motion: reduce) {
       .pp-collapse-panel, .js .pp-collapse:not(.is-open) .pp-collapse-panel, .pp-collapse-chev { transition: none; }
@@ -1276,13 +1276,16 @@
       el.appendChild(roll);
       var w0 = a.getBoundingClientRect().width, w1 = b.getBoundingClientRect().width;
       roll.style.width = w0 + 'px';
-      col.style.transform = 'translateY(' + (rising ? '0' : '-1.15em') + ')';
-      void roll.offsetWidth;   // commit the start position before gliding
+      col.style.transition = roll.style.transition = 'none';   // park at the start position without animating
+      col.style.marginTop = rising ? '0' : '-1.15em';
+      void roll.offsetWidth;
+      col.style.transition = roll.style.transition = '';
+      void roll.offsetWidth;
       roll.style.width = w1 + 'px';
-      col.style.transform = 'translateY(' + (rising ? '-1.15em' : '0') + ')';
+      col.style.marginTop = rising ? '-1.15em' : '0';
       var done = function () { if (el.getAttribute('data-v') === next) el.textContent = next; };
       col.addEventListener('transitionend', done, { once: true });
-      setTimeout(done, 1300);
+      setTimeout(done, 1000);
     }
 
     function renderPrices() {
