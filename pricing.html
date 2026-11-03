@@ -474,6 +474,8 @@
 
     /* ── ENQUIRY WIDGET (floating, chat-bubble style) ─────── */
     .enquiry-widget { position: fixed; right: 24px; bottom: 24px; z-index: 300; }
+    .mobile-book-bar { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 250; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,0.96); border-top: 1px solid rgba(13,27,42,0.08); box-shadow: 0 -8px 24px -12px rgba(13,27,42,0.25); }
+    .mobile-book-bar .btn { display: flex; width: 100%; justify-content: center; padding: 12px 20px; font-size: 15px; }
     .enquiry-bubble {
       width: 60px; height: 60px;
       border-radius: 50%;
@@ -623,8 +625,12 @@
       section { padding: 56px 0; }
       .nav-inner { padding: 12px 20px; }
       .story-copy { padding: 48px 20px 24px; }
-      .enquiry-widget { right: 16px; bottom: 16px; }
-      .enquiry-panel { position: fixed; left: 16px; right: 16px; width: auto; bottom: 92px; padding: 20px; }
+      /* sticky Book bar; chat bubble and panel sit above it */
+      .mobile-book-bar { display: block; }
+      body { padding-bottom: 64px; }
+      body:has(.site-nav.mobile-open) .mobile-book-bar, body:has(.enquiry-widget.open) .mobile-book-bar { display: none; }
+      .enquiry-widget { right: 16px; bottom: 76px; }
+      .enquiry-panel { position: fixed; left: 16px; right: 16px; width: auto; bottom: 152px; padding: 20px; }
       .enquiry-panel input, .enquiry-panel select, .enquiry-panel textarea { font-size: 16px; }
     }
 
@@ -1170,6 +1176,8 @@
     </div>
   </div>
 </footer>
+
+<div class="mobile-book-bar"><a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">Book a Cleaning <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 
 <!-- ── ENQUIRY WIDGET (floating corner form) ────────────────── -->
 <div class="enquiry-widget" id="enquiry-widget">
