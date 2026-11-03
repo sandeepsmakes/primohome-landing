@@ -929,6 +929,31 @@
     @media (prefers-reduced-motion: reduce) {
       .fp-card.is-popped, .service-card.is-popped, .pp-card.is-popped, .value-item.is-popped, .about-card.is-popped, .promise-item.is-popped { transform: none; }
     }
+    /* ── Mobile refinements: touch targets, shorter photos, tighter hero ── */
+    @media (max-width: 640px) {
+      .nav-toggle { padding: 11px; }
+      .social-row { gap: 12px; }
+      .social-row a { width: 44px; height: 44px; }
+      footer ul li { margin-bottom: 0; }
+      footer ul a { padding: 11px 0; }
+      .link-arrow { padding: 10px 0; }
+      .pp-terms-link { display: inline-block; padding: 12px 0; }
+      .footer-contact-item a { display: inline-block; padding: 10px 0; }
+      .footer-credit a { padding: 9px 0; }
+      .enquiry-terms a { display: inline-block; padding: 10px 0; }
+      .service-photo, .fp-photo { aspect-ratio: 16 / 10; }
+    }
+    @media (max-width: 640px) {
+      .hero-bg { aspect-ratio: 16 / 10; }
+      .hero-eyebrow { margin-bottom: 16px; }
+      .hero h1 { margin-bottom: 14px; }
+      .hero p.lead { font-size: 16px; margin-bottom: 22px; }
+      .hero-actions { gap: 12px; margin-bottom: 28px; }
+      .trust-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding-top: 22px; }
+      .trust-item { padding: 9px 10px; gap: 8px; }
+      .trust-item svg { width: 14px; height: 14px; padding: 6px; }
+      .trust-item span { font-size: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -937,7 +962,7 @@
 <header class="site-nav" id="site-nav">
   <div class="nav-inner">
     <a class="nav-logo" href="#home">
-      <img width="323" height="100" src="assets/primohome/logo-lockup.png" alt="PrimoHome — Your Home. Our Heart." />
+      <img width="323" height="100" src="assets/primohome/logo-lockup.webp" alt="PrimoHome — Your Home. Our Heart." />
     </a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
@@ -1225,7 +1250,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img loading="lazy" decoding="async" width="323" height="100" src="assets/primohome/logo-lockup-reversed.png" alt="PrimoHome — Your Home. Our Heart." />
+        <img loading="lazy" decoding="async" width="323" height="100" src="assets/primohome/logo-lockup-reversed.webp" alt="PrimoHome — Your Home. Our Heart." />
         <p>Premium home care services in Trivandrum. Trusted people. Cleaner homes. Better living.</p>
         <div class="social-row">
           <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
