@@ -605,10 +605,14 @@
     footer h4 {
       font-family: var(--font-head);
       color: var(--white);
-      font-size: 14px;
-      margin-bottom: 18px;
-      letter-spacing: 0.5px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      letter-spacing: 0.16em;
+      display: flex; align-items: center; gap: 10px;
     }
+    footer h4::after { content: ''; width: 24px; height: 2px; border-radius: 2px; background: var(--gold); }
     footer ul { list-style: none; }
     footer ul li { margin-bottom: 10px; }
     footer ul a { text-decoration: none; color: var(--grey); transition: color 0.18s ease; }
