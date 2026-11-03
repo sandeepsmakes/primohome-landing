@@ -686,6 +686,16 @@
       #pp-offerings .pp-card .link-arrow { margin-top: 0; align-self: start; justify-self: start; }
     }
     .pp-featured { border-color: var(--gold); }
+
+    /* Services cards: outline + hover treatment from #48 (colours/backgrounds otherwise unchanged) */
+    #pp-offerings .pp-card { --acc: #CC8200; border-radius: 22px; border: 1px solid #e7ecf1;
+      box-shadow: 0 1px 2px rgba(13,27,42,0.04), 0 14px 34px -14px rgba(13,27,42,0.14); }
+    #pp-offerings .pp-grid-4 > .pp-card:nth-child(2) { --acc: #00919C; }
+    #pp-offerings .pp-grid-4 > .pp-card:nth-child(4) { --acc: #6F66D6; }
+    #pp-offerings .pp-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--acc), transparent 90%); opacity: .9; }
+    #pp-offerings .pp-card:hover { transform: translateY(-6px); border-color: var(--acc); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 28px 50px -18px rgba(13,27,42,0.28); }
+    #pp-offerings .pp-featured { border-color: #e7ecf1; }
+    #pp-offerings .pp-featured:hover { border-color: var(--acc); }
     .pp-total { margin-bottom: 8px; }
 
     /* BHK selector: one sticky bar pinned under the (sticky, in-flow) nav; --nav-h/--bar-h are measured by script */
