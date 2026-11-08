@@ -432,13 +432,13 @@
     .pricing-deco-right { left: 0; right: 0; top: 0; width: 100%; height: 420px; overflow: hidden; background: none; opacity: 0.7; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 100%); }
     .pricing-deco-right img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; display: block; }
     /* soft cream wash on the left so the heading stays readable over the photo */
-    .pricing-deco-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(247,242,231,0.92) 0%, rgba(247,242,231,0.6) 35%, rgba(247,242,231,0) 70%); }
+    .pricing-deco-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(247,242,231,0.95) 0%, rgba(247,242,231,0.82) 40%, rgba(247,242,231,0) 78%); }
     .pricing-head { position: relative; z-index: 1; max-width: 640px; margin-bottom: 28px; }
     .pricing-kicker { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
     .pricing-kicker svg { width: 32px; height: 32px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
     .pricing-rule { flex: 0 1 360px; height: 1px; background: var(--gold); }
     .pricing-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 14px; }
-    .pricing-head p { color: var(--muted); font-size: 16px; line-height: 1.6; }
+    .pricing-head p { color: #3A4A5E; font-size: 16px; font-weight: 500; line-height: 1.6; text-shadow: 0 0 14px rgba(247,242,231,0.95), 0 0 4px rgba(247,242,231,0.9); }
     /* Landing teaser: two cards (one-time / recurring) linking to pricing.html */
     .fp-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; max-width: 920px; margin: 0 auto; }
     .fp-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.08); border: 1px solid #eef1f4; display: flex; flex-direction: column; position: relative; transition: transform 0.25s ease, box-shadow 0.25s ease; }
