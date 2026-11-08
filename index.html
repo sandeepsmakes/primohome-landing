@@ -1007,6 +1007,11 @@
     @media (min-width: 1320px) { .ft-grid { margin: 0 -64px; } }
     .ft-card { --acc: #D98A00; position: relative; display: flex; flex-direction: column; align-items: flex-start; background: var(--white); border: 1px solid #e7ecf1; border-radius: 22px; padding: 32px 24px 28px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.07); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
     .ft-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--acc), transparent 90%); }
+    /* Colour band shines left to right as the card pops up */
+    .ft-card::after { content: ''; position: absolute; top: 0; left: 0; width: 50%; height: 4px; background: linear-gradient(90deg, transparent, rgba(255,255,255,1) 50%, transparent); filter: drop-shadow(0 0 5px rgba(255,255,255,0.95)); transform: translateX(-110%); opacity: 0; pointer-events: none; }
+    .ft-card:hover::after, .ft-card.is-popped::after { animation: ft-shine 0.9s ease-out 0.05s 1; }
+    @keyframes ft-shine { 0% { transform: translateX(-110%); opacity: 1; } 100% { transform: translateX(200%); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .ft-card::after { display: none; } }
     .ft-fresh { --acc: #089C92; } .ft-max { --acc: #D7194B; } .ft-care { --acc: #6E56E9; } .ft-extra { --acc: #046FE0; }
     .ft-card:hover { transform: translateY(-5px); border-color: var(--acc); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 24px 44px -18px rgba(13,27,42,0.28); }
     .ft-icon { width: 60px; height: 60px; border-radius: 50%; background: #fbf3e2; color: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
