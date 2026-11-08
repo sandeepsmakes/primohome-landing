@@ -1336,9 +1336,27 @@
     if (window.ResizeObserver) { var ro = new ResizeObserver(syncOffsets); if (navEl) ro.observe(navEl); if (barEl) ro.observe(barEl); }
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncOffsets);
 
-    // Matrix: on phones keep only the first area open (all open on desktop and with JS off)
+    // Matrix: on phones the first area starts open and each further area opens by itself as it scrolls into view
+    // (all open on desktop and with JS off). An area the visitor closes by hand stays closed.
     if (window.matchMedia('(max-width: 700px)').matches) {
-      document.querySelectorAll('.pp-area').forEach(function (d, i) { if (i > 0) d.removeAttribute('open'); });
+      var areas = [].slice.call(document.querySelectorAll('.pp-area'));
+      areas.forEach(function (d, i) { if (i > 0) d.removeAttribute('open'); });
+      areas.forEach(function (d) {
+        d.querySelector('summary').addEventListener('click', function () { d.setAttribute('data-manual', '1'); });
+      });
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            var d = en.target.parentElement;
+            io.unobserve(en.target);
+            if (!d.hasAttribute('data-manual')) d.setAttribute('open', '');
+          });
+        }, { rootMargin: '0px 0px -30% 0px' });
+        areas.forEach(function (d, i) { if (i > 0) io.observe(d.querySelector('summary')); });
+      } else {
+        areas.forEach(function (d) { d.setAttribute('open', ''); });
+      }
     }
 
     // Final CTA opens the enquiry widget with a general booking request
