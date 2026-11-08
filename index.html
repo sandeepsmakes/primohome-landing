@@ -979,18 +979,19 @@
     body .btn, body .enquiry-submit, body .nav-right .btn-gold, body .nav-links .btn { text-transform: uppercase; font-weight: 600; letter-spacing: 0.08em; font-size: 13px; }
     body .mobile-book-bar .btn { font-size: 13px; }
     /* Product tiles (Home): five compact cards, same palette as the Pricing page */
-    .ft-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
-    .ft-card { --acc: #D98A00; position: relative; display: flex; flex-direction: column; align-items: flex-start; background: var(--white); border: 1px solid #e7ecf1; border-radius: 20px; padding: 24px 20px 22px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.07); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+    .ft-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    @media (min-width: 1320px) { .ft-grid { margin: 0 -64px; } }
+    .ft-card { --acc: #D98A00; position: relative; display: flex; flex-direction: column; align-items: flex-start; background: var(--white); border: 1px solid #e7ecf1; border-radius: 22px; padding: 32px 24px 28px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.07); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
     .ft-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--acc), transparent 90%); }
     .ft-fresh { --acc: #089C92; } .ft-max { --acc: #D7194B; } .ft-care { --acc: #6E56E9; } .ft-extra { --acc: #046FE0; }
     .ft-card:hover { transform: translateY(-5px); border-color: var(--acc); box-shadow: 0 2px 4px rgba(13,27,42,0.05), 0 24px 44px -18px rgba(13,27,42,0.28); }
-    .ft-icon { width: 48px; height: 48px; border-radius: 50%; background: #fbf3e2; color: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-    .ft-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-    .ft-card h3 { font-size: 19px; margin-bottom: 8px; }
-    .ft-tag { font-size: 14px; color: #4b5b68; line-height: 1.5; margin-bottom: 14px; flex: 1; }
-    .ft-starts { font-family: var(--font-head); font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; color: var(--muted); text-transform: uppercase; }
-    .ft-price { font-family: var(--font-head); font-size: 28px; font-weight: 800; color: var(--navy); line-height: 1.15; margin-bottom: 12px; }
-    .ft-card .link-arrow { font-size: 13px; }
+    .ft-icon { width: 60px; height: 60px; border-radius: 50%; background: #fbf3e2; color: var(--navy); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .ft-icon svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .ft-card h3 { font-size: 23px; margin-bottom: 10px; }
+    .ft-tag { font-size: 15.5px; color: #4b5b68; line-height: 1.55; margin-bottom: 20px; flex: 1; }
+    .ft-starts { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 1.4px; color: var(--muted); text-transform: uppercase; }
+    .ft-price { font-family: var(--font-head); font-size: 32px; font-weight: 800; color: var(--navy); line-height: 1.15; margin-bottom: 16px; }
+    .ft-card .link-arrow { font-size: 14px; }
     @media (max-width: 1100px) { .ft-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 700px) { .ft-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
     @media (max-width: 480px) { .ft-grid { grid-template-columns: 1fr; } }
