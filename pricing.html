@@ -270,7 +270,7 @@
     .fp-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.08); border: 1px solid #eef1f4; display: flex; flex-direction: column; position: relative; transition: transform 0.25s ease, box-shadow 0.25s ease; }
     /* ── PRODUCT WORDMARKS: "Primo" + one accent word per product ── */
     .pn { font-family: var(--font-head); font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; }
-    .pn-p { color: inherit; }
+    .pn-p { color: var(--navy); }
     .pn-w { color: var(--pn-accent); }
     .pn-quick { --pn-accent: #D98A00; }
     .pn-fresh { --pn-accent: #089C92; }
@@ -893,7 +893,7 @@
     .pn-max .pn-deco { left: 0; top: -0.62em; width: 112%; height: 1.1em; stroke-width: 3; }
     .pn-care .pn-deco { right: -0.28em; top: -0.78em; width: 1.6em; height: 1.36em; stroke-width: 2.8; }
     .pn-extra .pn-deco { right: -0.75em; top: -0.95em; width: 1.4em; height: 1.4em; stroke-width: 2.8; }
-    .pp-card h3 .pn, .pp-head h2 .pn-extra { display: inline-block; }
+    .pp-card h3 .pn, .pp-head h2 .pn-extra, .pp-collapse-title .pn-care { display: inline-block; }
   </style>
 </head>
 <body>
@@ -1048,7 +1048,7 @@
 <section class="pp-section" id="pp-care">
   <div class="container">
     <div class="pp-collapse is-open" id="pp-care-c">
-      <h3 class="pp-collapse-h"><div class="pp-collapse-btn"><span class="pp-collapse-title">Recurring care — <span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care</span></span></span><span class="pp-tag">Minimum 8 sessions</span></div></h3>
+      <h3 class="pp-collapse-h"><div class="pp-collapse-btn"><span class="pp-collapse-title">Recurring care — <span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care<svg class="pn-deco" viewBox="0 0 40 34" aria-hidden="true"><path d="M3 15L20 3l17 12"/><path d="M8 11v13c0 5 4 8 9 8h11c5 0 8-3 9-8"/><path d="M16 14h4v4h-4z" fill="currentColor" stroke="none"/></svg></span></span></span><span class="pp-tag">Minimum 8 sessions</span></div></h3>
       <div class="pp-collapse-panel" id="pp-care-c-panel"><div class="pp-collapse-inner">
     <div class="pp-head pp-care-intro"><p class="eyebrow"><span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care</span></span> · recurring plans</p><h2>Consistent care. Better value.</h2><p>Enjoy regular home cleaning on a schedule that suits you, with one deeper clean included in your commitment.</p></div>
     <div class="pp-care-banner">

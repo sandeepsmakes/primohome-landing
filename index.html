@@ -444,13 +444,13 @@
     .fp-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 22px rgba(13,27,42,0.08); border: 1px solid #eef1f4; display: flex; flex-direction: column; position: relative; transition: transform 0.25s ease, box-shadow 0.25s ease; }
     /* ── PRODUCT WORDMARKS: "Primo" + one accent word per product ── */
     .pn { font-family: var(--font-head); font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; }
-    .pn-p { color: inherit; }
+    .pn-p { color: var(--navy); }
     .pn-w { color: var(--pn-accent); }
-    .pn-quick { --pn-accent: #64748B; }
-    .pn-fresh { --pn-accent: #00919C; }
-    .pn-max   { --pn-accent: #C2385A; }
-    .pn-care  { --pn-accent: #6F66D6; }
-    .pn-extra { --pn-accent: #6A6AE8; }
+    .pn-quick { --pn-accent: #D98A00; }
+    .pn-fresh { --pn-accent: #089C92; }
+    .pn-max   { --pn-accent: #D7194B; }
+    .pn-care  { --pn-accent: #6E56E9; }
+    .pn-extra { --pn-accent: #046FE0; }
     .pn-quick .pn-w, .pn-fresh .pn-w, .pn-care .pn-w { font-style: italic; }
     /* hover "pop": a stronger lift than the service cards (-4px) */
     .fp-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 44px rgba(13,27,42,0.18); z-index: 1; }
@@ -954,6 +954,15 @@
       .trust-item svg { width: 14px; height: 14px; padding: 6px; }
       .trust-item span { font-size: 12px; }
     }
+    /* Product wordmarks: vector decorations on the names (Quick swoosh, Fresh leaf, Max arc+sparkle, Care house, Extra broom) */
+    .pn-w { position: relative; display: inline-block; }
+    .pn-deco { position: absolute; color: var(--pn-accent); fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; overflow: visible; }
+    .pn-quick .pn-deco { left: 0; bottom: -0.32em; width: 100%; height: 0.4em; stroke-width: 3.6; }
+    .pn-fresh .pn-deco { right: 2%; top: -0.48em; width: 0.95em; height: 0.76em; }
+    .pn-max .pn-deco { left: 0; top: -0.62em; width: 112%; height: 1.1em; stroke-width: 3; }
+    .pn-care .pn-deco { right: -0.28em; top: -0.78em; width: 1.6em; height: 1.36em; stroke-width: 2.8; }
+    .pn-extra .pn-deco { right: -0.75em; top: -0.95em; width: 1.4em; height: 1.4em; stroke-width: 2.8; }
+    .pp-card h3 .pn, .pp-head h2 .pn-extra, .pp-collapse-title .pn-care, .fp-card h3 .pn-care { display: inline-block; }
   </style>
 </head>
 <body>
@@ -1155,7 +1164,7 @@
         <div class="fp-photo"><img loading="lazy" decoding="async" width="720" height="540" src="assets/primohome/photos/freq-weekly.webp" alt="Recurring PrimoCare cleaning" /></div>
         <div class="fp-body">
           <div class="fp-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9-9.2C1.8 8.4 4 5 7.2 5c1.9 0 3.3 1 4.8 3 1.5-2 2.9-3 4.8-3C20 5 22.2 8.4 21 11.8 19 16.6 12 21 12 21z"/></svg></div>
-          <h3>Recurring care &mdash; <span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care</span></span></h3>
+          <h3>Recurring care &mdash; <span class="pn pn-care"><span class="pn-p">Primo</span><span class="pn-w">Care<svg class="pn-deco" viewBox="0 0 40 34" aria-hidden="true"><path d="M3 15L20 3l17 12"/><path d="M8 11v13c0 5 4 8 9 8h11c5 0 8-3 9-8"/><path d="M16 14h4v4h-4z" fill="currentColor" stroke="none"/></svg></span></span></h3>
           <p>Scheduled weekly, fortnightly or monthly cleaning. Minimum 8 sessions, including 1 deep cleaning session.</p>
           <div class="fp-badge fp-badge-gold"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg><span>From &#8377;1,199 per visit</span></div>
         </div>
