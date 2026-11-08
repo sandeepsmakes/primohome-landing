@@ -7,7 +7,7 @@ Usage: python3 scripts/check-shared.py   (exit 1 on drift; run from the repo roo
 import re, sys, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PAGES = ['index.html', 'about.html', 'pricing.html']
+PAGES = ['index.html', 'about.html', 'pricing.html', 'services.html']
 
 
 def between(text, start, end, include_end=False):
