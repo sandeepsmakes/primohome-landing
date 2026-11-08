@@ -829,13 +829,15 @@
       .pp-collapse-title { font-size: 20px; }
       .pp-collapse-btn { padding: 14px 16px; flex-wrap: wrap; gap: 6px 10px; }
       .pp-collapse-btn .pp-tag { order: 3; }
-      /* matrix: each row becomes a stacked card (no horizontal scroll, no JS) */
-      .pp-mx, .pp-mx tbody { display: block; }
-      .pp-mx thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-      .pp-mx tr { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; padding: 14px 18px; border-top: 1px solid #eef1f4; }
-      .pp-mx tbody th, .pp-mx th:first-child { grid-column: 1 / -1; width: auto; padding: 0 0 4px; border: 0; font-weight: 600; color: var(--navy); }
-      .pp-mx td { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border: 0; background: var(--cream); border-radius: 8px; font-size: 14px; }
-      .pp-mx td::before { content: attr(data-label); font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: var(--muted); }
+      /* matrix: compact grid, one row per task; colour-coded product columns keep side-by-side comparison */
+      .pp-mx { table-layout: fixed; }
+      .pp-mx thead th:first-child { width: auto; padding-left: 14px; font-size: 10px; letter-spacing: 0.8px; }
+      .pp-mx thead th:not(:first-child) { width: 46px; padding: 9px 0; font-size: 10px; letter-spacing: 0; text-transform: none; }
+      .pp-mx thead th .pn { font-size: 10.5px; letter-spacing: 0; }
+      .pp-mx thead th .pn-p, .pp-mx thead th .pn-deco { display: none; }
+      .pp-mx thead th .pn-w { margin-right: 0; }
+      .pp-mx tbody th, .pp-mx th:first-child { width: auto; padding: 10px 8px 10px 14px; font-size: 13.5px; line-height: 1.35; font-weight: 500; color: var(--navy); }
+      .pp-mx td { padding: 10px 0; font-size: 14px; }
       .pp-area > summary { padding: 16px 18px; }
     }
     @media (max-width: 560px) {
@@ -969,7 +971,7 @@
     .final-cta-inner { z-index: 1; }
     @media (max-width: 1100px) { .cta-plant { display: none; } }
     @media (max-width: 900px) {
-      .cta-plant { display: block; right: 8px; height: 190px; -webkit-mask-image: none; mask-image: none; }
+      .cta-plant { display: block; right: 8px; height: 150px; -webkit-mask-image: none; mask-image: none; }
       .final-cta-inner { padding-bottom: 64px; }
     }
     .pp-hero .ph { color: #fff; }
@@ -1334,9 +1336,27 @@
     if (window.ResizeObserver) { var ro = new ResizeObserver(syncOffsets); if (navEl) ro.observe(navEl); if (barEl) ro.observe(barEl); }
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncOffsets);
 
-    // Matrix: on phones keep only the first area open (all open on desktop and with JS off)
+    // Matrix: on phones the first area starts open and each further area opens by itself as it scrolls into view
+    // (all open on desktop and with JS off). An area the visitor closes by hand stays closed.
     if (window.matchMedia('(max-width: 700px)').matches) {
-      document.querySelectorAll('.pp-area').forEach(function (d, i) { if (i > 0) d.removeAttribute('open'); });
+      var areas = [].slice.call(document.querySelectorAll('.pp-area'));
+      areas.forEach(function (d, i) { if (i > 0) d.removeAttribute('open'); });
+      areas.forEach(function (d) {
+        d.querySelector('summary').addEventListener('click', function () { d.setAttribute('data-manual', '1'); });
+      });
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            var d = en.target.parentElement;
+            io.unobserve(en.target);
+            if (!d.hasAttribute('data-manual')) d.setAttribute('open', '');
+          });
+        }, { rootMargin: '0px 0px -30% 0px' });
+        areas.forEach(function (d, i) { if (i > 0) io.observe(d.querySelector('summary')); });
+      } else {
+        areas.forEach(function (d) { d.setAttribute('open', ''); });
+      }
     }
 
     // Final CTA opens the enquiry widget with a general booking request
