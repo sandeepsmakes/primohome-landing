@@ -383,7 +383,8 @@
     .svc-rule { display: block; width: 40px; height: 2px; background: var(--gold); margin: 0 auto 20px; }
     .svc-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; color: #134e4e; line-height: 1.2; margin-bottom: 16px; }
     .svc-head p:last-child { color: var(--muted); font-size: 15px; line-height: 1.55; }
-    .service-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .service-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .svc-more { position: relative; z-index: 1; text-align: center; margin-top: 36px; }
     .service-card {
       background: var(--white);
       border: 1px solid #eef1f4;
@@ -1132,23 +1133,8 @@
                 <p>Toilet, basin, mirrors, shower area, fixtures and floor cleaning.</p>
               </div>
             </div>
-            <div class="service-card">
-              <div class="service-photo"><img width="760" height="570" loading="lazy" src="assets/primohome/photos/svc-fullhome.webp" alt="Full home cleaning" /></div>
-              <div class="service-body">
-                <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></div>
-                <h3>Full Home Cleaning</h3>
-                <p>A coordinated room-by-room cleaning service for your complete home.</p>
-              </div>
-            </div>
-            <div class="service-card">
-              <div class="service-photo"><img width="760" height="570" loading="lazy" src="assets/primohome/photos/svc-additional.webp" alt="Additional services" /></div>
-              <div class="service-body">
-                <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
-                <h3>Additional Services</h3>
-                <p>Selected add-on services can be included depending on your cleaning requirements.</p>
-              </div>
-            </div>
     </div>
+    <div class="svc-more"><a class="btn btn-outline-navy" href="pricing.html">View all services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
