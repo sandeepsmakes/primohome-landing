@@ -911,6 +911,14 @@
     body .mobile-book-bar .btn { font-size: 13px; }
     /* Card buttons: one line, same size on every card (fortnightly label is the longest) */
     body .pp-card .btn, body .fp-body .btn { white-space: nowrap; padding: 15px 14px; gap: 8px; font-size: 12px; letter-spacing: 0.05em; }
+    /* Bottom CTA plant (as on Home), sits just left of the script line */
+    .cta-plant { position: absolute; right: calc(max(0px, (100% - 1160px) / 2) + 40px + 96px); bottom: 0; height: 86%; width: auto; pointer-events: none; z-index: 0; -webkit-mask-image: linear-gradient(to right, #000 82%, transparent); mask-image: linear-gradient(to right, #000 82%, transparent); }
+    .final-cta-inner { z-index: 1; }
+    @media (max-width: 1100px) { .cta-plant { display: none; } }
+    @media (max-width: 900px) {
+      .cta-plant { display: block; right: 8px; height: 190px; -webkit-mask-image: none; mask-image: none; }
+      .final-cta-inner { padding-bottom: 64px; }
+    }
 </style>
 </head>
 <body>
@@ -1167,6 +1175,7 @@
 </section>
 
 <section class="final-cta">
+  <img loading="lazy" decoding="async" width="405" height="516" class="cta-plant" src="assets/primohome/photos/cta-plant.webp" alt="" aria-hidden="true" />
   <div class="final-cta-inner">
     <div class="final-cta-copy">
       <h2>Ready for a cleaner home?</h2>
