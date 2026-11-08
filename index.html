@@ -445,9 +445,11 @@
     /* ── PRODUCT WORDMARKS: "Primo" + one accent word per product ── */
     .pn { font-family: var(--font-head); font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; }
     .pn-p { color: var(--navy); }
-    /* PrimoHome brand wordmark in running text: bold navy Primo + teal Home (matches the logo), same size */
-    .ph { font-family: var(--font-head); font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; color: var(--navy); }
+    /* PrimoHome brand wordmark: bold navy Primo + teal Home (matches the logo), same size */
+    .ph { font-family: var(--font-head); font-weight: 800; letter-spacing: -0.2px; white-space: nowrap; color: var(--navy); text-transform: none; }
     .ph b { font-weight: 800; color: var(--teal); }
+    footer .ph, .footer .ph, .site-footer .ph { color: #fff; }
+    .why-kicker .ph { color: var(--navy); text-transform: none; letter-spacing: -0.2px; font-size: 14px; }
     .pn-w { color: var(--pn-accent); }
     .pn-quick { --pn-accent: #D98A00; }
     .pn-fresh { --pn-accent: #089C92; }
@@ -982,7 +984,7 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="#why-us">Why PrimoHome</a></li>
+      <li><a href="#why-us">Why <span class="ph">Primo<b>Home</b></span></a></li>
       <li><a href="about.html">About Us</a></li>
       <li class="nav-mobile-cta"><a class="btn btn-gold" href="https://wa.me/910000000000?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning" target="_blank" rel="noopener">Book Now</a></li>
     </ul>
@@ -1189,7 +1191,7 @@
   <div class="why-deco"><img loading="lazy" decoding="async" width="1000" height="600" src="assets/primohome/photos/why-backwaters.webp" alt="" aria-hidden="true" /></div>
   <div class="container">
     <div class="why-head">
-      <div class="why-kicker"><span>Why PrimoHome</span></div>
+      <div class="why-kicker"><span>Why <span class="ph">Primo<b>Home</b></span></span></div>
       <h2>Home cleaning should feel simple, dependable and reassuring.</h2>
     </div>
     <!-- Coverflow carousel (activated by script; static 3+2 grid otherwise).
@@ -1203,7 +1205,7 @@
           <div class="why-body">
             <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
             <h3>Trusted &amp; Trained Professionals</h3>
-            <p>Uniformed, ID-carrying and background-verified cleaning specialists trained to PrimoHome standards.</p>
+            <p>Uniformed, ID-carrying and background-verified cleaning specialists trained to <span class="ph">Primo<b>Home</b></span> standards.</p>
           </div>
         </div>
         <div class="why-card" data-i="1">
@@ -1280,7 +1282,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="#why-us">Why PrimoHome</a></li>
+          <li><a href="#why-us">Why <span class="ph">Primo<b>Home</b></span></a></li>
           <li><a href="about.html">About Us</a></li>
         </ul>
       </div>
