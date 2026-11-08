@@ -426,6 +426,28 @@
       .services { padding: 40px 0; }
     }
 
+    /* ── HOW IT WORKS ────────────────────────────────────── */
+    .steps { background: var(--white); padding: 56px 0 40px; }
+    .steps-head { text-align: center; max-width: 760px; margin: 0 auto 36px; }
+    .steps-head .eyebrow { justify-content: center; color: var(--gold); margin-bottom: 10px; }
+    .steps-head .eyebrow::before { display: none; }
+    .steps-head .svc-rule { margin-bottom: 18px; }
+    .steps-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.2vw, 38px); font-weight: 700; color: #134e4e; line-height: 1.2; }
+    .steps-row { list-style: none; margin: 0 auto; padding: 0; max-width: 1000px; display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .step { flex: 1 1 0; display: flex; align-items: flex-start; gap: 14px; }
+    .step-num { flex: none; width: 52px; height: 52px; border-radius: 50%; background: #fbf3e2; color: var(--navy); font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 14px -6px rgba(13,27,42,0.3); }
+    .step h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); margin: 2px 0 4px; }
+    .step p { font-size: 14.5px; color: #4b5b68; line-height: 1.5; margin: 0; }
+    .step-arrow { flex: none; width: 40px; margin-top: 20px; color: var(--gold); }
+    .step-arrow svg { width: 100%; height: 12px; display: block; }
+    @media (max-width: 900px) {
+      .steps { padding: 44px 0 28px; }
+      .steps-row { flex-wrap: wrap; row-gap: 26px; column-gap: 20px; max-width: 520px; }
+      .step { flex: 1 1 calc(50% - 10px); }
+      .step-arrow { display: none; }
+    }
+    @media (max-width: 480px) { .step { flex-basis: 100%; } }
+
     /* ── PRICING ─────────────────────────────────────────── */
     .pricing { background: var(--cream); position: relative; overflow: hidden; padding: 48px 0; }
     .pricing-deco { position: absolute; z-index: 0; pointer-events: none; background: #ece6d6; }
@@ -1269,6 +1291,26 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS (four steps) ────────────────────────────── -->
+<section class="steps" id="how-it-works">
+  <div class="container">
+    <div class="steps-head">
+      <p class="eyebrow">How it works</p>
+      <span class="svc-rule" aria-hidden="true"></span>
+      <h2>A Clean Home in Four Simple Steps</h2>
+    </div>
+    <ol class="steps-row">
+      <li class="step"><span class="step-num">01</span><div><h3>Book</h3><p>Choose your service.</p></div></li>
+      <li class="step-arrow" aria-hidden="true"><svg viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h34M31 1.5L36 6l-5 4.5"/></svg></li>
+      <li class="step"><span class="step-num">02</span><div><h3>We Clean</h3><p>We follow the checklist.</p></div></li>
+      <li class="step-arrow" aria-hidden="true"><svg viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h34M31 1.5L36 6l-5 4.5"/></svg></li>
+      <li class="step"><span class="step-num">03</span><div><h3>We Check</h3><p>Our supervisor checks the work.</p></div></li>
+      <li class="step-arrow" aria-hidden="true"><svg viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h34M31 1.5L36 6l-5 4.5"/></svg></li>
+      <li class="step"><span class="step-num">04</span><div><h3>You Inspect</h3><p>Review the clean before you pay.</p></div></li>
+    </ol>
   </div>
 </section>
 
