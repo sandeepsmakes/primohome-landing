@@ -921,6 +921,15 @@
       .cta-plant { display: block; right: 8px; height: 150px; -webkit-mask-image: none; mask-image: none; }
       .final-cta-inner { padding-bottom: 64px; }
     }
+    /* Pricing hero: centred, one-line headline, gold rule, circled arrow on the button */
+    .pp-hero { text-align: center; }
+    .pp-hero-inner > div { max-width: none; margin: 0 auto; }
+    .pp-hero h1 { font-size: clamp(32px, 4.5vw, 62px); line-height: 1.12; margin-bottom: 22px; }
+    .pp-hero-rule { display: block; width: 96px; height: 2px; margin: 0 auto 28px; border-radius: 2px; background: linear-gradient(90deg, transparent, #D4AF37, transparent); }
+    .pp-lead { max-width: 760px; margin: 0 auto 38px; font-size: 20px; }
+    body .pp-hero .btn-gold { font-size: 15px; padding: 18px 20px 18px 36px; gap: 16px; }
+    .pp-hero .btn-gold svg { width: 36px; height: 36px; padding: 10px; border-radius: 50%; background: rgba(13,27,42,0.16); box-sizing: border-box; }
+    @media (max-width: 640px) { .pp-lead { font-size: 17px; } body .pp-hero .btn-gold { font-size: 14px; padding: 15px 16px 15px 28px; } .pp-hero .btn-gold svg { width: 32px; height: 32px; padding: 9px; } }
 </style>
 </head>
 <body>
@@ -1002,7 +1011,8 @@
   <div class="container pp-hero-inner">
     <div>
       <p class="eyebrow"><span class="ph">Primo<b>Home</b></span> · Your Home. Our Heart.</p>
-      <h1>A cleaner home.<br><em>A clearer price.</em></h1>
+      <h1>A cleaner home. <em>A clearer price.</em></h1>
+      <span class="pp-hero-rule" aria-hidden="true"></span>
       <p class="pp-lead">From a quick refresh to a complete deep clean, enjoy professional home cleaning with simple prices and reliable care.</p>
       <a class="btn btn-gold" href="#pp-choose">Explore prices <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
